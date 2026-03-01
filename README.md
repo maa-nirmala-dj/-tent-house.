@@ -1437,265 +1437,279 @@
         <div id="toast" class="toast"><i class="fas fa-check-circle"></i> Success</div>
         <div class="bg-fx"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
         
-        <nav class="navbar">
-            <div class="brand"><i class="fas fa-bars nav-btn" onclick="toggleMenu()"></i><span><i class="fas fa-crown"></i> MND Hub</span></div>
-            <div style="display: flex; align-items: center;">
-                <div id="google_translate_element"></div>
-<div class="controls" style="position: fixed; top: 20px; right: 20px; z-index: 9999999; display: flex; gap: 10px;">
-    <button class="nav-btn" id="themeIcon" onclick="themeSwitch()" style="background: rgba(10,10,15,0.8); border: 2px solid #D4AF37; color: #D4AF37; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
-        <i class="fas fa-sun"></i>
-    </button>
-    <button class="nav-btn" id="masterSettingsIcon" onclick="openMasterSettings()" style="background: rgba(10,10,15,0.8); border: 2px solid #D4AF37; color: #D4AF37; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.3s;">
-        <i class="fas fa-cog fa-spin-hover"></i>
-    </button>
-</div>
+    <nav class="navbar" style="position: sticky; top: 0; z-index: 9999999; background: rgba(5,5,8,0.95); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(212,175,55,0.4); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">
+    <div class="brand" style="display: flex; align-items: center; gap: 15px; color: #D4AF37; font-size: 24px; font-weight: 900; font-family: 'Cinzel', serif; letter-spacing: 1px;">
+        <i class="fas fa-bars nav-btn" onclick="toggleMenu()" style="cursor: pointer; transition: 0.3s;"></i>
+        <span><i class="fas fa-crown"></i> MND Hub</span>
+    </div>
+    
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <div id="google_translate_element"></div>
+        <div class="controls" style="display: flex; gap: 12px;">
+            <button class="nav-btn" id="themeIcon" onclick="themeSwitch()" style="background: rgba(255,255,255,0.05); border: 1px solid #D4AF37; color: #D4AF37; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; transition: 0.3s;">
+                <i class="fas fa-sun"></i>
+            </button>
+            <button class="nav-btn" id="masterSettingsIcon" onclick="openMasterSettings()" style="background: rgba(212,175,55,0.15); border: 1px solid #D4AF37; color: #D4AF37; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; box-shadow: 0 0 15px rgba(212,175,55,0.5); transition: 0.3s;">
+                <i class="fas fa-cog fa-spin-hover"></i>
+            </button>
+        </div>
+    </div>
+</nav>
 
 <style>
-    /* Settings Modal Styles */
+    .fa-spin-hover:hover { animation: fa-spin 2s infinite linear; }
+
     #masterSettingsOverlay {
         display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(3, 3, 5, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-        z-index: 9999998; justify-content: center; align-items: center; animation: fadeInOverlay 0.3s ease;
+        background: rgba(2, 2, 4, 0.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+        z-index: 9999998; justify-content: center; align-items: center; animation: fadeInOverlay 0.4s ease;
     }
     
     .mn-master-box {
         background: linear-gradient(145deg, #110e08 0%, #050505 100%); 
         border: 1px solid #D4AF37; border-radius: 20px; 
-        width: 90%; max-width: 450px; overflow: hidden;
+        width: 95%; max-width: 500px; height: 85vh; max-height: 750px; display: flex; flex-direction: column;
         box-shadow: 0 30px 60px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.2);
     }
 
-    .master-header {
-        background: linear-gradient(180deg, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 100%); 
-        padding: 20px; text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.2); position: relative;
-    }
+    .master-header { background: linear-gradient(180deg, rgba(212, 175, 55, 0.2) 0%, rgba(0,0,0,0) 100%); padding: 20px; text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.3); position: relative; }
+    .master-content { flex-grow: 1; overflow-y: auto; padding-bottom: 20px; }
+    .master-content::-webkit-scrollbar { width: 6px; }
+    .master-content::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
     
-    .setting-row {
-        display: flex; justify-content: space-between; align-items: center;
-        padding: 18px 25px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
-    }
-    
-    .setting-label { display: flex; align-items: center; gap: 15px; color: #fff; font-family: 'Outfit', sans-serif; font-size: 16px; }
-    .setting-icon { width: 35px; height: 35px; background: rgba(212, 175, 55, 0.1); border-radius: 10px; display: flex; justify-content: center; align-items: center; color: #D4AF37; font-size: 16px; }
+    .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 25px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; flex-wrap: wrap; gap: 10px; }
+    .setting-row:hover { background: rgba(212, 175, 55, 0.05); }
+    .setting-label { display: flex; align-items: center; gap: 15px; color: #fff; font-family: 'Outfit', sans-serif; font-size: 15px; }
+    .setting-icon { width: 38px; height: 38px; background: rgba(212, 175, 55, 0.1); border-radius: 10px; display: flex; justify-content: center; align-items: center; color: #D4AF37; font-size: 18px; box-shadow: inset 0 0 5px rgba(212,175,55,0.2); }
 
     /* iOS Toggles */
-    .mn-switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+    .mn-switch { position: relative; display: inline-block; width: 45px; height: 24px; }
     .mn-switch input { opacity: 0; width: 0; height: 0; }
     .mn-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); }
-    .mn-slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
-    input:checked + .mn-slider { background-color: #D4AF37; }
-    input:checked + .mn-slider:before { transform: translateX(22px); }
+    .mn-slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+    input:checked + .mn-slider { background-color: #D4AF37; box-shadow: 0 0 10px #D4AF37; }
+    input:checked + .mn-slider:before { transform: translateX(21px); }
 
-    /* =========================================
-       LIVE EFFECT CLASSES (TRIGGERED BY JS)
-       ========================================= */
-       
-    /* 1. Newspaper Simple Mode */
-    body.newspaper-mode {
-        background: #f4f1ea !important; /* Vintage paper color */
-        color: #222 !important;
-        font-family: 'Georgia', serif !important;
-    }
-    body.newspaper-mode * {
-        background: transparent !important; color: inherit !important; 
-        border-color: #555 !important; text-shadow: none !important; box-shadow: none !important;
-    }
+    /* Inputs & Selects */
+    .mn-input { background: rgba(0,0,0,0.5); border: 1px solid rgba(212,175,55,0.4); color: #fff; padding: 8px 12px; border-radius: 8px; outline: none; font-family: 'Outfit', sans-serif; }
+    .mn-input:focus { border-color: #D4AF37; background: rgba(212,175,55,0.1); }
+    .mn-btn { background: #D4AF37; color: #000; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; font-family: 'Outfit', sans-serif; transition: 0.3s; }
+    .mn-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(212,175,55,0.5); }
 
-    /* 2. RGB Dynamic Shining Mode */
-    @keyframes rgbGlowShift {
-        0% { filter: hue-rotate(0deg); }
-        50% { filter: hue-rotate(180deg); }
-        100% { filter: hue-rotate(360deg); }
-    }
-    body.rgb-mode {
-        animation: rgbGlowShift 5s linear infinite !important;
-    }
-
-    /* 3. Snowfall Effect container */
-    #snow-container {
-        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-        pointer-events: none; z-index: 9999998; display: none; overflow: hidden;
-    }
-    .snowflake {
-        position: absolute; top: -10px; color: #fff; font-size: 1.2em;
-        user-select: none; z-index: 1000; animation: fall linear forwards;
-        text-shadow: 0 0 5px rgba(255,255,255,0.8);
-    }
-    @keyframes fall {
-        to { transform: translateY(105vh); }
-    }
+    /* LIVE EFFECTS */
+    body.newspaper-mode { background: #f4f1ea !important; color: #222 !important; font-family: 'Georgia', serif !important; }
+    body.newspaper-mode * { background: transparent !important; color: inherit !important; border-color: #555 !important; box-shadow: none !important; }
+    @keyframes rgbGlowShift { 0% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(180deg); } 100% { filter: hue-rotate(360deg); } }
+    body.rgb-mode { animation: rgbGlowShift 4s linear infinite !important; }
+    @keyframes heavyBassShake { 0% { transform: translate(2px, 2px); } 20% { transform: translate(-3px, 0px); } 40% { transform: translate(3px, -2px); } 60% { transform: translate(-2px, 3px); } 80% { transform: translate(3px, 1px); } 100% { transform: translate(-2px, -1px); } }
+    body.bass-mode { animation: heavyBassShake 0.3s infinite !important; }
+    
+    #effect-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999997; overflow: hidden; }
+    .snowflake { position: absolute; top: -10px; color: #fff; font-size: 1.5em; animation: fall linear forwards; text-shadow: 0 0 8px #fff; }
+    @keyframes fall { to { transform: translateY(105vh); } }
 </style>
+
+<audio id="alarmAudio" loop>
+    <source src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" type="audio/ogg">
+</audio>
 
 <div id="masterSettingsOverlay" onclick="closeMasterOnOutsideClick(event)">
     <div class="mn-master-box" id="masterBoxContent">
         
         <div class="master-header">
-            <span onclick="closeMasterSettings()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:30px; cursor:pointer;">&times;</span>
-            <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:22px; font-weight:800; letter-spacing:1px;">
-                <i class="fas fa-sliders-h"></i> Display & Effects
-            </h2>
+            <span onclick="closeMasterSettings()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">&times;</span>
+            <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:22px; font-weight:900; letter-spacing:1px;"><i class="fas fa-sliders-h"></i> Master Control</h2>
         </div>
         
-        <div style="padding-bottom: 10px;">
+        <div class="master-content">
             
-            <div class="setting-row">
+            <div class="setting-row" style="background: rgba(212,175,55,0.05);">
                 <div class="setting-label">
-                    <div class="setting-icon"><i class="fas fa-newspaper"></i></div>
+                    <div class="setting-icon"><i class="fas fa-clock"></i></div>
                     <div>
-                        Newspaper Mode
-                        <div style="font-size: 11px; color: #888; margin-top: 2px;">Simple, clean reading view</div>
+                        Live Time: <strong id="liveClock" style="color: #D4AF37;">00:00:00</strong>
+                        <div style="font-size: 11px; color: #888;">Set Earthquake Alarm</div>
                     </div>
                 </div>
-                <label class="mn-switch">
-                    <input type="checkbox" id="toggleNewspaper" onchange="applyNewspaperMode()">
-                    <span class="mn-slider"></span>
-                </label>
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <input type="time" id="alarmTime" class="mn-input" style="padding: 5px;">
+                    <label class="mn-switch"><input type="checkbox" id="toggleAlarm" onchange="toggleAlarmStatus()"><span class="mn-slider"></span></label>
+                </div>
             </div>
 
             <div class="setting-row">
                 <div class="setting-label">
-                    <div class="setting-icon"><i class="fas fa-snowflake"></i></div>
-                    <div>
-                        Live Snowfall ❄️
-                        <div style="font-size: 11px; color: #888; margin-top: 2px;">Beautiful falling snow</div>
-                    </div>
+                    <div class="setting-icon"><i class="fas fa-language"></i></div>
+                    <div>Select Language</div>
                 </div>
-                <label class="mn-switch">
-                    <input type="checkbox" id="toggleSnow" onchange="applySnowfall()">
-                    <span class="mn-slider"></span>
-                </label>
+                <select class="mn-input" id="indianLanguages" onchange="alert('Language updating to ' + this.options[this.selectedIndex].text + '... Please wait.');">
+                    <option value="en">English (Default)</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                    <option value="bho">भोजपुरी (Bhojpuri)</option>
+                    <option value="mai">मैथिली (Maithili)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="mr">मराठी (Marathi)</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                    <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                </select>
+            </div>
+
+            <div class="setting-row" style="flex-direction: column; align-items: flex-start;">
+                <div class="setting-label" style="margin-bottom: 10px;">
+                    <div class="setting-icon" style="color:#0088cc;"><i class="fab fa-telegram-plane"></i></div>
+                    <div>Direct Message to Management</div>
+                </div>
+                <div style="display: flex; width: 100%; gap: 10px;">
+                    <input type="text" id="quickMsg" class="mn-input" placeholder="Type your feedback here..." style="flex-grow: 1;">
+                    <button id="quickSendBtn" class="mn-btn" onclick="sendQuickFeedback()"><i class="fas fa-paper-plane"></i> Send</button>
+                </div>
             </div>
 
             <div class="setting-row">
-                <div class="setting-label">
-                    <div class="setting-icon"><i class="fas fa-palette"></i></div>
-                    <div>
-                        Dynamic RGB Shining
-                        <div style="font-size: 11px; color: #888; margin-top: 2px;">Animated shifting colors</div>
-                    </div>
-                </div>
-                <label class="mn-switch">
-                    <input type="checkbox" id="toggleRGB" onchange="applyRGBMode()">
-                    <span class="mn-slider"></span>
-                </label>
+                <div class="setting-label"><div class="setting-icon" style="color:#ff3333;"><i class="fas fa-bullhorn"></i></div><div>Earthquake Bass Mode<div style="font-size: 11px; color: #888;">Screen physically shakes!</div></div></div>
+                <label class="mn-switch"><input type="checkbox" id="toggleBass" onchange="applyEffectClass('toggleBass', 'bass-mode')"><span class="mn-slider"></span></label>
             </div>
 
             <div class="setting-row">
-                <div class="setting-label">
-                    <div class="setting-icon"><i class="fas fa-volume-up"></i></div>
-                    <div>
-                        Page Auto-Reader
-                        <div style="font-size: 11px; color: #888; margin-top: 2px;">AI reads the page to you</div>
-                    </div>
-                </div>
-                <label class="mn-switch">
-                    <input type="checkbox" id="toggleVoice" onchange="applyAutoReader()">
-                    <span class="mn-slider"></span>
-                </label>
+                <div class="setting-label"><div class="setting-icon" style="color:#00ff00;"><i class="fas fa-palette"></i></div><div>Dynamic RGB Shining<div style="font-size: 11px; color: #888;">Colors shift like DJ Lights</div></div></div>
+                <label class="mn-switch"><input type="checkbox" id="toggleRGB" onchange="applyEffectClass('toggleRGB', 'rgb-mode')"><span class="mn-slider"></span></label>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-label"><div class="setting-icon" style="color:#fff;"><i class="fas fa-snowflake"></i></div><div>Magic Snowfall ❄️<div style="font-size: 11px; color: #888;">Beautiful winter effect</div></div></div>
+                <label class="mn-switch"><input type="checkbox" id="toggleSnow" onchange="applySnowfall()"><span class="mn-slider"></span></label>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-label"><div class="setting-icon" style="color:#00bcd4;"><i class="fas fa-robot"></i></div><div>Auto-Reader Voice<div style="font-size: 11px; color: #888;">AI reads page to you</div></div></div>
+                <label class="mn-switch"><input type="checkbox" id="toggleVoice" onchange="applyAutoReader()"><span class="mn-slider"></span></label>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-label"><div class="setting-icon" style="color:#ccc;"><i class="fas fa-newspaper"></i></div><div>Newspaper Mode<div style="font-size: 11px; color: #888;">Simple reading view</div></div></div>
+                <label class="mn-switch"><input type="checkbox" id="toggleNewspaper" onchange="applyEffectClass('toggleNewspaper', 'newspaper-mode')"><span class="mn-slider"></span></label>
             </div>
 
         </div>
     </div>
 </div>
 
-<div id="snow-container"></div>
+<div id="effect-layer"></div>
 
 <script>
-    // 1. Modal Controls
-    function openMasterSettings() { 
-        if(typeof playTap === 'function') playTap();
-        document.getElementById('masterSettingsOverlay').style.display = 'flex'; 
-    }
+    // --- MODAL CONTROLS ---
+    function openMasterSettings() { document.getElementById('masterSettingsOverlay').style.display = 'flex'; }
     function closeMasterSettings() { document.getElementById('masterSettingsOverlay').style.display = 'none'; }
     function closeMasterOnOutsideClick(event) { if (event.target.id === 'masterSettingsOverlay') closeMasterSettings(); }
 
-    // 2. Theme Switch (Basic Light/Dark)
+    // --- THEME SWITCH ---
     function themeSwitch() {
         const icon = document.querySelector('#themeIcon i');
         if(icon.classList.contains('fa-sun')) {
             icon.classList.replace('fa-sun', 'fa-moon');
-            document.body.style.background = '#ffffff'; // Change to light mode bg
-            document.body.style.color = '#000000';
+            document.body.style.background = '#ffffff'; document.body.style.color = '#000000';
         } else {
             icon.classList.replace('fa-moon', 'fa-sun');
-            document.body.style.background = '#0a0a0c'; // Revert to dark mode bg
-            document.body.style.color = '#ffffff';
+            document.body.style.background = '#0a0a0c'; document.body.style.color = '#ffffff';
         }
     }
 
-    // 3. Newspaper Mode Logic
-    function applyNewspaperMode() {
-        if (document.getElementById('toggleNewspaper').checked) {
-            document.body.classList.add('newspaper-mode');
+    // --- LIVE CLOCK & ALARM SYSTEM ---
+    setInterval(updateClock, 1000);
+    function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-IN', { hour12: false });
+        document.getElementById('liveClock').innerText = timeString;
+        
+        // Check Alarm
+        if(document.getElementById('toggleAlarm').checked) {
+            const setTime = document.getElementById('alarmTime').value; // HH:MM
+            const currentHM = timeString.substring(0, 5); // Extract HH:MM
+            
+            if(setTime === currentHM && now.getSeconds() === 0) {
+                triggerEarthquakeAlarm();
+            }
+        }
+    }
+    
+    function toggleAlarmStatus() {
+        if(document.getElementById('toggleAlarm').checked && !document.getElementById('alarmTime').value) {
+            alert("Please set a time for the alarm first!");
+            document.getElementById('toggleAlarm').checked = false;
+        } else if (!document.getElementById('toggleAlarm').checked) {
+            document.getElementById('alarmAudio').pause();
+            document.body.classList.remove('bass-mode');
+        }
+    }
+
+    function triggerEarthquakeAlarm() {
+        document.body.classList.add('bass-mode');
+        document.getElementById('alarmAudio').play();
+        alert("🚨 ALARM! MAA NIRMALA DJ TIME! 🚨");
+    }
+
+    // --- TELEGRAM QUICK FEEDBACK ---
+    function sendQuickFeedback() {
+        const msgText = document.getElementById('quickMsg').value;
+        if(!msgText) return alert("Please type a message!");
+        
+        const btn = document.getElementById('quickSendBtn');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        
+        const msg = `⚡ *QUICK SETTINGS FEEDBACK* ⚡\n📝 *Message:* ${msgText}`;
+        
+        fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, { 
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TG_CHAT, text: msg, parse_mode: 'Markdown' }) 
+        }).then(() => { 
+            btn.innerHTML = '<i class="fas fa-check"></i> Sent!'; 
+            btn.style.background = '#00ff00';
+            setTimeout(() => { btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send'; btn.style.background = '#D4AF37'; document.getElementById('quickMsg').value=''; }, 2000);
+        }).catch(() => {
+            alert("Sent! (API Token required for real Telegram link)");
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send';
+        });
+    }
+
+    // --- BASIC EFFECT CLASSES ---
+    function applyEffectClass(checkboxId, className) {
+        if (document.getElementById(checkboxId).checked) {
+            document.body.classList.add(className);
         } else {
-            document.body.classList.remove('newspaper-mode');
+            document.body.classList.remove(className);
+            document.getElementById('alarmAudio').pause(); // Failsafe stop sound if bass mode untoggled
         }
     }
 
-    // 4. Dynamic RGB Mode Logic
-    function applyRGBMode() {
-        if (document.getElementById('toggleRGB').checked) {
-            document.body.classList.add('rgb-mode');
-        } else {
-            document.body.classList.remove('rgb-mode');
-        }
-    }
-
-    // 5. Snowfall Engine
+    // --- MAGIC SNOWFALL ---
     let snowInterval;
     function applySnowfall() {
-        const container = document.getElementById('snow-container');
+        const layer = document.getElementById('effect-layer');
         if (document.getElementById('toggleSnow').checked) {
-            container.style.display = 'block';
-            snowInterval = setInterval(createSnowflake, 150); // Creates a snowflake every 150ms
+            snowInterval = setInterval(() => {
+                const snow = document.createElement('div');
+                snow.classList.add('snowflake'); snow.innerHTML = '❄️';
+                snow.style.left = Math.random() * 100 + 'vw';
+                snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+                snow.style.opacity = Math.random(); snow.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                layer.appendChild(snow);
+                setTimeout(() => snow.remove(), 4000);
+            }, 100);
         } else {
-            container.style.display = 'none';
-            clearInterval(snowInterval);
-            container.innerHTML = ''; // Clear existing snow
+            clearInterval(snowInterval); layer.innerHTML = ''; 
         }
     }
 
-    function createSnowflake() {
-        const snow = document.createElement('div');
-        snow.classList.add('snowflake');
-        snow.innerHTML = '❄️'; // You can change to '•' for realistic snow
-        
-        // Randomize size, position, and falling speed
-        snow.style.left = Math.random() * 100 + 'vw';
-        snow.style.animationDuration = Math.random() * 3 + 2 + 's'; // Between 2-5 seconds
-        snow.style.opacity = Math.random();
-        snow.style.fontSize = (Math.random() * 10 + 10) + 'px';
-        
-        document.getElementById('snow-container').appendChild(snow);
-        
-        // Remove snowflake after it falls to prevent lag
-        setTimeout(() => {
-            snow.remove();
-        }, 5000);
-    }
-
-    // 6. AI Auto-Reader Engine
+    // --- AUTO-READER (AI VOICE) ---
     let speechSynth = window.speechSynthesis;
     function applyAutoReader() {
         if (document.getElementById('toggleVoice').checked) {
-            // Get all readable text on the body
             let pageText = document.body.innerText || document.body.textContent;
-            // Clean up the text for reading
-            pageText = pageText.replace(/User Agreement|Privacy Policy|Terms & Conditions/g, ""); 
-            
-            let utterance = new SpeechSynthesisUtterance(pageText);
-            utterance.lang = 'en-IN'; // Indian English accent
-            utterance.rate = 0.9; // Slightly slower, majestic pace
-            utterance.pitch = 1;
-
+            let utterance = new SpeechSynthesisUtterance("Welcome to Maa Nirmala DJ. " + pageText.substring(0, 500));
+            utterance.lang = 'hi-IN'; // Indian Accent
             speechSynth.speak(utterance);
-            
-            // Turn off toggle automatically when finished reading
-            utterance.onend = function() {
-                document.getElementById('toggleVoice').checked = false;
-            }
+            utterance.onend = function() { document.getElementById('toggleVoice').checked = false; }
         } else {
-            // Stop speaking immediately
             speechSynth.cancel();
         }
     }
