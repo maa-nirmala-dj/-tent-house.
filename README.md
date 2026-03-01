@@ -1435,89 +1435,28 @@
     <div id="main-interface">
         <audio id="sfx-tap"><source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
         <div id="toast" class="toast"><i class="fas fa-check-circle"></i> Success</div>
-        <div class="bg-fx"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
-        
-        <nav class="navbar" style="position: sticky; top: 0; z-index: 999; background: rgba(5,5,8,0.95); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(212,175,55,0.4); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">
-    <div class="brand" style="display: flex; align-items: center; gap: 15px; color: #D4AF37; font-size: 24px; font-weight: 900; font-family: 'Cinzel', serif; letter-spacing: 1px;">
-        <i class="fas fa-bars nav-btn" onclick="toggleMenu()" style="cursor: pointer; transition: 0.3s;"></i>
+<div class="bg-fx"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+
+<nav class="navbar" id="mainNavbar">
+    <div class="brand">
+        <i class="fas fa-bars nav-btn" onclick="toggleMenu()"></i>
         <span><i class="fas fa-crown"></i> MND Hub</span>
     </div>
-    
-    <div style="display: flex; align-items: center; gap: 15px;">
+    <div class="nav-right">
         <div id="google_translate_element"></div>
-        <div class="controls" style="display: flex; gap: 10px;">
-            <button class="nav-btn" id="themeIcon" onclick="themeSwitch()" style="background: rgba(255,255,255,0.05); border: 1px solid #D4AF37; color: #D4AF37; width: 42px; height: 42px; border-radius: 8px; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; font-size: 18px;">
+        <div class="controls">
+            <button class="nav-btn-square theme-btn" id="themeIcon" onclick="themeSwitch()">
                 <i class="fas fa-sun"></i>
             </button>
-            <button class="nav-btn" id="masterSettingsIcon" onclick="openMasterSettings()" style="background: rgba(212,175,55,0.15); border: 1px solid #D4AF37; color: #D4AF37; width: 42px; height: 42px; border-radius: 8px; cursor: pointer; box-shadow: 0 0 15px rgba(212,175,55,0.5); transition: 0.3s; display: flex; justify-content: center; align-items: center; font-size: 18px;">
+            <button class="nav-btn-square set-btn" id="masterSettingsIcon" onclick="openMasterSettings()">
                 <i class="fas fa-cog fa-spin-hover"></i>
             </button>
         </div>
     </div>
 </nav>
 
-<style>
-    .fa-spin-hover:hover { animation: fa-spin 2s infinite linear; }
-
-    /* PERFECTED Z-INDEX FOR OVERLAY */
-    #masterSettingsOverlay {
-        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(2, 2, 4, 0.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-        z-index: 9999999 !important; /* Forces menu on top of everything */
-        justify-content: center; align-items: center; animation: fadeInOverlay 0.4s ease;
-    }
-    
-    .mn-master-box {
-        background: linear-gradient(145deg, #110e08 0%, #050505 100%); 
-        border: 1px solid #D4AF37; border-radius: 20px; 
-        width: 95%; max-width: 500px; height: 85vh; max-height: 750px; display: flex; flex-direction: column;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.2);
-    }
-
-    .master-header { background: linear-gradient(180deg, rgba(212, 175, 55, 0.2) 0%, rgba(0,0,0,0) 100%); padding: 20px; text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.3); position: relative; }
-    .master-content { flex-grow: 1; overflow-y: auto; padding-bottom: 20px; }
-    .master-content::-webkit-scrollbar { width: 6px; }
-    .master-content::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
-    
-    .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 25px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; flex-wrap: wrap; gap: 10px; }
-    .setting-row:hover { background: rgba(212, 175, 55, 0.05); }
-    .setting-label { display: flex; align-items: center; gap: 15px; color: #fff; font-family: 'Outfit', sans-serif; font-size: 15px; }
-    .setting-icon { width: 38px; height: 38px; background: rgba(212, 175, 55, 0.1); border-radius: 10px; display: flex; justify-content: center; align-items: center; color: #D4AF37; font-size: 18px; box-shadow: inset 0 0 5px rgba(212,175,55,0.2); }
-
-    /* iOS Toggles */
-    .mn-switch { position: relative; display: inline-block; width: 45px; height: 24px; }
-    .mn-switch input { opacity: 0; width: 0; height: 0; }
-    .mn-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); }
-    .mn-slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
-    input:checked + .mn-slider { background-color: #D4AF37; box-shadow: 0 0 10px #D4AF37; }
-    input:checked + .mn-slider:before { transform: translateX(21px); }
-
-    /* Inputs & Selects */
-    .mn-input { background: rgba(0,0,0,0.5); border: 1px solid rgba(212,175,55,0.4); color: #fff; padding: 8px 12px; border-radius: 8px; outline: none; font-family: 'Outfit', sans-serif; }
-    .mn-input:focus { border-color: #D4AF37; background: rgba(212,175,55,0.1); }
-    .mn-btn { background: #D4AF37; color: #000; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; font-family: 'Outfit', sans-serif; transition: 0.3s; }
-    .mn-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(212,175,55,0.5); }
-
-    /* LIVE EFFECTS */
-    body.newspaper-mode { background: #f4f1ea !important; color: #222 !important; font-family: 'Georgia', serif !important; }
-    body.newspaper-mode * { background: transparent !important; color: inherit !important; border-color: #555 !important; box-shadow: none !important; }
-    @keyframes rgbGlowShift { 0% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(180deg); } 100% { filter: hue-rotate(360deg); } }
-    body.rgb-mode { animation: rgbGlowShift 4s linear infinite !important; }
-    @keyframes heavyBassShake { 0% { transform: translate(2px, 2px); } 20% { transform: translate(-3px, 0px); } 40% { transform: translate(3px, -2px); } 60% { transform: translate(-2px, 3px); } 80% { transform: translate(3px, 1px); } 100% { transform: translate(-2px, -1px); } }
-    body.bass-mode { animation: heavyBassShake 0.3s infinite !important; }
-    
-    #effect-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999997; overflow: hidden; }
-    .snowflake { position: absolute; top: -10px; color: #fff; font-size: 1.5em; animation: fall linear forwards; text-shadow: 0 0 8px #fff; }
-    @keyframes fall { to { transform: translateY(105vh); } }
-</style>
-
-<audio id="alarmAudio" loop>
-    <source src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" type="audio/ogg">
-</audio>
-
 <div id="masterSettingsOverlay" onclick="closeMasterOnOutsideClick(event)">
     <div class="mn-master-box" id="masterBoxContent">
-        
         <div class="master-header">
             <span onclick="closeMasterSettings()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">&times;</span>
             <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:22px; font-weight:900; letter-spacing:1px;"><i class="fas fa-sliders-h"></i> Master Control</h2>
@@ -1539,24 +1478,6 @@
                 </div>
             </div>
 
-            <div class="setting-row">
-                <div class="setting-label">
-                    <div class="setting-icon"><i class="fas fa-language"></i></div>
-                    <div>Select Language</div>
-                </div>
-                <select class="mn-input" id="indianLanguages" onchange="alert('Language updating to ' + this.options[this.selectedIndex].text + '... Please wait.');">
-                    <option value="en">English (Default)</option>
-                    <option value="hi">हिन्दी (Hindi)</option>
-                    <option value="bho">भोजपुरी (Bhojpuri)</option>
-                    <option value="mai">मैथिली (Maithili)</option>
-                    <option value="bn">বাংলা (Bengali)</option>
-                    <option value="mr">मराठी (Marathi)</option>
-                    <option value="te">తెలుగు (Telugu)</option>
-                    <option value="ta">தமிழ் (Tamil)</option>
-                    <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
-                </select>
-            </div>
-
             <div class="setting-row" style="flex-direction: column; align-items: flex-start;">
                 <div class="setting-label" style="margin-bottom: 10px;">
                     <div class="setting-icon" style="color:#0088cc;"><i class="fab fa-telegram-plane"></i></div>
@@ -1569,7 +1490,7 @@
             </div>
 
             <div class="setting-row">
-                <div class="setting-label"><div class="setting-icon" style="color:#ff3333;"><i class="fas fa-bullhorn"></i></div><div>Earthquake Bass Mode<div style="font-size: 11px; color: #888;">Screen physically shakes!</div></div></div>
+                <div class="setting-label"><div class="setting-icon" style="color:#ff3333;"><i class="fas fa-bullhorn"></i></div><div>Earthquake Bass<div style="font-size: 11px; color: #888;">Screen physically shakes!</div></div></div>
                 <label class="mn-switch"><input type="checkbox" id="toggleBass" onchange="applyEffectClass('toggleBass', 'bass-mode')"><span class="mn-slider"></span></label>
             </div>
 
@@ -1599,6 +1520,96 @@
 
 <div id="effect-layer"></div>
 
+<audio id="alarmAudio" loop>
+    <source src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" type="audio/ogg">
+</audio>
+
+<style>
+    body { padding-top: 65px; } /* Prevents content from hiding under fixed navbar */
+
+    /* Fixed Navbar Styling */
+    .navbar {
+        position: fixed; top: 0; left: 0; width: 100%; height: 65px;
+        background: rgba(10, 10, 12, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 0 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        z-index: 1000; box-sizing: border-box; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; color: #D4AF37; font-family: 'Cinzel', serif; font-weight: 900; font-size: 1.2rem; white-space: nowrap; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .controls { display: flex; gap: 8px; }
+    
+    /* Square Buttons */
+    .nav-btn-square {
+        width: 38px; height: 38px; border-radius: 8px; cursor: pointer;
+        display: flex; justify-content: center; align-items: center; font-size: 16px; transition: 0.3s;
+    }
+    .theme-btn { background: rgba(255,255,255,0.05); border: 1px solid #D4AF37; color: #D4AF37; }
+    .set-btn { background: rgba(212,175,55,0.15); border: 1px solid #D4AF37; color: #D4AF37; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+    .fa-spin-hover:hover { animation: fa-spin 2s infinite linear; }
+
+    /* Google Translate Fix */
+    #google_translate_element { max-width: 140px; overflow: hidden; }
+    .goog-te-gadget-simple { background-color: rgba(255, 255, 255, 0.05) !important; border: 1px solid rgba(212, 175, 55, 0.3) !important; padding: 4px !important; border-radius: 4px !important; font-family: 'Outfit', sans-serif !important; }
+
+    /* Master Settings Overlay - HIGHEST Z-INDEX */
+    #masterSettingsOverlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(2, 2, 4, 0.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+        z-index: 9999999 !important; justify-content: center; align-items: center; animation: fadeInOverlay 0.4s ease;
+    }
+    .mn-master-box { background: linear-gradient(145deg, #110e08 0%, #050505 100%); border: 1px solid #D4AF37; border-radius: 20px; width: 95%; max-width: 500px; height: 85vh; max-height: 750px; display: flex; flex-direction: column; box-shadow: 0 30px 60px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.2); }
+    .master-header { background: linear-gradient(180deg, rgba(212, 175, 55, 0.2) 0%, rgba(0,0,0,0) 100%); padding: 20px; text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.3); position: relative; }
+    .master-content { flex-grow: 1; overflow-y: auto; padding-bottom: 20px; }
+    .master-content::-webkit-scrollbar { width: 6px; }
+    .master-content::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+    .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 25px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; flex-wrap: wrap; gap: 10px; }
+    .setting-row:hover { background: rgba(212, 175, 55, 0.05); }
+    .setting-label { display: flex; align-items: center; gap: 15px; color: #fff; font-family: 'Outfit', sans-serif; font-size: 15px; }
+    .setting-icon { width: 38px; height: 38px; background: rgba(212, 175, 55, 0.1); border-radius: 10px; display: flex; justify-content: center; align-items: center; color: #D4AF37; font-size: 18px; box-shadow: inset 0 0 5px rgba(212,175,55,0.2); }
+
+    /* Custom Toggles & Inputs */
+    .mn-switch { position: relative; display: inline-block; width: 45px; height: 24px; }
+    .mn-switch input { opacity: 0; width: 0; height: 0; }
+    .mn-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); }
+    .mn-slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+    input:checked + .mn-slider { background-color: #D4AF37; box-shadow: 0 0 10px #D4AF37; }
+    input:checked + .mn-slider:before { transform: translateX(21px); }
+    .mn-input { background: rgba(0,0,0,0.5); border: 1px solid rgba(212,175,55,0.4); color: #fff; padding: 8px 12px; border-radius: 8px; outline: none; font-family: 'Outfit', sans-serif; }
+    .mn-input:focus { border-color: #D4AF37; background: rgba(212,175,55,0.1); }
+    .mn-btn { background: #D4AF37; color: #000; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+
+    /* LIVE EFFECTS CSS */
+    body.newspaper-mode { background: #f4f1ea !important; color: #222 !important; font-family: 'Georgia', serif !important; }
+    body.newspaper-mode * { background: transparent !important; color: inherit !important; border-color: #555 !important; box-shadow: none !important; }
+    @keyframes rgbGlowShift { 0% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(180deg); } 100% { filter: hue-rotate(360deg); } }
+    body.rgb-mode { animation: rgbGlowShift 4s linear infinite !important; }
+    @keyframes heavyBassShake { 0% { transform: translate(2px, 2px); } 20% { transform: translate(-3px, 0px); } 40% { transform: translate(3px, -2px); } 60% { transform: translate(-2px, 3px); } 80% { transform: translate(3px, 1px); } 100% { transform: translate(-2px, -1px); } }
+    body.bass-mode { animation: heavyBassShake 0.3s infinite !important; }
+    
+    #effect-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999997; overflow: hidden; }
+    .snowflake { position: absolute; top: -10px; color: #fff; font-size: 1.5em; animation: fall linear forwards; text-shadow: 0 0 8px #fff; }
+    @keyframes fall { to { transform: translateY(105vh); } }
+
+    @media (max-width: 400px) {
+        .brand span { font-size: 1rem; }
+        #google_translate_element { max-width: 110px; }
+        .nav-btn-square { width: 34px; height: 34px; font-size: 14px; }
+    }
+</style>
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'hi,bho,mai,bn,mr,te,ta,pa,gu,kn,ml,or',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <script>
     // --- MODAL CONTROLS ---
     function openMasterSettings() { document.getElementById('masterSettingsOverlay').style.display = 'flex'; }
@@ -1610,14 +1621,14 @@
         const icon = document.querySelector('#themeIcon i');
         if(icon.classList.contains('fa-sun')) {
             icon.classList.replace('fa-sun', 'fa-moon');
-            document.body.style.background = '#ffffff'; document.body.style.color = '#000000';
+            document.body.style.backgroundColor = '#ffffff'; document.body.style.color = '#000000';
         } else {
             icon.classList.replace('fa-moon', 'fa-sun');
-            document.body.style.background = '#0a0a0c'; document.body.style.color = '#ffffff';
+            document.body.style.backgroundColor = '#0a0a0c'; document.body.style.color = '#ffffff';
         }
     }
 
-    // --- LIVE CLOCK & ALARM SYSTEM ---
+    // --- CLOCK & ALARM SYSTEM ---
     setInterval(updateClock, 1000);
     function updateClock() {
         const now = new Date();
@@ -1625,12 +1636,9 @@
         document.getElementById('liveClock').innerText = timeString;
         
         if(document.getElementById('toggleAlarm').checked) {
-            const setTime = document.getElementById('alarmTime').value; // HH:MM
-            const currentHM = timeString.substring(0, 5); // Extract HH:MM
-            
-            if(setTime === currentHM && now.getSeconds() === 0) {
-                triggerEarthquakeAlarm();
-            }
+            const setTime = document.getElementById('alarmTime').value;
+            const currentHM = timeString.substring(0, 5);
+            if(setTime === currentHM && now.getSeconds() === 0) triggerEarthquakeAlarm();
         }
     }
     
@@ -1650,21 +1658,18 @@
         alert("🚨 ALARM! MAA NIRMALA DJ TIME! 🚨");
     }
 
-    // --- TELEGRAM QUICK FEEDBACK ---
+    // --- TELEGRAM FEEDBACK ---
     function sendQuickFeedback() {
         const msgText = document.getElementById('quickMsg').value;
         if(!msgText) return alert("Please type a message!");
-        
         const btn = document.getElementById('quickSendBtn');
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        
-        const msg = `⚡ *QUICK SETTINGS FEEDBACK* ⚡\n📝 *Message:* ${msgText}`;
+        const msg = `⚡ *QUICK FEEDBACK* ⚡\n📝 *Message:* ${msgText}`;
         
         fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, { 
             method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TG_CHAT, text: msg, parse_mode: 'Markdown' }) 
         }).then(() => { 
-            btn.innerHTML = '<i class="fas fa-check"></i> Sent!'; 
-            btn.style.background = '#00ff00';
+            btn.innerHTML = '<i class="fas fa-check"></i> Sent!'; btn.style.background = '#00ff00';
             setTimeout(() => { btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send'; btn.style.background = '#D4AF37'; document.getElementById('quickMsg').value=''; }, 2000);
         }).catch(() => {
             alert("Sent! (API Token required for real Telegram link)");
@@ -1672,17 +1677,13 @@
         });
     }
 
-    // --- BASIC EFFECT CLASSES ---
+    // --- BASIC EFFECTS ---
     function applyEffectClass(checkboxId, className) {
-        if (document.getElementById(checkboxId).checked) {
-            document.body.classList.add(className);
-        } else {
-            document.body.classList.remove(className);
-            document.getElementById('alarmAudio').pause(); 
-        }
+        if (document.getElementById(checkboxId).checked) document.body.classList.add(className);
+        else { document.body.classList.remove(className); document.getElementById('alarmAudio').pause(); }
     }
 
-    // --- MAGIC SNOWFALL ---
+    // --- SNOWFALL ---
     let snowInterval;
     function applySnowfall() {
         const layer = document.getElementById('effect-layer');
@@ -1696,27 +1697,20 @@
                 layer.appendChild(snow);
                 setTimeout(() => snow.remove(), 4000);
             }, 100);
-        } else {
-            clearInterval(snowInterval); layer.innerHTML = ''; 
-        }
+        } else { clearInterval(snowInterval); layer.innerHTML = ''; }
     }
 
-    // --- AUTO-READER (AI VOICE) ---
+    // --- AUTO-READER ---
     let speechSynth = window.speechSynthesis;
     function applyAutoReader() {
         if (document.getElementById('toggleVoice').checked) {
             let pageText = document.body.innerText || document.body.textContent;
             let utterance = new SpeechSynthesisUtterance("Welcome to Maa Nirmala DJ. " + pageText.substring(0, 500));
-            utterance.lang = 'hi-IN'; // Indian Accent
-            speechSynth.speak(utterance);
+            utterance.lang = 'hi-IN'; speechSynth.speak(utterance);
             utterance.onend = function() { document.getElementById('toggleVoice').checked = false; }
-        } else {
-            speechSynth.cancel();
-        }
+        } else { speechSynth.cancel(); }
     }
 </script>
-            </div>
-        </nav>
         
         <div class="container" id="homeSection">
             <div class="profile-wrapper">
