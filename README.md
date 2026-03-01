@@ -1437,7 +1437,7 @@
         <div id="toast" class="toast"><i class="fas fa-check-circle"></i> Success</div>
         <div class="bg-fx"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
         
-    <nav class="navbar" style="position: sticky; top: 0; z-index: 9999999; background: rgba(5,5,8,0.95); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(212,175,55,0.4); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">
+        <nav class="navbar" style="position: sticky; top: 0; z-index: 999; background: rgba(5,5,8,0.95); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(212,175,55,0.4); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">
     <div class="brand" style="display: flex; align-items: center; gap: 15px; color: #D4AF37; font-size: 24px; font-weight: 900; font-family: 'Cinzel', serif; letter-spacing: 1px;">
         <i class="fas fa-bars nav-btn" onclick="toggleMenu()" style="cursor: pointer; transition: 0.3s;"></i>
         <span><i class="fas fa-crown"></i> MND Hub</span>
@@ -1445,11 +1445,11 @@
     
     <div style="display: flex; align-items: center; gap: 15px;">
         <div id="google_translate_element"></div>
-        <div class="controls" style="display: flex; gap: 12px;">
-            <button class="nav-btn" id="themeIcon" onclick="themeSwitch()" style="background: rgba(255,255,255,0.05); border: 1px solid #D4AF37; color: #D4AF37; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; transition: 0.3s;">
+        <div class="controls" style="display: flex; gap: 10px;">
+            <button class="nav-btn" id="themeIcon" onclick="themeSwitch()" style="background: rgba(255,255,255,0.05); border: 1px solid #D4AF37; color: #D4AF37; width: 42px; height: 42px; border-radius: 8px; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; font-size: 18px;">
                 <i class="fas fa-sun"></i>
             </button>
-            <button class="nav-btn" id="masterSettingsIcon" onclick="openMasterSettings()" style="background: rgba(212,175,55,0.15); border: 1px solid #D4AF37; color: #D4AF37; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; box-shadow: 0 0 15px rgba(212,175,55,0.5); transition: 0.3s;">
+            <button class="nav-btn" id="masterSettingsIcon" onclick="openMasterSettings()" style="background: rgba(212,175,55,0.15); border: 1px solid #D4AF37; color: #D4AF37; width: 42px; height: 42px; border-radius: 8px; cursor: pointer; box-shadow: 0 0 15px rgba(212,175,55,0.5); transition: 0.3s; display: flex; justify-content: center; align-items: center; font-size: 18px;">
                 <i class="fas fa-cog fa-spin-hover"></i>
             </button>
         </div>
@@ -1459,10 +1459,12 @@
 <style>
     .fa-spin-hover:hover { animation: fa-spin 2s infinite linear; }
 
+    /* PERFECTED Z-INDEX FOR OVERLAY */
     #masterSettingsOverlay {
         display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(2, 2, 4, 0.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-        z-index: 9999998; justify-content: center; align-items: center; animation: fadeInOverlay 0.4s ease;
+        z-index: 9999999 !important; /* Forces menu on top of everything */
+        justify-content: center; align-items: center; animation: fadeInOverlay 0.4s ease;
     }
     
     .mn-master-box {
@@ -1622,7 +1624,6 @@
         const timeString = now.toLocaleTimeString('en-IN', { hour12: false });
         document.getElementById('liveClock').innerText = timeString;
         
-        // Check Alarm
         if(document.getElementById('toggleAlarm').checked) {
             const setTime = document.getElementById('alarmTime').value; // HH:MM
             const currentHM = timeString.substring(0, 5); // Extract HH:MM
@@ -1677,7 +1678,7 @@
             document.body.classList.add(className);
         } else {
             document.body.classList.remove(className);
-            document.getElementById('alarmAudio').pause(); // Failsafe stop sound if bass mode untoggled
+            document.getElementById('alarmAudio').pause(); 
         }
     }
 
