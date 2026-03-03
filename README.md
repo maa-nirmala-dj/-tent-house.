@@ -3078,5 +3078,3 @@ box.scrollTop = box.scrollHeight;
 }, 700);
         }
     </script>
-</body>
-</html>
