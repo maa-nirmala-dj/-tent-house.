@@ -2408,7 +2408,35 @@ Tola Beltikri | Kadhar | Katoria | Banka | Bihar</p>
             For years, the communities of Beltikri, Katoria, and the greater Banka region have trusted us with their most precious moments. This legacy of trust has been meticulously built by Mr. Lalu Kumar Tanti upon a foundation of total transparency, unwavering punctuality, and an absolute refusal to compromise on quality. When you hire Maa Nirmala DJ & Tent House, you are not just renting equipment; you are partnering with an entire organization dedicated solely to your joy. We leave nothing to chance, we accept no excuses, and we let our spectacular results speak for themselves. Choose us, and let us engineer the perfect, unforgettable night.
         </p>
     </div>
-</div>
+    <div style="text-align: center;">
+                    <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 20px; font-size: 24px; font-weight: 800; line-height: 1.4; letter-spacing: 1px;">
+                        THE PINNACLE OF PREMIUM CELEBRATIONS
+                    </h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+                        Maa Nirmala DJ & Tent House sets the absolute standard for high-energy, luxurious celebrations across Banka. Under the visionary leadership of Mr. Lalu Kumar Tanti, we have transformed countless events from ordinary gatherings into extraordinary cinematic experiences. Situated in the historic heart of Beltikri, Kaddhar, Katoria, our dedicated team works tirelessly to bring your ultimate dream event to reality with unmatched precision.
+                    </p>
+
+                    <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+                        THE SUPREMACY OF ACOUSTIC ENGINEERING
+                    </h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+                        The soul of any grand event is its acoustic heartbeat. At Maa Nirmala DJ, we engineer an auditory atmosphere that captivates the senses. We deploy state-of-the-art, heavy-duty subwoofers that push massive volumes of air, ensuring an earth-shattering bass response. Complementing this low-end power are our crystal-clear, high-frequency line-array top speakers.
+                    </p>
+
+                    <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+                        DYNAMIC VISUAL VIBES & INTELLIGENT LIGHTING
+                    </h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+                        Sound alone cannot carry a premium event. We utilize intelligent, programmable DMX lighting systems to paint the venue in vibrant colors. Our synchronized laser light shows slice through the darkness, while powerful moving head beams track the tempo of the music, creating an immersive club environment right at your venue.
+                    </p>
+
+                    <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+                        ROYAL TENT ARCHITECTURE
+                    </h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+                        Beyond the music, we construct magnificent temporary palaces. Our premium tent setups are feats of structural engineering, built using heavy-duty iron trusses and secure rigging systems. We construct massive waterproof pandals draped in miles of luxurious imported fabrics.
+                    </p>
+                </div>
             </div>
 
 <div style="text-align: center; max-width: 800px; margin: 40px auto 20px auto; padding: 0 20px;">
