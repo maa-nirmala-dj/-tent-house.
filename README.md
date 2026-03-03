@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="application-name" content="MNDs Hub">
     
-    <link rel="manifest" href='data:application/manifest+json,{"name":"MND Secure Hub","short_name":"MND App","start_url":".","display":"standalone","background_color":"#050505","theme_color":"#D4AF37","orientation":"portrait","icons":[{"src":"https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png","sizes":"192x192","type":"image/jpeg"},{"src":"https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg","sizes":"512x512","type":"image/jpeg"}]}'>
+    <link rel="manifest" href='data:application/manifest+json,{"name":"MND Secure Hub","short_name":"MND App","start_url":".","display":"standalone","background_color":"#050505","theme_color":"#D4AF37","orientation":"portrait","icons":[{"src":"https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png","sizes":"192x192","type":"image/jpeg"},{"src":"https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png","sizes":"512x512","type":"image/jpeg"}]}'>
 
     <title>Maa Nirmala DJ & Tent House | SECURE HUB</title>
     
@@ -204,7 +204,7 @@
 
     <div id="gatekeeper">
         <div class="gate-card">
-            <div class="gate-img-frame"><img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" class="gate-img" alt="Profile"></div>
+            <div class="gate-img-frame"><img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" class="gate-img" alt="Profile"></div>
             <h2 class="gate-title">MAA NIRMALA DJ</h2>
             <div class="gate-sub">SECURE PORTFOLIO GATEWAY</div>
             <div class="gate-input-group"><input type="text" id="g-name" class="gate-input" placeholder="YOUR FULL NAME"><i class="fas fa-user gate-icon"></i></div>
@@ -218,7 +218,7 @@
     <div class="side-menu" id="sideMenu">
         <i class="fas fa-times menu-close" onclick="toggleMenu()"></i>
         <div class="menu-logo">
-            <img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="Logo">
+            <img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" alt="Logo">
             <div style="color:var(--gold-primary); font-family:'Cinzel'; font-weight:bold; margin-top:5px;">MNDs Hub</div>
         </div>
         <a href="#" class="side-link" onclick="toggleMenu(); navAction('home')"><i class="fas fa-home"></i> Home</a>
@@ -233,10 +233,10 @@
     <div style="background:linear-gradient(135deg, #110e08 0%, #050505 100%); border:2px solid #D4AF37; border-radius:20px; padding:30px; text-align:center; width:92%; max-width:450px; box-shadow:0 20px 60px rgba(212,175,55,0.4); position:relative; animation:slideUpZoom 0.5s ease;">
         <span onclick="document.getElementById('royalWelcomePopup').style.display='none'" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">&times;</span>
         <div style="color:#D4AF37; font-size:16px; line-height:1.6; font-family:'Cinzel', serif; font-weight:bold;">
-            ✨━━━━━━━━━━━━━━━━━━━✨<br>
+            ✨━━━━━━━━━━━━━━✨<br>
             <span style="font-size:26px; color:#fff; text-shadow:0 0 10px #D4AF37; line-height: 1.2;">🎉 WELCOME TO 🎉</span><br>
             <span style="font-size:30px; color:#FFD700; text-shadow:0 0 20px #FFD700; line-height: 1.2;">🎧 MAA NIRMALA DJ 🎧</span><br>
-            ✨━━━━━━━━━━━━━━━━━━━✨
+            ✨━━━━━━━━━━━━━━━✨
         </div>
         <div style="color:#ddd; font-family:'Outfit', sans-serif; font-size:15px; text-align:left; margin-top:25px; line-height:2;">
             <i class="fas fa-volume-up" style="color:#D4AF37; width:20px;"></i> <b>Powerful Sound System</b><br>
