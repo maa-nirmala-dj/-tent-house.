@@ -233,10 +233,10 @@
     <div style="background:linear-gradient(135deg, #110e08 0%, #050505 100%); border:2px solid #D4AF37; border-radius:20px; padding:30px; text-align:center; width:92%; max-width:450px; box-shadow:0 20px 60px rgba(212,175,55,0.4); position:relative; animation:slideUpZoom 0.5s ease;">
         <span onclick="document.getElementById('royalWelcomePopup').style.display='none'" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">&times;</span>
         <div style="color:#D4AF37; font-size:16px; line-height:1.6; font-family:'Cinzel', serif; font-weight:bold;">
-            ✨━━━━━━━━━━━━━━✨<br>
+             ━━━━━━━━━━━━━━<br>
             <span style="font-size:26px; color:#fff; text-shadow:0 0 10px #D4AF37; line-height: 1.2;">🎉 WELCOME TO 🎉</span><br>
             <span style="font-size:30px; color:#FFD700; text-shadow:0 0 20px #FFD700; line-height: 1.2;">🎧 MAA NIRMALA DJ 🎧</span><br>
-            ✨━━━━━━━━━━━━━━━✨
+            ━━━━━━━━━━━━━━━
         </div>
         <div style="color:#ddd; font-family:'Outfit', sans-serif; font-size:15px; text-align:left; margin-top:25px; line-height:2;">
             <i class="fas fa-volume-up" style="color:#D4AF37; width:20px;"></i> <b>Powerful Sound System</b><br>
@@ -970,8 +970,8 @@
         If the user speaks Hindi, reply in Hinglish or Hindi.
         
         **ALL BUSINESS KNOWLEDGE TO USE FOR ANSWERS:**
-        - Owner & Boss: Mr. Lalu Kumar Tanti
-        - Management Team: Sildhar Kumar, Anil Kumar, Sanjay Kumar
+        - Owner & Boss: Mr. Anil Kumar Tanti
+        - Management Team: Sildhar Kumar, Lalu Kumar, Sanjay Kumar
         - Main Contact Numbers: +91 9771617808 (Lalu), +91 7294969938 (Sildhar), +91 8544341240 (Anil).
         - Full Address: Beltikri, Kaddhar, Katoria, Banka, Bihar, Pin Code: 813106.
         - Style of Work: We are famous for Earth-shaking heavy bass, crystal clear line-array tops, VIP waterproof pandals, and cinematic laser lighting.
