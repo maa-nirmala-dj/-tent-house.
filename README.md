@@ -2201,7 +2201,7 @@
         
         <div class="container" id="homeSection">
             <div class="profile-wrapper">
-                <div class="img-container"><img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" class="profile-pic" alt="Maa Nirmala DJ & Tent House"></div>
+                <div class="img-container"><img src="https://i.postimg.cc/g20XqtDW/IMG_20260303_121446.png" class="profile-pic" alt="Maa Nirmala DJ & Tent House"></div>
                 <h1>MAA NIRMALA DJ & TENT HOUSE <i class="fas fa-check-circle verified"></i></h1>
                 <p class="bio">Digital Creator | Developer</p>
                 <button id="installBtn" onclick="installApp()"><i class="fas fa-download"></i> INSTALL MNDs APP</button>
@@ -2209,10 +2209,10 @@
 
             <div class="section-label"><i class="fas fa-images"></i> OUR SETUP & SHOWCASE</div>
             <div class="grid">
-                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="DJ Setup"><span>Elite DJ Setup</span></a>
-                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="Tent House"><span>Premium Tents</span></a>
-                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="Lighting"><span>Stage Lighting</span></a>
-                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="Booking"><span>Book Event Now</span></a>
+                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/5yRdctZh/1771529133710.jpg" alt="DJ Setup"><span>Elite DJ Setup</span></a>
+                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/VsGc07dS/Screenshot_2026_02_19_08_09_16_34_3d9111e2d3171bf4882369f490c087b4.jpg" alt="Tent House"><span>Premium Tents</span></a>
+                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://postimg.cc/F7wZfbp6" alt="Lighting"><span>Stage Lighting</span></a>
+                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/Vv7kBKCH/2025-10-07-(1).jpg" alt="Booking"><span>Premium Quality</span></a>
             </div>
 
             <div class="section-label" style="margin-top: 40px;"><i class="fas fa-star"></i> BEST OF MAA NIRMALA</div>
@@ -2248,20 +2248,26 @@
             <div class="section-label" style="margin-top:40px;"><i class="fas fa-users"></i> MEET OUR TEAM</div>
             <div class="slider-container">
                 <div class="team-card">
-                    <img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="Lalu Kumar Tanti">
-                    <h1>Lalu Kumar Tanti</h1>
+                    <img src="https://i.postimg.cc/6qbJj3hQ/Screenshot-2026-01-14-15-25-06-57-1c337646f29875672b5a61192b9010f9-2.jpg" alt="Anil Kumar">
+                    <h1>Anil Kumar</h1>
                     <h3>Owner & Founder</h3>
                     <p>A passionate and hardworking individual providing the best event setup, DJ, and Tent services.</p>
                 </div>
                 <div class="team-card">
-                    <img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="Mr. Lalu Kumar">
-                    <h1>Mr. Lalu Kumar</h1>
+                    <img src="https://i.postimg.cc/7Y7rMx2y/Screenshot-2026-01-14-15-33-01-78-965bbf4d18d205f782c6b8409c5773a4-2.jpg" alt="Mr. Sildhar Kumar">
+                    <h1>Mr. Sildhar Kumar</h1>
                     <h3>Business Dev. Manager</h3>
                     <p>Ensuring top-tier service delivery and managing all grand event setups across the district.</p>
                 </div>
                 <div class="team-card">
-                    <img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="Sildhar Kumar">
-                    <h1>Sildhar Kumar</h1>
+                    <img src="https://i.postimg.cc/qMWWzWbF/Screenshot-2026-01-14-15-29-44-90-965bbf4d18d205f782c6b8409c5773a4.jpg" alt="Mr. Sanjay Kumar">
+                    <h1>Mr. Sanjay Kumar</h1>
+                    <h3>Business Dev. Manager</h3>
+                    <p>Ensuring top-tier service delivery and managing all grand event setups across the district.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="Lalu Kumar">
+                    <h1>Lalu Kumar</h1>
                     <h3>Business Associate</h3>
                     <p>Coordinating premium tent decorations, lighting arrangements, and dedicated client relations.</p>
                 </div>
