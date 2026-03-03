@@ -2203,7 +2203,10 @@
             <div class="profile-wrapper">
                 <div class="img-container"><img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" class="profile-pic" alt="Maa Nirmala DJ & Tent House"></div>
                 <h1>MAA NIRMALA DJ & TENT HOUSE <i class="fas fa-check-circle verified"></i></h1>
-                <p class="bio">Tola Beltikri | Kadhar | Katoria | Banka | Bihar</p>
+                <p class="bio">🎵 Maa Nirmala DJ & Tent House ⛺
+Premium Quality | Best DJ in Banka.
+Unforgettable sound. Flawless event setups.
+Tola Beltikri | Kadhar | Katoria | Banka | Bihar</p>
                 <button id="installBtn" onclick="installApp()"><i class="fas fa-download"></i> INSTALL MNDs APP</button>
             </div>
 
