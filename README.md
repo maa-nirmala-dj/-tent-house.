@@ -2201,16 +2201,16 @@
         
         <div class="container" id="homeSection">
             <div class="profile-wrapper">
-                <div class="img-container"><img src="https://i.postimg.cc/g20XqtDW/IMG_20260303_121446.png" class="profile-pic" alt="Maa Nirmala DJ & Tent House"></div>
+                <div class="img-container"><img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" class="profile-pic" alt="Maa Nirmala DJ & Tent House"></div>
                 <h1>MAA NIRMALA DJ & TENT HOUSE <i class="fas fa-check-circle verified"></i></h1>
-                <p class="bio">Digital Creator | Developer</p>
+                <p class="bio">Tola Beltikri | Kadhar | Katoria | Banka | Bihar</p>
                 <button id="installBtn" onclick="installApp()"><i class="fas fa-download"></i> INSTALL MNDs APP</button>
             </div>
 
             <div class="section-label"><i class="fas fa-images"></i> OUR SETUP & SHOWCASE</div>
             <div class="grid">
                 <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/5yRdctZh/1771529133710.jpg" alt="DJ Setup"><span>Elite DJ Setup</span></a>
-                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/VsGc07dS/Screenshot_2026_02_19_08_09_16_34_3d9111e2d3171bf4882369f490c087b4.jpg" alt="Tent House"><span>Premium Tents</span></a>
+                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/R0smYWFp/2025-10-07-(5).jpg" alt="Tent House"><span>Premium Tents</span></a>
                 <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://postimg.cc/F7wZfbp6" alt="Lighting"><span>Stage Lighting</span></a>
                 <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/Vv7kBKCH/2025-10-07-(1).jpg" alt="Booking"><span>Premium Quality</span></a>
             </div>
