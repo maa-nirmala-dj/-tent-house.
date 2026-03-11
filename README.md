@@ -2678,275 +2678,37 @@
 </div>
 
 <script>
-<a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openMediaManager()">
-    <i class="fas fa-folder-open"></i> Local Media Player
-</a>
-
-<div id="mediaManagerOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(5,5,5,0.98); z-index:9999999; flex-direction:column; overflow:hidden; backdrop-filter: blur(15px);">
+    function openSocialModal() { document.getElementById('socialModalOverlay').style.display = 'flex'; }
+    function closeSocialModal() { document.getElementById('socialModalOverlay').style.display = 'none'; }
+    function closeSocialOnOutsideClick(event) { if (event.target.id === 'socialModalOverlay') closeSocialModal(); }
     
-    <div style="padding:20px; text-align:center; border-bottom:1px solid rgba(212,175,55,0.3); background:linear-gradient(180deg, rgba(20,20,20,0.9) 0%, rgba(5,5,5,0.9) 100%); position:relative; box-shadow: 0 5px 20px rgba(0,0,0,0.8);">
-        <span onclick="closeMediaManager()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer; transition: 0.3s;">&times;</span>
-        <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:24px; font-weight:900; letter-spacing: 1px;"><i class="fas fa-server"></i> V-MAX Player</h2>
-        <div style="margin-top:8px; display:flex; justify-content:center; gap:15px; color:#aaa; font-family:'Outfit'; font-size:12px; font-weight:bold;">
-            <span id="totalFileCount"><i class="fas fa-file"></i> 0 Media Files</span>
-            <span id="totalFileSize"><i class="fas fa-hdd"></i> 0.00 MB</span>
-        </div>
-    </div>
-
-    <div style="padding:15px; background:rgba(255,255,255,0.02); display:flex; flex-direction:column; gap:15px; border-bottom:1px solid rgba(212,175,55,0.2);">
+    // Logic to switch between Instagram and Facebook views
+    function switchSocialTab(platform) {
+        if(typeof playTap === 'function') playTap();
         
-        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
-            <button class="mn-btn" style="background:linear-gradient(45deg, #00fa9a, #00bfff); color:#000; font-weight:bold; border:none; padding:12px 15px; box-shadow:0 4px 15px rgba(0,250,154,0.3);" onclick="document.getElementById('folderScannerInput').click()">
-                <i class="fas fa-radar"></i> Auto-Scan Folder
-            </button>
-            
-            <button class="mn-btn" style="background:transparent; border:1px solid #D4AF37; color:#D4AF37; padding:12px 15px;" onclick="document.getElementById('localMediaInput').click()">
-                <i class="fas fa-plus-circle"></i> Select Files
-            </button>
-            
-            <button class="mn-btn" style="background:rgba(255,51,51,0.1); border:1px solid #ff3333; color:#ff3333; padding:12px 15px;" onclick="clearMediaGallery()">
-                <i class="fas fa-trash-alt"></i> Clear All
-            </button>
-
-            <input type="file" id="localMediaInput" multiple accept="video/*, audio/*, image/*" style="display:none;" onchange="processScannedFiles(this)">
-            <input type="file" id="folderScannerInput" webkitdirectory directory multiple style="display:none;" onchange="processScannedFiles(this)">
-        </div>
-
-        <div style="display:flex; justify-content:center; gap:5px; flex-wrap:wrap;">
-            <button class="filter-tab active-tab" onclick="filterMedia('all', this)"><i class="fas fa-th-large"></i> All</button>
-            <button class="filter-tab" onclick="filterMedia('video', this)"><i class="fas fa-video"></i> Videos</button>
-            <button class="filter-tab" onclick="filterMedia('audio', this)"><i class="fas fa-music"></i> Audio</button>
-            <button class="filter-tab" onclick="filterMedia('image', this)"><i class="fas fa-image"></i> Photos</button>
-        </div>
-    </div>
-
-    <div id="scanStatusArea" style="display:none; text-align:center; padding:15px; background:rgba(212,175,55,0.1); color:#D4AF37; font-family:'Outfit'; font-weight:bold; border-bottom:1px solid #D4AF37;">
-        <i class="fas fa-spinner fa-spin"></i> Scanning device for media... Please wait.
-    </div>
-
-    <div id="mediaGalleryArea" style="flex-grow:1; overflow-y:auto; padding:20px; display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:15px; align-content:start;">
-        <div style="grid-column: 1 / -1; text-align:center; color:#555; margin-top:8vh; font-family:'Outfit';">
-            <i class="fas fa-photo-video" style="font-size:60px; margin-bottom:15px; color:rgba(212,175,55,0.3);"></i><br>
-            <span style="font-size:18px; color:#888;">Player is Empty</span><br>
-            <span style="font-size:13px; display:block; margin-top:10px;">Click <b>Auto-Scan Folder</b> to allow access to a folder (like "Downloads" or "DCIM") and instantly load all your media.</span>
-        </div>
-    </div>
-
-    <div id="activePlayerOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; z-index:99999999; flex-direction:column;">
-        <div style="padding:15px 20px; background:linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%); display:flex; justify-content:space-between; align-items:center; position:absolute; top:0; width:100%; box-sizing:border-box; z-index:11;">
-            <div id="playerFileName" style="color:#fff; font-family:'Outfit'; font-weight:bold; font-size:14px; text-shadow:0 2px 4px #000; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:80%;">Playing Media...</div>
-            <span onclick="closeActivePlayer()" style="color:#fff; font-size:35px; cursor:pointer; text-shadow:0 0 10px #000; line-height:1;">&times;</span>
-        </div>
-        <div id="playerContentArea" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; background:#000;"></div>
-    </div>
-</div>
-
-<style>
-    /* Filter Tabs */
-    .filter-tab {
-        background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #aaa;
-        padding: 8px 15px; border-radius: 20px; font-family: 'Outfit', sans-serif; font-size: 13px;
-        cursor: pointer; transition: 0.3s ease;
-    }
-    .filter-tab.active-tab {
-        background: rgba(212,175,55,0.15); border-color: #D4AF37; color: #D4AF37; font-weight: bold;
-    }
-
-    /* Media Cards */
-    .media-item-card {
-        background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px;
-        overflow: hidden; display: flex; flex-direction: column; cursor: pointer; position: relative;
-        transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-    .media-item-card:hover {
-        border-color: #D4AF37; transform: translateY(-5px); box-shadow: 0 8px 20px rgba(212,175,55,0.3);
-    }
-    
-    .media-thumbnail {
-        height: 110px; width: 100%; background: #0a0a0c; display: flex; flex-direction: column;
-        justify-content: center; align-items: center; font-size: 35px; color: #D4AF37;
-        object-fit: cover; position: relative;
-    }
-    .media-thumbnail.video-bg { background: linear-gradient(45deg, #1a0000, #4d0000); color: #ff3333; }
-    .media-thumbnail.audio-bg { background: linear-gradient(45deg, #001a33, #004080); color: #00bfff; }
-    
-    .play-overlay {
-        position: absolute; background: rgba(0,0,0,0.5); width: 40px; height: 40px;
-        border-radius: 50%; display: flex; justify-content: center; align-items: center;
-        color: #fff; font-size: 16px; border: 2px solid #fff;
-    }
-
-    .media-info { padding: 10px; background: rgba(5,5,5,0.9); font-family: 'Outfit', sans-serif; }
-    .media-title { color: #fff; font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
-    .media-meta { color: #888; font-size: 10px; display: flex; justify-content: space-between; }
-    
-    .media-remove-btn {
-        position: absolute; top: 8px; right: 8px; background: rgba(255,51,51,0.9); color: white;
-        border: none; border-radius: 50%; width: 26px; height: 26px; display: flex;
-        justify-content: center; align-items: center; cursor: pointer; font-size: 12px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.5); z-index: 2; transition: 0.2s;
-    }
-    .media-remove-btn:hover { transform: scale(1.1); background: #ff0000; }
-</style>
-
-<script>
-    let vaultFiles = [];
-    let currentFilter = 'all';
-
-    function openMediaManager() { document.getElementById('mediaManagerOverlay').style.display = 'flex'; }
-    function closeMediaManager() { document.getElementById('mediaManagerOverlay').style.display = 'none'; closeActivePlayer(); }
-
-    // Advanced Folder Scanning Engine
-    function processScannedFiles(inputElement) {
-        if (!inputElement.files || inputElement.files.length === 0) return;
+        // Get elements
+        const btnIg = document.getElementById('btn-ig');
+        const btnFb = document.getElementById('btn-fb');
+        const feedIg = document.getElementById('feed-ig');
+        const feedFb = document.getElementById('feed-fb');
         
-        document.getElementById('scanStatusArea').style.display = 'block';
-
-        // Use a timeout to allow the UI to show the "Scanning..." message before heavy processing
-        setTimeout(() => {
-            let addedCount = 0;
-            for (let i = 0; i < inputElement.files.length; i++) {
-                const file = inputElement.files[i];
-                
-                // FILTER: Only grab actual media files. Ignore system files, PDFs, etc.
-                if (file.type.startsWith('video/') || file.type.startsWith('audio/') || file.type.startsWith('image/')) {
-                    
-                    // Check for exact duplicates to prevent spam
-                    const isDuplicate = vaultFiles.some(f => f.name === file.name && f.size === file.size);
-                    if(!isDuplicate) {
-                        vaultFiles.push(file);
-                        addedCount++;
-                    }
-                }
-            }
-            
-            inputElement.value = ''; // Reset input
-            renderGallery();
-            updateStorageStats();
-            document.getElementById('scanStatusArea').style.display = 'none';
-            
-            if(addedCount > 0) alert(`✅ Successfully scanned and loaded ${addedCount} media files!`);
-            else alert("No new media files found in that selection.");
-            
-        }, 100);
-    }
-
-    function updateStorageStats() {
-        let totalBytes = vaultFiles.reduce((acc, file) => acc + file.size, 0);
-        let sizeMB = (totalBytes / (1024 * 1024)).toFixed(2);
+        // Reset everything
+        btnIg.className = 's-tab-btn';
+        btnFb.className = 's-tab-btn';
+        feedIg.classList.remove('active');
+        feedFb.classList.remove('active');
         
-        document.getElementById('totalFileCount').innerHTML = `<i class="fas fa-file"></i> ${vaultFiles.length} Media Files`;
-        document.getElementById('totalFileSize').innerHTML = `<i class="fas fa-hdd"></i> ${sizeMB} MB`;
-    }
-
-    function filterMedia(type, btnElement) {
-        currentFilter = type;
-        document.querySelectorAll('.filter-tab').forEach(btn => btn.classList.remove('active-tab'));
-        btnElement.classList.add('active-tab');
-        renderGallery();
-    }
-
-    function renderGallery() {
-        const gallery = document.getElementById('mediaGalleryArea');
-        gallery.innerHTML = ''; 
-
-        let filteredFiles = vaultFiles.map((file, index) => ({ file, originalIndex: index }));
-
-        if (currentFilter !== 'all') {
-            filteredFiles = filteredFiles.filter(item => item.file.type.startsWith(currentFilter + '/'));
+        // Apply active state
+        if(platform === 'ig') {
+            btnIg.className = 's-tab-btn active-ig';
+            feedIg.classList.add('active');
+        } else if(platform === 'fb') {
+            btnFb.className = 's-tab-btn active-fb';
+            feedFb.classList.add('active');
         }
-
-        if (filteredFiles.length === 0) {
-            gallery.innerHTML = `
-                <div style="grid-column: 1 / -1; text-align:center; color:#555; margin-top:10vh; font-family:'Outfit';">
-                    <i class="fas fa-search" style="font-size:50px; margin-bottom:15px; color:rgba(212,175,55,0.2);"></i><br>
-                    <span style="font-size:16px;">No ${currentFilter === 'all' ? 'media files' : currentFilter + 's'} found.</span>
-                </div>`;
-            return;
-        }
-
-        filteredFiles.forEach(item => {
-            const file = item.file;
-            const idx = item.originalIndex;
-            const fileURL = URL.createObjectURL(file);
-            let thumbnailHTML = '';
-            let sizeStr = file.size > 1024 * 1024 ? (file.size / (1024*1024)).toFixed(1) + ' MB' : (file.size / 1024).toFixed(0) + ' KB';
-            
-            if (file.type.startsWith('image/')) {
-                thumbnailHTML = `<img src="${fileURL}" class="media-thumbnail">`;
-            } else if (file.type.startsWith('video/')) {
-                thumbnailHTML = `<div class="media-thumbnail video-bg"><i class="fas fa-film"></i><div class="play-overlay"><i class="fas fa-play"></i></div></div>`;
-            } else if (file.type.startsWith('audio/')) {
-                thumbnailHTML = `<div class="media-thumbnail audio-bg"><i class="fas fa-music"></i><div class="play-overlay" style="border-color:#00bfff;"><i class="fas fa-play" style="color:#00bfff;"></i></div></div>`;
-            }
-
-            gallery.innerHTML += `
-                <div class="media-item-card">
-                    <button class="media-remove-btn" onclick="removeMediaItem(event, ${idx})" title="Remove from Player"><i class="fas fa-trash"></i></button>
-                    <div onclick="playMedia(${idx})" style="height:100%; display:flex; flex-direction:column;">
-                        ${thumbnailHTML}
-                        <div class="media-info" style="flex-grow:1;">
-                            <div class="media-title">${file.name}</div>
-                            <div class="media-meta"><span>${file.type.split('/')[0].toUpperCase()}</span> <span>${sizeStr}</span></div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    function removeMediaItem(event, index) {
-        event.stopPropagation();
-        vaultFiles.splice(index, 1);
-        renderGallery();
-        updateStorageStats();
-    }
-
-    function clearMediaGallery() {
-        if(vaultFiles.length === 0) return;
-        if(confirm("Clear the V-MAX Player? (This does not delete files from your actual device).")) {
-            vaultFiles = [];
-            renderGallery();
-            updateStorageStats();
-        }
-    }
-
-    function playMedia(index) {
-        const file = vaultFiles[index];
-        const fileURL = URL.createObjectURL(file);
-        const playerOverlay = document.getElementById('activePlayerOverlay');
-        const contentArea = document.getElementById('playerContentArea');
-        const titleBar = document.getElementById('playerFileName');
-        
-        contentArea.innerHTML = ''; 
-        titleBar.innerText = file.name;
-
-        if (file.type.startsWith('video/')) {
-            contentArea.innerHTML = `<video src="${fileURL}" controls autoplay playsinline style="width:100%; max-height:100vh; outline:none; background:#000;"></video>`;
-        } else if (file.type.startsWith('image/')) {
-            contentArea.innerHTML = `<img src="${fileURL}" style="max-width:100vw; max-height:100vh; object-fit:contain; border-radius:8px;">`;
-        } else if (file.type.startsWith('audio/')) {
-            contentArea.innerHTML = `
-                <div style="text-align:center; background:linear-gradient(145deg, #111, #050505); padding:40px; border-radius:20px; border:1px solid #333; box-shadow:0 10px 30px rgba(0,191,255,0.1);">
-                    <div style="width:120px; height:120px; background:rgba(0,191,255,0.1); border-radius:50%; display:flex; justify-content:center; align-items:center; margin:0 auto 30px auto; border:2px solid #00bfff; box-shadow:0 0 20px rgba(0,191,255,0.3);">
-                        <i class="fas fa-headphones-alt" style="font-size:50px; color:#00bfff;"></i>
-                    </div>
-                    <h3 style="color:#fff; font-family:'Outfit'; margin:0 0 5px 0; font-size:18px; padding: 0 20px;">${file.name}</h3>
-                    <audio src="${fileURL}" controls autoplay style="width:280px; outline:none; margin-top:20px;"></audio>
-                </div>
-            `;
-        }
-
-        playerOverlay.style.display = 'flex';
-    }
-
-    function closeActivePlayer() {
-        const playerOverlay = document.getElementById('activePlayerOverlay');
-        const contentArea = document.getElementById('playerContentArea');
-        contentArea.innerHTML = ''; 
-        playerOverlay.style.display = 'none';
     }
 </script>
+        
         <a href="mailto:maa.nirmala.dj.beltikri@gmail.com" class="side-link"><i class="fas fa-envelope"></i> Email</a>
     </div>
 
