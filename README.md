@@ -1014,7 +1014,581 @@
         }
     });
 </script>
+<a href="javascript:void(0)" class="side-link" style="display: flex; align-items: center; gap: 10px; width: 100%; padding: 15px; background: transparent; border: 1px solid #D4AF37; border-radius: 8px; color: #D4AF37; font-family: 'Outfit', sans-serif; font-weight: bold; font-size: 16px; text-decoration: none; justify-content: center; box-sizing: border-box; transition: 0.3s ease; margin-bottom: 15px;" onclick="toggleMenu(); openAppointmentModal()">
+    <i class="fas fa-calendar-check"></i> SCHEDULE APPOINTMENT
+</a>
 
+<div id="appointmentModalOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(5,5,5,0.95); z-index:9999999; justify-content:center; align-items:center; backdrop-filter: blur(10px);">
+    <div class="mn-master-box" style="width:95%; max-width:550px; height:90vh; border:1px solid #D4AF37; border-radius:16px; background:linear-gradient(145deg, #110e08 0%, #050505 100%); display:flex; flex-direction:column; box-shadow: 0 20px 50px rgba(0,0,0,0.9);">
+        
+        <div class="master-header" style="padding:20px; text-align:center; border-bottom:1px solid rgba(212,175,55,0.3); position:relative;">
+            <span onclick="closeAppointmentModal()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">×</span>
+            <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:22px; font-weight:900;"><i class="fas fa-calendar-alt"></i> New Appointment</h2>
+        </div>
+
+        <div style="flex-grow:1; overflow-y:auto; padding:20px; box-sizing:border-box;" id="aptFormContainer">
+            
+            <div style="display:flex; gap:10px; margin-bottom: 15px;">
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Full Name *</span>
+                    <input type="text" id="aptName" class="mn-input" style="width: 100%; box-sizing: border-box;" placeholder="Customer's name">
+                </div>
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Mobile Number *</span>
+                    <input type="tel" id="aptPhone" class="mn-input" style="width: 100%; box-sizing: border-box;" placeholder="Contact number">
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom: 15px;">
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Date of Appointment *</span>
+                    <input type="date" id="aptDate" class="mn-input" style="width: 100%; box-sizing: border-box; color:#fff;">
+                </div>
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Exact Time *</span>
+                    <input type="time" id="aptTime" class="mn-input" style="width: 100%; box-sizing: border-box; color:#fff;">
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom: 15px;">
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Service Type *</span>
+                    <select id="aptService" class="mn-input" style="width: 100%; box-sizing: border-box; color:#fff;">
+                        <option value="" disabled selected>Select Service</option>
+                        <option value="DJ Setup Only">DJ Setup Only</option>
+                        <option value="Tent House Only">Tent House Only</option>
+                        <option value="Lighting & Decor">Lighting & Decor</option>
+                        <option value="Full Package (DJ+Tent+Light)">Full Package</option>
+                    </select>
+                </div>
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Event Type *</span>
+                    <select id="aptEvent" class="mn-input" style="width: 100%; box-sizing: border-box; color:#fff;">
+                        <option value="" disabled selected>Select Event</option>
+                        <option value="Wedding">Wedding</option>
+                        <option value="Birthday Party">Birthday Party</option>
+                        <option value="School Event">School Event</option>
+                        <option value="Party / Celebration">Party / Celebration</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="f-group" style="margin-bottom: 15px;">
+                <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Address / Location *</span>
+                <textarea id="aptAddress" class="mn-input" style="width: 100%; box-sizing: border-box; resize:vertical;" rows="2" placeholder="Where the service will take place"></textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom: 15px;">
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Number of Guests</span>
+                    <input type="number" id="aptGuests" class="mn-input" style="width: 100%; box-sizing: border-box;" placeholder="Approx people">
+                </div>
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Advance Payment</span>
+                    <select id="aptPayment" class="mn-input" style="width: 100%; box-sizing: border-box; color:#fff;">
+                        <option value="Not Paid" selected>Not Paid</option>
+                        <option value="Paid">Paid</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="f-group" style="margin-bottom: 15px;">
+                <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Special Requirements</span>
+                <textarea id="aptReq" class="mn-input" style="width: 100%; box-sizing: border-box; resize:vertical;" rows="2" placeholder="Extra lights, stage, generator, etc."></textarea>
+            </div>
+
+            <div class="f-group" style="margin-bottom: 15px; background:rgba(255,255,255,0.05); padding:15px; border-radius:10px; border:1px dashed rgba(212,175,55,0.4);">
+                <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:10px; font-size:13px;"><i class="fas fa-map-marker-alt"></i> Share Live Location (Manual)</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <button class="mn-btn" style="background:#444; color:#fff; font-size:12px; padding:8px 12px;" onclick="getAptLocation()"><i class="fas fa-location-arrow"></i> Attach Location</button>
+                    <span id="aptLocStatus" style="color:#aaa; font-size:12px;">Not attached</span>
+                </div>
+            </div>
+
+            <div class="f-group" style="margin-bottom: 15px; background:rgba(255,255,255,0.05); padding:15px; border-radius:10px; border:1px dashed rgba(212,175,55,0.4);">
+                <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:10px; font-size:13px;"><i class="fas fa-camera"></i> Capture Live Photo (Optional)</span>
+                
+                <div id="aptCamArea" style="display:none; flex-direction:column; align-items:center; margin-bottom:10px;">
+                    <video id="aptVideo" autoplay playsinline style="width:100%; max-height:200px; object-fit:cover; border-radius:8px; border:2px solid #D4AF37;"></video>
+                    <button class="mn-btn" style="background:#ff3333; color:#fff; margin-top:10px; width:100%;" onclick="captureAptPhoto()"><i class="fas fa-circle"></i> SNAP PHOTO</button>
+                </div>
+                
+                <div id="aptPreviewArea" style="display:none; flex-direction:column; align-items:center; margin-bottom:10px;">
+                    <img id="aptImagePreview" style="width:100%; max-height:200px; object-fit:cover; border-radius:8px; border:2px solid #00fa9a;">
+                    <button class="mn-btn" style="background:#444; color:#fff; margin-top:10px; font-size:12px;" onclick="retakeAptPhoto()"><i class="fas fa-redo"></i> Retake</button>
+                </div>
+
+                <button id="startAptCamBtn" class="mn-btn" style="background:#2575fc; color:#fff; width:100%;" onclick="startAptCamera()"><i class="fas fa-camera"></i> Open Camera</button>
+                <canvas id="aptCanvas" style="display:none;"></canvas>
+            </div>
+
+            <div class="f-group" style="margin-bottom: 25px;">
+                <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;"><i class="fas fa-paperclip"></i> Or Attach Media (Audio/Video/Photo)</span>
+                <input type="file" id="aptFile" class="mn-input" style="width: 100%; box-sizing: border-box; padding:8px;" accept="image/*,video/*,audio/*">
+            </div>
+
+            <button id="aptSubmitBtn" class="mn-btn" style="width:100%; padding:15px; font-size:18px; background:transparent; border:1px solid #D4AF37; color:#D4AF37; border-radius:8px; cursor:pointer; font-weight:bold;" onclick="submitAppointment()">
+                <i class="fas fa-paper-plane"></i> CONFIRM APPOINTMENT
+            </button>
+            
+            <div id="aptSubmitStatus" style="color:#00fa9a; font-weight:bold; font-size:14px; margin-top:15px; display:none; text-align:center;"></div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- TELEGRAM CONFIGURATION ---
+    const APT_TG_TOKEN = "8671549318:AAFmsnS2xvhOJFgYUZfFDe5ELDhpYwlFVqQ";
+    const APT_TG_CHAT = "8506290708";
+    
+    // --- STATE VARIABLES ---
+    let aptLocationData = "Not Provided";
+    let aptCapturedBlob = null;
+    let aptVideoStream = null;
+
+    // --- MODAL CONTROLS ---
+    function openAppointmentModal() {
+        document.getElementById('appointmentModalOverlay').style.display = 'flex';
+    }
+
+    function closeAppointmentModal() {
+        document.getElementById('appointmentModalOverlay').style.display = 'none';
+        stopAptCamera(); // Ensure camera turns off when closed
+    }
+
+    // --- LOCATION FETCHING (PERFECTED GOOGLE MAPS URL) ---
+    function getAptLocation() {
+        const statusSpan = document.getElementById('aptLocStatus');
+        statusSpan.style.color = "#ff8c00";
+        statusSpan.innerText = "Fetching GPS...";
+        
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                // Perfect Google Maps Link Format:
+                aptLocationData = `[View on Google Maps](https://www.google.com/maps?q=${lat},${lon})`;
+                statusSpan.style.color = "#00fa9a";
+                statusSpan.innerHTML = '<i class="fas fa-check-circle"></i> Location Attached';
+            }, (error) => {
+                statusSpan.style.color = "#ff3333";
+                statusSpan.innerText = "GPS Access Denied/Failed";
+            });
+        } else {
+            statusSpan.innerText = "GPS Not Supported";
+        }
+    }
+
+    // --- CAMERA & PHOTO CAPTURE LOGIC ---
+    async function startAptCamera() {
+        const video = document.getElementById('aptVideo');
+        const camArea = document.getElementById('aptCamArea');
+        const startBtn = document.getElementById('startAptCamBtn');
+        const previewArea = document.getElementById('aptPreviewArea');
+
+        previewArea.style.display = 'none';
+        aptCapturedBlob = null;
+
+        try {
+            aptVideoStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+            video.srcObject = aptVideoStream;
+            camArea.style.display = 'flex';
+            startBtn.style.display = 'none';
+        } catch (err) {
+            alert("Camera access denied or unavailable.");
+        }
+    }
+
+    function captureAptPhoto() {
+        const video = document.getElementById('aptVideo');
+        const canvas = document.getElementById('aptCanvas');
+        const imgPreview = document.getElementById('aptImagePreview');
+        const camArea = document.getElementById('aptCamArea');
+        const previewArea = document.getElementById('aptPreviewArea');
+
+        // Set canvas size to video frame
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        
+        // Draw frame to canvas
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Convert to blob
+        canvas.toBlob((blob) => {
+            aptCapturedBlob = blob;
+            const url = URL.createObjectURL(blob);
+            imgPreview.src = url;
+            
+            // Switch UI
+            stopAptCamera();
+            camArea.style.display = 'none';
+            previewArea.style.display = 'flex';
+        }, 'image/jpeg', 0.9);
+    }
+
+    function retakeAptPhoto() {
+        startAptCamera();
+    }
+
+    function stopAptCamera() {
+        if (aptVideoStream) {
+            aptVideoStream.getTracks().forEach(track => track.stop());
+            aptVideoStream = null;
+        }
+    }
+
+    // --- FORM SUBMISSION & TELEGRAM UPLOAD ---
+    function submitAppointment() {
+        // 1. Gather all fields
+        const name = document.getElementById('aptName').value.trim();
+        const phone = document.getElementById('aptPhone').value.trim();
+        const date = document.getElementById('aptDate').value;
+        const time = document.getElementById('aptTime').value;
+        const service = document.getElementById('aptService').value;
+        const eventType = document.getElementById('aptEvent').value;
+        const address = document.getElementById('aptAddress').value.trim();
+        const guests = document.getElementById('aptGuests').value.trim() || "N/A";
+        const payment = document.getElementById('aptPayment').value;
+        const reqs = document.getElementById('aptReq').value.trim() || "None";
+        const fileInput = document.getElementById('aptFile');
+
+        // 2. Validate mandatory fields
+        if (!name || !phone || !date || !time || !service || !eventType || !address) {
+            alert("⚠️ Please fill in all mandatory (*) fields.");
+            return;
+        }
+
+        // 3. UI Loading State
+        const btn = document.getElementById('aptSubmitBtn');
+        const status = document.getElementById('aptSubmitStatus');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SECURELY TRANSMITTING...';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+
+        // 4. Construct the beautiful Telegram Message
+        const captionMsg = `📅 *NEW APPOINTMENT* 📅\n\n👤 *Customer:* ${name}\n📞 *Phone:* ${phone}\n🗓️ *Date & Time:* ${date} at ${time}\n🎪 *Service:* ${service}\n🎉 *Event:* ${eventType}\n👥 *Guests:* ${guests}\n💰 *Payment Status:* ${payment}\n🏠 *Address:* ${address}\n📍 *Live GPS:* ${aptLocationData}\n💡 *Requirements:* ${reqs}`;
+
+        // 5. Build FormData for File Uploads
+        const formData = new FormData();
+        formData.append('chat_id', APT_TG_CHAT);
+        formData.append('caption', captionMsg);
+        formData.append('parse_mode', 'Markdown');
+
+        let endpoint = 'sendMessage';
+
+        // Check if there's an explicitly uploaded file
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            endpoint = 'sendDocument';
+            if(file.type.startsWith('video/')) endpoint = 'sendVideo';
+            if(file.type.startsWith('audio/')) endpoint = 'sendAudio';
+            formData.append(endpoint === 'sendDocument' ? 'document' : (endpoint === 'sendVideo' ? 'video' : 'audio'), file);
+        } 
+        // Or if they captured a live photo
+        else if (aptCapturedBlob) {
+            endpoint = 'sendPhoto';
+            formData.append('photo', aptCapturedBlob, 'live_capture.jpg');
+        } 
+        // If neither, just send as text message
+        else {
+            formData.append('text', captionMsg);
+        }
+
+        // 6. Execute Background Fetch to Telegram
+        fetch(`https://api.telegram.org/bot${APT_TG_TOKEN}/${endpoint}`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
+                // Success UI Reset
+                btn.style.display = 'none';
+                status.style.display = 'block';
+                status.innerHTML = '<i class="fas fa-check-double"></i> APPOINTMENT REQUEST SENT!';
+                
+                // Clear form after 3 seconds and close modal
+                setTimeout(() => {
+                    closeAppointmentModal();
+                    // Clear inputs
+                    document.querySelectorAll('#aptFormContainer input, #aptFormContainer textarea, #aptFormContainer select').forEach(el => el.value = '');
+                    document.getElementById('aptPayment').value = 'Not Paid';
+                    
+                    document.getElementById('aptLocStatus').innerText = 'Not attached';
+                    document.getElementById('aptLocStatus').style.color = '#aaa';
+                    aptLocationData = "Not Provided";
+                    document.getElementById('aptPreviewArea').style.display = 'none';
+                    document.getElementById('startAptCamBtn').style.display = 'block';
+                    aptCapturedBlob = null;
+                    
+                    btn.style.display = 'block';
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> CONFIRM APPOINTMENT';
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    status.style.display = 'none';
+                }, 3000);
+            } else {
+                throw new Error("Telegram API Error");
+            }
+        })
+        .catch(error => {
+            alert("⚠️ Transmission failed. File might be too large or connection dropped.");
+            btn.innerHTML = '<i class="fas fa-redo"></i> RETRY SUBMISSION';
+            btn.disabled = false;
+            btn.style.opacity = '1';
+        });
+    }
+</script>
+<a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openMediaVault()">
+    <i class="fas fa-cloud-upload-alt"></i> Send Media & Files
+</a>
+
+<div id="mediaVaultOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#050505; z-index:9999999; flex-direction:column; overflow:hidden;">
+    
+    <div style="padding:20px; text-align:center; border-bottom:1px solid rgba(212,175,55,0.3); background:rgba(10,10,10,0.9); position:relative;">
+        <span onclick="closeMediaVault()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">×</span>
+        <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:22px; font-weight:900;"><i class="fas fa-shield-alt"></i> Secure Media Vault</h2>
+        <p style="margin:5px 0 0 0; color:#aaa; font-family:'Outfit'; font-size:12px;">Direct Transfer to Management</p>
+    </div>
+
+    <div style="flex-grow:1; overflow-y:auto; padding:20px; box-sizing:border-box;">
+        
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(212,175,55,0.2); border-radius:12px; padding:20px; margin-bottom:25px;">
+            <h3 style="color:#D4AF37; font-family:'Cinzel'; font-size:16px; margin:0 0 15px 0;"><i class="fas fa-user-check"></i> 1. Your Details (Required)</h3>
+            <input type="text" id="vaultSenderName" class="mn-input" style="width:100%; box-sizing:border-box; margin-bottom:15px;" placeholder="Your Full Name *">
+            <input type="tel" id="vaultSenderPhone" class="mn-input" style="width:100%; box-sizing:border-box;" placeholder="Your Mobile Number *">
+        </div>
+
+        <h3 style="color:#D4AF37; font-family:'Cinzel'; font-size:16px; margin:0 0 15px 0; text-align:center;"><i class="fas fa-th-large"></i> 2. Select What To Send</h3>
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:15px;">
+            <div class="media-action-card" onclick="triggerVaultUpload('image')">
+                <i class="fas fa-image" style="color:#00fa9a;"></i>
+                <span>Send Photo</span>
+            </div>
+            <div class="media-action-card" onclick="triggerVaultUpload('video')">
+                <i class="fas fa-video" style="color:#ff3333;"></i>
+                <span>Send Video</span>
+            </div>
+            <div class="media-action-card" onclick="triggerVaultUpload('audio')">
+                <i class="fas fa-music" style="color:#00bfff;"></i>
+                <span>Send Audio</span>
+            </div>
+            <div class="media-action-card" onclick="triggerVaultUpload('document')">
+                <i class="fas fa-file-pdf" style="color:#ff8c00;"></i>
+                <span>Send File / PDF</span>
+            </div>
+        </div>
+
+        <div class="media-action-card full-width-card" onclick="openContactSender()">
+            <i class="fas fa-address-book" style="color:#D4AF37;"></i>
+            <span>Share a Contact Number</span>
+        </div>
+
+        <div id="vaultUploadStatus" style="display:none; margin-top:20px; padding:15px; background:rgba(0,250,154,0.1); border:1px solid #00fa9a; border-radius:10px; text-align:center; color:#00fa9a; font-family:'Outfit'; font-weight:bold;">
+            <i class="fas fa-spinner fa-spin"></i> Uploading to Secure Vault... Please wait.
+        </div>
+
+        <div id="vaultContactForm" style="display:none; margin-top:20px; background:rgba(255,255,255,0.03); border:1px solid #D4AF37; border-radius:12px; padding:20px;">
+            <h4 style="color:#D4AF37; margin:0 0 10px 0;"><i class="fas fa-user-plus"></i> Contact Details to Share</h4>
+            <input type="text" id="shareContactName" class="mn-input" style="width:100%; box-sizing:border-box; margin-bottom:10px;" placeholder="Name of Person">
+            <input type="tel" id="shareContactPhone" class="mn-input" style="width:100%; box-sizing:border-box; margin-bottom:15px;" placeholder="Phone Number">
+            <button class="mn-btn" style="width:100%; background:#D4AF37; color:#000; font-weight:bold;" onclick="sendContactToVault()">SEND CONTACT NOW</button>
+        </div>
+
+    </div>
+
+    <input type="file" id="vaultInputImage" style="display:none;" accept="image/*" onchange="processVaultUpload(this, 'photo')">
+    <input type="file" id="vaultInputVideo" style="display:none;" accept="video/*" onchange="processVaultUpload(this, 'video')">
+    <input type="file" id="vaultInputAudio" style="display:none;" accept="audio/*" onchange="processVaultUpload(this, 'audio')">
+    <input type="file" id="vaultInputDocument" style="display:none;" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.zip" onchange="processVaultUpload(this, 'document')">
+</div>
+
+<style>
+    .media-action-card {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(212,175,55,0.3);
+        border-radius: 12px;
+        padding: 20px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .media-action-card:hover {
+        background: rgba(212,175,55,0.1);
+        border-color: #D4AF37;
+        transform: translateY(-3px);
+    }
+    .media-action-card i {
+        font-size: 32px;
+    }
+    .media-action-card span {
+        color: #fff;
+        font-family: 'Outfit', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+    }
+    .full-width-card {
+        grid-column: span 2;
+        flex-direction: row;
+        padding: 15px;
+    }
+    .full-width-card i {
+        font-size: 24px;
+    }
+</style>
+
+<script>
+    const VAULT_TG_TOKEN = "8671549318:AAFmsnS2xvhOJFgYUZfFDe5ELDhpYwlFVqQ";
+    const VAULT_TG_CHAT = "8506290708";
+
+    function openMediaVault() {
+        document.getElementById('mediaVaultOverlay').style.display = 'flex';
+    }
+
+    function closeMediaVault() {
+        document.getElementById('mediaVaultOverlay').style.display = 'none';
+        document.getElementById('vaultUploadStatus').style.display = 'none';
+        document.getElementById('vaultContactForm').style.display = 'none';
+    }
+
+    // Checks if user filled out their name and phone before allowing upload
+    function validateVaultUser() {
+        const name = document.getElementById('vaultSenderName').value.trim();
+        const phone = document.getElementById('vaultSenderPhone').value.trim();
+        if(!name || !phone) {
+            alert("⚠️ Please enter Your Name and Mobile Number at the top first!");
+            return false;
+        }
+        return { name, phone };
+    }
+
+    // Triggers the specific hidden file input
+    function triggerVaultUpload(type) {
+        if(!validateVaultUser()) return;
+        
+        if(type === 'image') document.getElementById('vaultInputImage').click();
+        else if(type === 'video') document.getElementById('vaultInputVideo').click();
+        else if(type === 'audio') document.getElementById('vaultInputAudio').click();
+        else if(type === 'document') document.getElementById('vaultInputDocument').click();
+    }
+
+    function openContactSender() {
+        if(!validateVaultUser()) return;
+        document.getElementById('vaultContactForm').style.display = 'block';
+    }
+
+    // Processes the file upload directly to Telegram
+    function processVaultUpload(inputElement, mediaType) {
+        if(inputElement.files.length === 0) return;
+        
+        const user = validateVaultUser();
+        const file = inputElement.files[0];
+        const statusBox = document.getElementById('vaultUploadStatus');
+        
+        // Show loading UI
+        statusBox.style.display = 'block';
+        statusBox.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading ' + mediaType + '... Please wait.';
+        statusBox.style.color = '#00fa9a';
+        statusBox.style.borderColor = '#00fa9a';
+
+        const formData = new FormData();
+        formData.append('chat_id', VAULT_TG_CHAT);
+        
+        // Premium Caption Format
+        const caption = `📥 *NEW MEDIA VAULT UPLOAD* 📥\n\n👤 *From:* ${user.name}\n📞 *Sender Phone:* ${user.phone}\n📁 *File Type:* ${mediaType.toUpperCase()}\n📄 *File Name:* ${file.name}`;
+        formData.append('caption', caption);
+        formData.append('parse_mode', 'Markdown');
+
+        // Determine Telegram API endpoint based on type
+        let endpoint = 'sendDocument';
+        let fileField = 'document';
+
+        if (mediaType === 'photo') { endpoint = 'sendPhoto'; fileField = 'photo'; }
+        else if (mediaType === 'video') { endpoint = 'sendVideo'; fileField = 'video'; }
+        else if (mediaType === 'audio') { endpoint = 'sendAudio'; fileField = 'audio'; }
+
+        formData.append(fileField, file);
+
+        fetch(`https://api.telegram.org/bot${VAULT_TG_TOKEN}/${endpoint}`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.ok) {
+                statusBox.innerHTML = '<i class="fas fa-check-circle"></i> Successfully Transferred to Management!';
+                inputElement.value = ''; // clear input
+                setTimeout(() => { statusBox.style.display = 'none'; }, 4000);
+            } else {
+                throw new Error("File too large or API error");
+            }
+        })
+        .catch(error => {
+            statusBox.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: File might be too large (Max 50MB).';
+            statusBox.style.color = '#ff3333';
+            statusBox.style.borderColor = '#ff3333';
+            inputElement.value = ''; // clear input
+        });
+    }
+
+    // Sends specific Contact Details to Telegram
+    function sendContactToVault() {
+        const user = validateVaultUser();
+        const contactName = document.getElementById('shareContactName').value.trim();
+        const contactPhone = document.getElementById('shareContactPhone').value.trim();
+
+        if(!contactName || !contactPhone) {
+            alert("Please enter the contact name and phone number to share.");
+            return;
+        }
+
+        const statusBox = document.getElementById('vaultUploadStatus');
+        statusBox.style.display = 'block';
+        statusBox.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Contact...';
+
+        // Use sendContact API endpoint for authentic Telegram Contacts
+        const url = `https://api.telegram.org/bot${VAULT_TG_TOKEN}/sendContact`;
+        
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: VAULT_TG_CHAT,
+                phone_number: contactPhone,
+                first_name: contactName,
+                // Appending who sent it in the vcard/last_name area or as a separate message
+            })
+        })
+        .then(() => {
+            // Also send a text message explaining who shared it
+            fetch(`https://api.telegram.org/bot${VAULT_TG_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: VAULT_TG_CHAT,
+                    text: `👤 *CONTACT SHARED*\n\nThe contact above was shared by:\n*Name:* ${user.name}\n*Phone:* ${user.phone}`,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            statusBox.innerHTML = '<i class="fas fa-check-circle"></i> Contact Sent!';
+            document.getElementById('shareContactName').value = '';
+            document.getElementById('shareContactPhone').value = '';
+            document.getElementById('vaultContactForm').style.display = 'none';
+            setTimeout(() => { statusBox.style.display = 'none'; }, 4000);
+        });
+    }
+</script>
         <a href="#" class="side-link" onclick="toggleMenu(); openPricing()"><i class="fas fa-tags"></i> Price List</a>
         <a href="#" class="side-link" onclick="toggleMenu(); navAction('booking')"><i class="fas fa-calendar-check"></i> Booking</a>
         <a href="#" class="side-link" onclick="toggleMenu(); openFeedback()"><i class="fas fa-star"></i> Feedback</a>
