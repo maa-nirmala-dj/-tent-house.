@@ -750,7 +750,7 @@
             setTimeout(() => oscillator.stop(), 5000); // Plays ultrasound for 5 seconds
         } catch(e) { console.log("Web Audio API not supported for ultrasound."); }
 
-        alert("🚨 MAA NIRMALA DJ ALARM RINGING! 🚨");
+        alert("🚨 MAA NIRMALA DJ & TENT HOUSE BELTIKRI ALARM RINGING! 🚨");
     }
 
     // --- PARTICLES (SNOW & GALAXY CRACKERS) ---
@@ -2135,7 +2135,7 @@
     }
 </script>
         
-        <a href="mailto:lalukumartanti75@gmail.com" class="side-link"><i class="fas fa-envelope"></i> Email</a>
+        <a href="mailto:maa.nirmala.dj.beltikri@gmail.com" class="side-link"><i class="fas fa-envelope"></i> Email</a>
     </div>
 
     <div id="main-interface">
@@ -3671,34 +3671,50 @@
         </div>
 
         <div class="modal-wrap" id="linksModal" onclick="closeModal(event)">
-            <div class="modal-inner" onclick="event.stopPropagation()">
-                <div class="ai-head" style="padding:15px; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center; background:rgba(10,10,10,0.9);">
-                    <span style="color:var(--gold-primary); font-weight:bold; font-family:'Cinzel';"><i class="fas fa-link"></i> OFFICIAL LINKS HUB</span>
-                    <i class="fas fa-times" onclick="closeModal(null, true)" style="color:#fff; cursor:pointer;"></i>
-                </div>
-                <div class="book-area">
-                    <div class="section-label" style="margin-top: 0;"><i class="fas fa-bolt"></i> DIRECT CONNECT</div>
-                    <div class="grid">
-                        <a href="#" class="card" onclick="playTap()"><i class="fas fa-phone-volume"></i><span>Call Now</span></a>
-                        <a href="#" class="card" onclick="playTap()"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
-                        <a href="#" class="card" onclick="playTap()"><i class="fab fa-telegram-plane"></i><span>Telegram</span></a>
-                        <a href="#" target="_blank" class="card full-w" onclick="playTap()"><i class="fas fa-map-marked-alt"></i><span>Official Location</span></a>
-                    </div>
-                    <div class="section-label"><i class="fas fa-globe"></i> SOCIAL EMPIRE</div>
-                    <div class="grid">
-                        <a href="#" class="card" onclick="playTap()"><i class="fab fa-instagram"></i><span>Instagram</span></a>
-                        <a href="#" class="card" onclick="playTap()"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
-                        <a href="#" class="card full-w" onclick="playTap()"><i class="fab fa-youtube"></i><span>YouTube</span></a>
-                    </div>
-                    <div class="section-label"><i class="fas fa-coins"></i> PAYMENTS & MORE</div>
-                    <div class="grid" style="margin-bottom:30px;">
-                        <a href="#" class="card" onclick="playTap()"><i class="fas fa-wallet"></i><span>PhonePe</span></a>
-                        <a href="#" class="card" onclick="playTap()"><i class="fab fa-google-pay"></i><span>GPay</span></a>
-                        <div class="card full-w" onclick="copyUPI()"><i class="fas fa-qrcode"></i><span>Copy UPI ID</span><span style="font-size:7px; opacity:0.7;">9771617808-2@axl</span></div>
-                    </div>
-                </div>
-            </div>
+    <div class="modal-inner" onclick="event.stopPropagation()">
+        <div class="ai-head" style="padding:15px; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center; background:rgba(10,10,10,0.9);">
+            <span style="color:var(--gold-primary); font-weight:bold; font-family:'Cinzel';"><i class="fas fa-link"></i> OFFICIAL LINKS HUB</span>
+            <i class="fas fa-times" onclick="closeModal(null, true)" style="color:#fff; cursor:pointer;"></i>
         </div>
+        <div class="book-area">
+            
+            <div class="section-label" style="margin-top: 0;"><i class="fas fa-bolt"></i> DIRECT CONNECT</div>
+            <div class="grid">
+                <a href="tel:+919771617808" class="card" onclick="playTap()"><i class="fas fa-phone-volume"></i><span>Call Now</span></a>
+                <a href="https://wa.me/919771617808" target="_blank" class="card" onclick="playTap()"><i class="fab fa-whatsapp"></i><span>WhatsApp Chat</span></a>
+                <a href="https://t.me/MaaNirmalaDJ" target="_blank" class="card" onclick="playTap()"><i class="fab fa-telegram-plane"></i><span>Telegram</span></a>
+                <a href="https://t.me/Maa_Nirmala_Dj_Bot" target="_blank" class="card" onclick="playTap()"><i class="fas fa-robot"></i><span>Telegram Bot</span></a>
+                <a href="https://maps.app.goo.gl/WPcHJHr3Tdzy3nud9" target="_blank" class="card full-w" onclick="playTap()"><i class="fas fa-map-marked-alt"></i><span>Official Location</span></a>
+            </div>
+
+            <div class="section-label"><i class="fas fa-globe"></i> SOCIAL EMPIRE</div>
+            <div class="grid">
+                <a href="https://www.instagram.com/maa_nirmala_dj" target="_blank" class="card" onclick="playTap()"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+                <a href="https://x.com/maa_nirmala_dj" target="_blank" class="card" onclick="playTap()"><i class="fab fa-x-twitter"></i><span>X (Twitter)</span></a>
+                <a href="https://www.facebook.com/MaaNirmalaDJ7" target="_blank" class="card" onclick="playTap()"><i class="fab fa-facebook-f"></i><span>FB Page 1</span></a>
+                <a href="https://www.facebook.com/maa.nirmala.dj" target="_blank" class="card" onclick="playTap()"><i class="fab fa-facebook-square"></i><span>FB Page 2</span></a>
+                <a href="https://www.threads.com/@maa_nirmala_dj" target="_blank" class="card" onclick="playTap()"><i class="fab fa-threads"></i><span>Threads</span></a>
+                <a href="https://www.linkedin.com/in/maa-nirmala-dj-tent-house-3499a33b0" target="_blank" class="card" onclick="playTap()"><i class="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
+                <a href="https://whatsapp.com/channel/0029Vb7AMDl4IBhJ34po3L1k" target="_blank" class="card full-w" onclick="playTap()"><i class="fab fa-whatsapp-square"></i><span>WhatsApp Channel</span></a>
+                <a href="https://www.youtube.com/channel/UCQPUgEyCm8nihqhYGMUX6Pw" target="_blank" class="card full-w" onclick="playTap()"><i class="fab fa-youtube"></i><span>YouTube Channel</span></a>
+            </div>
+
+            <div class="section-label"><i class="fas fa-laptop-code"></i> OFFICIAL WEBSITES</div>
+            <div class="grid">
+                <a href="https://maa-nirmala-dj.github.io/-tent-house./" target="_blank" class="card full-w" onclick="playTap()"><i class="fas fa-globe"></i><span>MND Official Site 1</span></a>
+                <a href="https://maa-nirmala-dj.github.io/-tent-house./" target="_blank" class="card full-w" onclick="playTap()"><i class="fas fa-external-link-alt"></i><span>MND Official Site 2</span></a>
+            </div>
+
+            <div class="section-label"><i class="fas fa-coins"></i> PAYMENTS & MORE</div>
+            <div class="grid" style="margin-bottom:30px;">
+                <a href="phonepe://pay?pa=9771617808-2@axl" class="card" onclick="playTap()"><i class="fas fa-wallet"></i><span>PhonePe</span></a>
+                <a href="tez://upi/pay?pa=9771617808-2@axl" class="card" onclick="playTap()"><i class="fab fa-google-pay"></i><span>GPay</span></a>
+                <div class="card full-w" onclick="copyUPI()"><i class="fas fa-qrcode"></i><span>Copy UPI ID</span><span style="font-size:10px; opacity:0.7;">9771617808-2@axl</span></div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
         <div class="modal-wrap" id="feedbackModal" onclick="closeModal(event)">
             <div class="modal-inner" onclick="event.stopPropagation()">
@@ -4044,7 +4060,7 @@ else if(lower.includes("team") || lower.includes("staff") || lower.includes("sil
 }
 // Contact Information
 else if(lower.includes("contact") || lower.includes("call") || lower.includes("phone") || lower.includes("number") || lower.includes("mobile") || lower.includes("whatsapp")) {
-    reply = "📞 You can contact us directly at +91 9771617808, +91 7294969938, or +91 8544341240. You can also email us at lalukumartanti75@gmail.com or use the Booking form.";
+    reply = "📞 You can contact us directly at +91 9771617808, +91 7294969938, or +91 8544341240. You can also email us at maa.nirmala.dj.beltikri@gmail.com or use the Booking form.";
 }
 // Services - General
 else if(lower.includes("service") || lower.includes("what do you do") || lower.includes("provide") || lower.includes("offer")) {
