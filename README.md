@@ -2816,12 +2816,238 @@ html lang="en">
     </div>
 </div>
 
-<div id="seamlessHubLoader" style="display:none; position:fixed; inset:0; background:#050505; z-index:999999999; flex-direction:column; justify-content:center; align-items:center;">
-    <div class="loader-rings"></div>
-    <img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" class="loader-logo">
-    <h2 class="loader-title">MAA NIRMALA HUB</h2>
-    <p id="hubLoadText" class="loader-text">Establishing Secure Handshake...</p>
+<div id="seamlessHubLoader" class="premium-3d-loader" style="display:none;">
+    
+    <div class="cyber-grid-container">
+        <div class="cyber-grid"></div>
+    </div>
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+
+    <div class="gyroscope-3d">
+        <div class="gyro-ring ring-x"></div>
+        <div class="gyro-ring ring-y"></div>
+        <div class="gyro-ring ring-z"></div>
+        
+        <div class="logo-hologram">
+            <img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" alt="MND Logo">
+        </div>
+    </div>
+    
+    <div class="loader-ui-panel">
+        <h2 class="holographic-title" data-text="MAA NIRMALA HUB">MAA NIRMALA HUB</h2>
+        
+        <div class="energy-bar-container">
+            <div class="energy-bar-fill">
+                <div class="energy-spark"></div>
+            </div>
+        </div>
+        
+        <p id="hubLoadText" class="system-status-text">ESTABLISHING SECURE 3D HANDSHAKE<span class="blinking-dots">...</span></p>
+    </div>
 </div>
+
+<style>
+    /* Fullscreen Deep Void Container */
+    .premium-3d-loader {
+        position: fixed; inset: 0;
+        background: radial-gradient(circle at center, #0a0a0c 0%, #000000 100%);
+        z-index: 999999999;
+        display: flex; flex-direction: column;
+        justify-content: center; align-items: center;
+        perspective: 1000px; /* Activates 3D Space */
+        overflow: hidden;
+    }
+
+    /* --- 1. 3D MOVING CYBER GRID --- */
+    .cyber-grid-container {
+        position: absolute; bottom: -20%; left: 0;
+        width: 100%; height: 60%;
+        perspective: 600px;
+        z-index: 0;
+        opacity: 0.4;
+    }
+    .cyber-grid {
+        width: 200%; height: 200%;
+        position: absolute; bottom: 0; left: -50%;
+        background-image: 
+            linear-gradient(to right, rgba(0, 229, 255, 0.3) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 229, 255, 0.3) 1px, transparent 1px);
+        background-size: 50px 50px;
+        transform: rotateX(75deg);
+        transform-origin: bottom center;
+        animation: gridMove 3s linear infinite, dynamicGridColor 10s infinite alternate;
+        box-shadow: inset 0 0 100px #000;
+    }
+    @keyframes gridMove {
+        0% { transform: rotateX(75deg) translateY(0); }
+        100% { transform: rotateX(75deg) translateY(50px); }
+    }
+    @keyframes dynamicGridColor {
+        0% { filter: hue-rotate(0deg) drop-shadow(0 0 10px #00E5FF); }
+        33% { filter: hue-rotate(90deg) drop-shadow(0 0 10px #FF00FF); }
+        66% { filter: hue-rotate(180deg) drop-shadow(0 0 10px #D4AF37); }
+        100% { filter: hue-rotate(270deg) drop-shadow(0 0 10px #00FA9A); }
+    }
+
+    /* Floating Particles */
+    .particle {
+        position: absolute; border-radius: 50%;
+        background: #fff; filter: blur(5px);
+        animation: floatParticle 8s infinite ease-in-out alternate;
+    }
+    .p1 { width: 50px; height: 50px; background: #D4AF37; top: 20%; left: 20%; opacity: 0.2; }
+    .p2 { width: 80px; height: 80px; background: #00E5FF; bottom: 30%; right: 15%; opacity: 0.15; animation-delay: -3s; }
+    .p3 { width: 30px; height: 30px; background: #FF00FF; top: 40%; right: 30%; opacity: 0.3; animation-delay: -5s; }
+
+    @keyframes floatParticle {
+        0% { transform: translateY(0) scale(1); }
+        100% { transform: translateY(-50px) scale(1.5); }
+    }
+
+    /* --- 2. 3D HOLOGRAPHIC GYROSCOPE --- */
+    .gyroscope-3d {
+        position: relative;
+        width: 180px; height: 180px;
+        transform-style: preserve-3d;
+        animation: rotateGyro 15s infinite linear;
+        z-index: 10;
+        margin-bottom: 50px;
+    }
+    
+    .gyro-ring {
+        position: absolute; inset: 0;
+        border-radius: 50%;
+        border: 4px solid transparent;
+        box-shadow: inset 0 0 20px rgba(255,255,255,0.2), 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    /* Independent 3D Axis Rotations */
+    .ring-x { 
+        border-top-color: #D4AF37; border-bottom-color: #D4AF37; 
+        animation: spinX 3s infinite linear; 
+    }
+    .ring-y { 
+        border-left-color: #00E5FF; border-right-color: #00E5FF; 
+        animation: spinY 4s infinite linear; 
+    }
+    .ring-z { 
+        border-top-color: #FF00FF; border-bottom-color: #00FA9A; 
+        animation: spinZ 5s infinite linear; 
+    }
+
+    .logo-hologram {
+        position: absolute; inset: 25px;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 50%; padding: 5px;
+        transform: translateZ(0); /* Anchors logo in center */
+        box-shadow: 0 0 40px var(--mnd-gold);
+        animation: logoBreathing 2s infinite alternate, counterRotate 15s infinite linear;
+    }
+    .logo-hologram img {
+        width: 100%; height: 100%;
+        border-radius: 50%; object-fit: cover;
+        border: 2px solid rgba(212, 175, 55, 0.8);
+    }
+
+    @keyframes rotateGyro { 100% { transform: rotateX(360deg) rotateY(360deg); } }
+    @keyframes counterRotate { 100% { transform: rotateY(-360deg) rotateX(-360deg); } }
+    @keyframes spinX { 100% { transform: rotateX(360deg); } }
+    @keyframes spinY { 100% { transform: rotateY(360deg); } }
+    @keyframes spinZ { 100% { transform: rotateZ(360deg); } }
+    @keyframes logoBreathing {
+        0% { box-shadow: 0 0 20px #D4AF37, inset 0 0 10px #D4AF37; }
+        100% { box-shadow: 0 0 60px #00E5FF, inset 0 0 30px #00E5FF; }
+    }
+
+    /* --- 3. PREMIUM TYPOGRAPHY & UI --- */
+    .loader-ui-panel {
+        z-index: 10;
+        display: flex; flex-direction: column; align-items: center;
+        width: 100%; max-width: 400px; padding: 0 20px;
+    }
+
+    /* Layered 3D Text */
+    .holographic-title {
+        font-family: 'Cinzel', serif; font-size: 28px; font-weight: 900;
+        letter-spacing: 5px; margin-bottom: 20px;
+        color: transparent;
+        background: linear-gradient(90deg, #D4AF37, #FFF, #00E5FF, #D4AF37);
+        background-size: 300% auto;
+        -webkit-background-clip: text;
+        animation: shineGold 4s infinite linear;
+        position: relative;
+    }
+    /* Glowing text reflection */
+    .holographic-title::after {
+        content: attr(data-text);
+        position: absolute; left: 0; top: 0; z-index: -1;
+        color: transparent;
+        text-shadow: 0 0 20px #D4AF37, 0 0 40px #00E5FF;
+        opacity: 0.6;
+    }
+
+    @keyframes shineGold {
+        0% { background-position: 0% center; }
+        100% { background-position: 300% center; }
+    }
+
+    /* Energy Progress Bar */
+    .energy-bar-container {
+        width: 100%; height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px; margin-bottom: 15px;
+        position: relative; overflow: hidden;
+        box-shadow: inset 0 0 10px #000, 0 0 10px rgba(0, 229, 255, 0.2);
+    }
+    
+    .energy-bar-fill {
+        height: 100%; width: 0%;
+        background: linear-gradient(90deg, #D4AF37, #00E5FF, #FF00FF);
+        background-size: 200% auto;
+        border-radius: 20px;
+        animation: fillEnergy 3.5s cubic-bezier(0.1, 0.7, 0.1, 1) forwards, shineGold 2s infinite linear;
+        position: relative;
+    }
+
+    /* A bright spark flying across the loading bar */
+    .energy-spark {
+        position: absolute; right: 0; top: -5px;
+        width: 20px; height: 16px;
+        background: #fff; border-radius: 50%;
+        box-shadow: 0 0 15px #fff, 0 0 30px #00E5FF;
+        filter: blur(2px);
+    }
+
+    @keyframes fillEnergy {
+        0% { width: 0%; }
+        20% { width: 40%; }
+        60% { width: 70%; }
+        100% { width: 100%; }
+    }
+
+    .system-status-text {
+        font-family: 'Orbitron', sans-serif;
+        color: #D4AF37; font-size: 13px; font-weight: 700;
+        letter-spacing: 3px; text-transform: uppercase;
+        animation: colorCycle 6s infinite alternate;
+    }
+    
+    .blinking-dots { animation: blinkText 1.5s infinite; }
+
+    @keyframes colorCycle {
+        0% { color: #D4AF37; text-shadow: 0 0 10px #D4AF37; }
+        50% { color: #00E5FF; text-shadow: 0 0 10px #00E5FF; }
+        100% { color: #FF00FF; text-shadow: 0 0 10px #FF00FF; }
+    }
+
+    @keyframes blinkText {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>
 
 <style>
     /* Media Button Trigger Styles */
