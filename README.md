@@ -1,4 +1,4 @@
-<html lang="en">
+html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -4858,13 +4858,13 @@
         <div class="modal-wrap" id="aiModal" onclick="closeModal(event)">
             <div class="modal-inner" onclick="event.stopPropagation()">
                 <div class="ai-head" style="padding:15px; background:var(--gold-primary); color:#000; font-weight:bold;">
-                    MNDs BRAIN v2.07<i class="fas fa-times" style="float:right; cursor:pointer;" onclick="closeModal(null, true)"></i>
+                    MND BRAIN v2.07<i class="fas fa-times" style="float:right; cursor:pointer;" onclick="closeModal(null, true)"></i>
                 </div>
                 <div class="chat-box" id="chatHistory">
                     <div class="bubble bot">Hello! I am MND Brain, the official AI for Maa Nirmala DJ & Tent House.<br><br>Ask me about our prices, bookings, location, or owner details!</div>
                 </div>
                 <div style="padding:15px; border-top:1px solid #333; display:flex;">
-                    <input type="text" id="userMsg" class="input-box" style="flex:1; margin-bottom:0; padding:10px; background:#111; border:1px solid #333; color:#fff;" placeholder="Ask MNDs AI..." onkeypress="handleEnter(event)">
+                    <input type="text" id="userMsg" class="input-box" style="flex:1; margin-bottom:0; padding:10px; background:#111; border:1px solid #333; color:#fff;" placeholder="Ask MND AI..." onkeypress="handleEnter(event)">
                     <button style="background:var(--gold-primary); border:none; padding:0 15px; border-radius:8px; margin-left:10px;" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
@@ -4872,14 +4872,49 @@
 
         <div class="modal-wrap" id="authModal" onclick="closeModal(event)">
             <div class="modal-inner" onclick="event.stopPropagation()">
-                <div style="display:flex; border-bottom:1px solid #333;"><div class="auth-tab active" style="flex:1; padding:15px; text-align:center; color:var(--gold-primary); border-bottom:2px solid var(--gold-primary);">ADMIN LOGIN</div></div>
-                <div style="padding:25px;">
+                
+                <div style="display:flex; border-bottom:1px solid #333;">
+                    <div class="auth-tab active" style="flex:1; padding:15px; text-align:center; color:var(--gold-primary); border-bottom:2px solid var(--gold-primary); font-weight:bold; letter-spacing:1px;">
+                        PORTAL ACCESS SELECTION
+                    </div>
+                </div>
+                
+                <div id="loginChoiceArea" style="padding:25px;">
+                    
+                    <a href="javascript:void(0)" class="media-file-btn" onclick="document.getElementById('authModal').classList.remove('active'); openSecureHub();" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-bottom:15px; box-sizing:border-box;">
+                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Public / User Login</span>
+                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Access Secure Hub (MFA)</span>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+                    </a>
+
+                    <a href="javascript:void(0)" class="media-file-btn" onclick="document.getElementById('loginChoiceArea').style.display='none'; document.getElementById('adminLoginArea').style.display='block';" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; box-sizing:border-box;">
+                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Admin / Manager</span>
+                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Passcode Required</span>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+                    </a>
+                </div>
+
+                <div id="adminLoginArea" style="padding:25px; display:none;">
+                    <h4 style="color:#D4AF37; margin-top:0; margin-bottom:15px; text-align:center;">MANAGEMENT ONLY</h4>
                     <input type="tel" id="mobileInput" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px;" placeholder="Admin Number (e.g. 9771617808)">
                     <div id="otpArea">
                         <input type="password" id="otpInput" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px;" placeholder="Enter Auth Code">
-                        <button class="btn-full" style="width:100%; padding:12px; background:var(--gold-primary); border:none; font-weight:bold; border-radius:8px; color:#000;" onclick="verifyAdmin()">VERIFY SECURE LOGIN</button>
+                        <button class="btn-full" style="width:100%; padding:12px; background:var(--gold-primary); border:none; font-weight:bold; border-radius:8px; color:#000; margin-bottom:10px;" onclick="verifyAdmin()">VERIFY SECURE LOGIN</button>
+                        
+                        <button class="btn-full" style="width:100%; padding:12px; background:transparent; border:1px solid #ff3333; font-weight:bold; border-radius:8px; color:#ff3333;" onclick="document.getElementById('adminLoginArea').style.display='none'; document.getElementById('loginChoiceArea').style.display='block';">GO BACK</button>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -4917,18 +4952,19 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <script type="text/javascript">
-        // 3 MAIN INDIAN LANGUAGES (Hindi, Bengali, Telugu)
-        function googleTranslateElementInit() { 
-            new google.translate.TranslateElement({ 
-                pageLanguage: 'en', includedLanguages: 'hi,bn,te',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false 
-            }, 'google_translate_element'); 
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    // ALL MAJOR INDIAN LANGUAGES
+    function googleTranslateElementInit() { 
+        new google.translate.TranslateElement({ 
+            pageLanguage: 'en', 
+            includedLanguages: 'hi,bn,te,mr,ta,ur,gu,kn,ml,or,pa,as,bho,doi,gom,mai,ne,sa,sd',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+            autoDisplay: false 
+        }, 'google_translate_element'); 
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
         const TG_TOKEN = "8671549318:AAFmsnS2xvhOJFgYUZfFDe5ELDhpYwlFVqQ";
