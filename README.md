@@ -3444,7 +3444,7 @@
 
         setTimeout(() => { txt.innerText = "Encrypting Session Data..."; }, 1000);
         setTimeout(() => { txt.innerText = "Opening Application Portal..."; }, 2500);
-        setTimeout(() => { window.location.replace('https://maa-nirmala-dj.github.io/-tent-house./'); }, 3500);
+        setTimeout(() => { window.location.replace('https://maa-nirmala-dj.github.io/C2/'); }, 3500);
     }
 </script>
     </div>
