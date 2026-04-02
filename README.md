@@ -872,6 +872,122 @@
         .catch(() => { alert("⚠️ Transfer Failed."); document.getElementById('recordingStatus').style.display='none'; });
     }
 </script> 
+<a href="javascript:void(0)" class="side-link premium-fullscreen-btn" onclick="toggleMenu(); toggleFullScreen();">
+    <i class="full screen r"></i> Full Screen
+</a>
+
+<style>
+    /* Premium UI Styling for the Full Screen Link */
+    .premium-fullscreen-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+        color: #ffffff;
+        text-decoration: none;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .premium-fullscreen-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+        transform: skewX(-25deg);
+        transition: left 0.5s ease;
+    }
+
+    .premium-fullscreen-btn:hover {
+        background: linear-gradient(135deg, #2a263a, #a49fc0);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        transform: translateY(-3px);
+    }
+
+    .premium-fullscreen-btn:hover::before {
+        left: 200%;
+    }
+
+    .premium-fullscreen-btn:active {
+        transform: translateY(1px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* SVG Icon Masking for Premium Look */
+    .full.screen.r {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: currentColor;
+        mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" fill="currentColor"/></svg>') no-repeat center;
+        -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" fill="currentColor"/></svg>') no-repeat center;
+        mask-size: cover;
+        -webkit-mask-size: cover;
+    }
+</style>
+
+<script>
+    /**
+     * Toggles the browser into and out of full-screen mode.
+     * Includes cross-browser compatibility checks to ensure it works perfectly.
+     */
+    function toggleFullScreen() {
+        // Check if the document is currently NOT in full screen mode
+        if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+            
+            const docElm = document.documentElement;
+            
+            // Enter Full Screen
+            if (docElm.requestFullscreen) {
+                docElm.requestFullscreen(); // Standard
+            } else if (docElm.msRequestFullscreen) {
+                docElm.msRequestFullscreen(); // IE/Edge
+            } else if (docElm.mozRequestFullScreen) {
+                docElm.mozRequestFullScreen(); // Firefox
+            } else if (docElm.webkitRequestFullscreen) {
+                docElm.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT); // Chrome/Safari
+            }
+            
+            // Close the settings menu safely after activating
+            if (typeof toggleSettings === 'function') {
+                toggleSettings(); 
+            }
+            
+        } else {
+            // Exit Full Screen
+            if (document.exitFullscreen) { 
+                document.exitFullscreen(); 
+            } else if (document.msExitFullscreen) { 
+                document.msExitFullscreen(); 
+            } else if (document.mozCancelFullScreen) { 
+                document.mozCancelFullScreen(); 
+            } else if (document.webkitExitFullscreen) { 
+                document.webkitExitFullscreen(); 
+            }
+        }
+    }
+
+    // Safety fallback for toggleMenu to ensure no console errors trigger if defined elsewhere
+    if (typeof toggleMenu !== 'function') {
+        window.toggleMenu = function() {
+            console.info("Menu toggle triggered.");
+        };
+    }
+</script>
       <a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openGalleryModal()">
     <i class="fas fa-camera-retro"></i> Live Gallery
 </a>
