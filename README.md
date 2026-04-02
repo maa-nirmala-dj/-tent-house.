@@ -873,121 +873,172 @@
     }
 </script> 
 <a href="javascript:void(0)" class="side-link premium-fullscreen-btn" onclick="toggleMenu(); toggleFullScreen();">
-    <i class="full screen r"></i> Full Screen
+    <div class="icon-container">
+        <i class="full screen r">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" fill="currentColor"/>
+            </svg>
+        </i>
+    </div>
+    <span class="btn-text">Full Screen</span>
+    <div class="btn-glow"></div>
 </a>
 
 <style>
-    /* Premium UI Styling for the Full Screen Link */
+    :root {
+        --primary-bg: #121212;
+        --btn-bg: rgba(25, 25, 30, 0.85);
+        --btn-border: rgba(255, 255, 255, 0.1);
+        --text-glow: #e0e0ff;
+        --accent-glow: rgba(99, 102, 241, 0.4);
+        --transition-speed: 0.4s;
+    }
+
     .premium-fullscreen-btn {
+        position: relative;
         display: inline-flex;
         align-items: center;
-        gap: 12px;
-        padding: 14px 28px;
-        background: linear-gradient(135deg, #1f1c2c, #928dab);
+        gap: 16px;
+        padding: 14px 32px;
+        background: var(--btn-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         color: #ffffff;
         text-decoration: none;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        font-size: 16px;
-        font-weight: 600;
+        font-family: 'SF Pro Display', 'Inter', system-ui, sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.8px;
         text-transform: uppercase;
-        letter-spacing: 1.2px;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        cursor: pointer;
-        position: relative;
+        border-radius: 50px;
+        border: 1px solid var(--btn-border);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         overflow: hidden;
+        cursor: pointer;
+        transition: all var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 1;
     }
 
-    .premium-fullscreen-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 50%;
+    .icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        transition: transform var(--transition-speed) ease;
+    }
+
+    .full.screen.r svg {
+        width: 100%;
         height: 100%;
-        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
-        transform: skewX(-25deg);
-        transition: left 0.5s ease;
+        color: rgba(255, 255, 255, 0.8);
+        transition: color var(--transition-speed) ease;
     }
 
+    .btn-text {
+        position: relative;
+        z-index: 2;
+        transition: text-shadow var(--transition-speed) ease;
+    }
+
+    .btn-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150%;
+        height: 150%;
+        background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Hover Effects */
     .premium-fullscreen-btn:hover {
-        background: linear-gradient(135deg, #2a263a, #a49fc0);
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        transform: translateY(-3px);
+        background: rgba(35, 35, 45, 0.95);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(99, 102, 241, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
     }
 
-    .premium-fullscreen-btn:hover::before {
-        left: 200%;
+    .premium-fullscreen-btn:hover .btn-glow {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    .premium-fullscreen-btn:hover .full.screen.r svg {
+        color: #ffffff;
+        transform: scale(1.1);
+    }
+
+    .premium-fullscreen-btn:hover .btn-text {
+        text-shadow: 0 0 12px var(--text-glow);
     }
 
     .premium-fullscreen-btn:active {
         transform: translateY(1px);
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    /* SVG Icon Masking for Premium Look */
-    .full.screen.r {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background-color: currentColor;
-        mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" fill="currentColor"/></svg>') no-repeat center;
-        -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" fill="currentColor"/></svg>') no-repeat center;
-        mask-size: cover;
-        -webkit-mask-size: cover;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
 </style>
 
 <script>
     /**
-     * Toggles the browser into and out of full-screen mode.
-     * Includes cross-browser compatibility checks to ensure it works perfectly.
+     * Toggles Full Screen Mode
+     * Includes advanced cross-browser compatibility and safety checks
      */
     function toggleFullScreen() {
-        // Check if the document is currently NOT in full screen mode
-        if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
-            
-            const docElm = document.documentElement;
-            
-            // Enter Full Screen
-            if (docElm.requestFullscreen) {
-                docElm.requestFullscreen(); // Standard
-            } else if (docElm.msRequestFullscreen) {
-                docElm.msRequestFullscreen(); // IE/Edge
-            } else if (docElm.mozRequestFullScreen) {
-                docElm.mozRequestFullScreen(); // Firefox
-            } else if (docElm.webkitRequestFullscreen) {
-                docElm.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT); // Chrome/Safari
+        try {
+            // Check if the document is currently NOT in full screen mode
+            if (!document.fullscreenElement && 
+                !document.mozFullScreenElement && 
+                !document.webkitFullscreenElement && 
+                !document.msFullscreenElement) {
+                
+                const docElm = document.documentElement;
+                
+                // Enter Full Screen safely
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen().catch(err => console.warn(`Error attempting to enable fullscreen: ${err.message}`));
+                } else if (docElm.msRequestFullscreen) {
+                    docElm.msRequestFullscreen();
+                } else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen();
+                } else if (docElm.webkitRequestFullscreen) {
+                    docElm.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+                
+                // Close settings menu if the function exists
+                if (typeof toggleSettings === 'function') {
+                    toggleSettings(); 
+                }
+                
+            } else {
+                // Exit Full Screen safely
+                if (document.exitFullscreen) { 
+                    document.exitFullscreen(); 
+                } else if (document.msExitFullscreen) { 
+                    document.msExitFullscreen(); 
+                } else if (document.mozCancelFullScreen) { 
+                    document.mozCancelFullScreen(); 
+                } else if (document.webkitExitFullscreen) { 
+                    document.webkitExitFullscreen(); 
+                }
             }
-            
-            // Close the settings menu safely after activating
-            if (typeof toggleSettings === 'function') {
-                toggleSettings(); 
-            }
-            
-        } else {
-            // Exit Full Screen
-            if (document.exitFullscreen) { 
-                document.exitFullscreen(); 
-            } else if (document.msExitFullscreen) { 
-                document.msExitFullscreen(); 
-            } else if (document.mozCancelFullScreen) { 
-                document.mozCancelFullScreen(); 
-            } else if (document.webkitExitFullscreen) { 
-                document.webkitExitFullscreen(); 
-            }
+        } catch (error) {
+            console.error("Full screen toggle failed:", error);
         }
     }
 
-    // Safety fallback for toggleMenu to ensure no console errors trigger if defined elsewhere
+    // Safety fallback for toggleMenu
     if (typeof toggleMenu !== 'function') {
         window.toggleMenu = function() {
-            console.info("Menu toggle triggered.");
+            console.log("toggleMenu function executed");
         };
     }
 </script>
+
       <a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openGalleryModal()">
     <i class="fas fa-camera-retro"></i> Live Gallery
 </a>
