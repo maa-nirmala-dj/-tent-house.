@@ -3048,6 +3048,7 @@
         50% { opacity: 0; }
     }
 </style>
+
 <style>
     /* Media Button Trigger Styles */
     .media-file-btn {
@@ -3443,7 +3444,7 @@
 
         setTimeout(() => { txt.innerText = "Encrypting Session Data..."; }, 1000);
         setTimeout(() => { txt.innerText = "Opening Application Portal..."; }, 2500);
-        setTimeout(() => { window.location.replace('https://maa-nirmala-dj.github.io/-tent-house./'); }, 3500);
+        setTimeout(() => { window.location.replace('https://maa-nirmala-dj.github.io/C2/'); }, 3500);
     }
 </script>
     </div>
@@ -5079,6 +5080,178 @@
                 </div>
             </div>
         </div>
+
+<div id="smartTrackBtn" class="smart-track-float" onclick="executePremiumTrackingLink()">
+    <div class="radar-ring"></div>
+    <div class="radar-core"></div>
+    <i class="fas fa-satellite-dish"></i>
+</div>
+
+<div id="fastTrackLoader" class="fast-track-overlay">
+    <div class="fast-track-content">
+        <div class="sat-icon-wrapper">
+            <i class="fas fa-satellite-dish" id="satLoaderIcon"></i>
+            <div class="sat-waves"></div>
+        </div>
+        <div class="fast-track-text" id="ftText">INITIALIZING SATELLITE UPLINK<span class="dot-anim">...</span></div>
+        <div class="fast-track-bar"><div class="fast-track-progress" id="ftProgress"></div></div>
+        <div class="fast-track-subtext" id="ftSubText">Connecting to MND Global Network</div>
+    </div>
+</div>
+
+<style>
+    /* Small, perfectly transparent glass button */
+    .smart-track-float {
+        position: fixed;
+        right: 15px; 
+        bottom: 160px; /* Above AI button */
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: rgba(10, 10, 10, 0.2); 
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        display: flex; justify-content: center; align-items: center;
+        color: rgba(212, 175, 55, 0.9); font-size: 18px;
+        z-index: 4000; cursor: pointer;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        
+        /* Smooth gliding animation */
+        transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease, background 0.3s ease;
+        animation: buttonBreath 3s infinite alternate ease-in-out;
+    }
+
+    @keyframes buttonBreath {
+        0% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.1); }
+        100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+    }
+
+    .smart-track-float:hover {
+        background: rgba(212, 175, 55, 0.85);
+        color: #000;
+        transform: scale(1.1);
+        border: 1px solid #D4AF37;
+    }
+
+    .smart-track-float:active {
+        transform: scale(0.9); /* Click bounce */
+    }
+
+    /* Radar Animations inside button */
+    .radar-core { position: absolute; width: 6px; height: 6px; background: #D4AF37; border-radius: 50%; opacity: 0; }
+    .smart-track-float:hover .radar-core { opacity: 1; animation: pingCore 1s infinite; }
+    @keyframes pingCore { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.5); } }
+
+    .radar-ring {
+        position: absolute; width: 100%; height: 100%;
+        border-radius: 50%; border: 1px solid rgba(212, 175, 55, 0.5);
+        animation: radarPulse 2.5s infinite ease-out; pointer-events: none;
+    }
+    @keyframes radarPulse { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }
+
+    /* MAGIC CLASS: Mathematically forces button OFF the right edge perfectly */
+    .scrolled-right-hide {
+        transform: translateX(120px) scale(0.8) !important;
+        opacity: 0 !important;
+        pointer-events: none;
+    }
+
+    /* Premium Cinematic Loader Styles */
+    .fast-track-overlay {
+        position: fixed; inset: 0; background: rgba(5,5,8,0.96); backdrop-filter: blur(15px);
+        z-index: 9999999; display: flex; justify-content: center; align-items: center;
+        opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .fast-track-overlay.active { opacity: 1; pointer-events: all; }
+    
+    .fast-track-content { text-align: center; width: 100%; max-width: 350px; padding: 0 20px; }
+    
+    .sat-icon-wrapper { position: relative; margin: 0 auto 25px; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; }
+    #satLoaderIcon { font-size: 45px; color: #D4AF37; transition: color 0.3s; z-index: 2; }
+    .sat-waves { position: absolute; inset: -10px; border: 2px dashed rgba(212, 175, 55, 0.4); border-radius: 50%; animation: spinWaves 4s linear infinite; z-index: 1; }
+    @keyframes spinWaves { 100% { transform: rotate(360deg); } }
+
+    .fast-track-text { 
+        font-family: 'Orbitron', sans-serif; color: #D4AF37; 
+        font-weight: 900; letter-spacing: 2px; margin-bottom: 15px; font-size: 14px; transition: color 0.3s;
+    }
+    .fast-track-bar { width: 100%; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; margin: 0 auto 10px; }
+    .fast-track-progress { height: 100%; width: 0%; background: linear-gradient(90deg, #D4AF37, #FFD700, #fff); box-shadow: 0 0 10px #D4AF37; transition: width 0.1s linear, background 0.3s; }
+    .fast-track-subtext { font-family: 'Outfit', sans-serif; font-size: 10px; color: #888; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s;}
+
+    .dot-anim { animation: dotBlink 1.5s infinite; }
+    @keyframes dotBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+</style>
+
+<script>
+    // --- 1. SMART SCROLL ENGINE (Hide to Right Flawlessly) ---
+    (function() {
+        let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        const btnTrack = document.getElementById('smartTrackBtn');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // If scrolling down AND past the top 100px
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                if (btnTrack) btnTrack.classList.add('scrolled-right-hide');
+            } 
+            // If scrolling up
+            else {
+                if (btnTrack) btnTrack.classList.remove('scrolled-right-hide');
+            }
+            
+            // Reset for next frame
+            lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+        }, { passive: true });
+    })();
+
+    // --- 2. PREMIUM TIMED CINEMATIC LOADER ---
+    function executePremiumTrackingLink() {
+        if(typeof playTap === 'function') playTap();
+
+        const loader = document.getElementById('fastTrackLoader');
+        const pText = document.getElementById('ftText');
+        const pBar = document.getElementById('ftProgress');
+        const pSub = document.getElementById('ftSubText');
+        const satIcon = document.getElementById('satLoaderIcon');
+
+        // Phase 1: Initialize
+        loader.classList.add('active');
+        pText.innerHTML = 'INITIALIZING SATELLITE UPLINK<span class="dot-anim">...</span>';
+        pText.style.color = "#D4AF37";
+        pBar.style.width = "0%";
+        pBar.style.background = "linear-gradient(90deg, #D4AF37, #FFD700)";
+        pSub.innerText = "Connecting to MND Global Network";
+        satIcon.classList.add('fa-spin');
+        satIcon.style.color = "#D4AF37";
+
+        // Phase 2: Loading simulation (starts pre-fetching in browser memory)
+        setTimeout(() => { pBar.style.width = "40%"; pSub.innerText = "Encrypting Handshake Protocol..."; }, 400);
+        setTimeout(() => { pBar.style.width = "75%"; pSub.innerText = "Fetching GPS Coordinates..."; }, 900);
+
+        // Phase 3: Lock Achieved & Open Link
+        setTimeout(() => {
+            pBar.style.width = "100%";
+            pBar.style.background = "#00fa9a";
+            pText.innerText = "SATELLITE SYNC SUCCESSFUL";
+            pText.style.color = "#00fa9a";
+            pSub.innerText = "Redirecting to Live Tracker";
+            pSub.style.color = "#00fa9a";
+            satIcon.classList.remove('fa-spin');
+            satIcon.style.color = "#00fa9a";
+            
+            // Opens perfectly in a new background tab
+            window.open('https://maa-nirmala-dj.github.io/Live-tracking/', '_blank');
+        }, 1500);
+
+        // Phase 4: Clean Fade Out
+        setTimeout(() => {
+            loader.classList.remove('active');
+        }, 2100);
+    }
+</script>
 
         <div class="modal-wrap" id="aiModal" onclick="closeModal(event)">
             <div class="modal-inner" onclick="event.stopPropagation()">
