@@ -5253,7 +5253,13 @@
     }
 </script>
 
-        <div class="modal-wrap" id="aiModal" onclick="closeModal(event)">
+<div id="mnd-loader" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:radial-gradient(circle at center, #1a1a1a 0%, #000000 100%); z-index:9999; display:flex; flex-direction:column; justify-content:center; align-items:center; opacity:0; visibility:hidden; transition:opacity 0.5s ease, visibility 0.5s ease;">
+    <style>@keyframes mnd-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+    <div style="width:80px; height:80px; border:3px solid transparent; border-top:3px solid #D4AF37; border-right:3px solid #D4AF37; border-radius:50%; animation:mnd-spin 1s linear infinite;"></div>
+    <div id="loader-text" style="margin-top:25px; color:#D4AF37; font-family:'Outfit', sans-serif; font-size:18px; font-weight:bold; letter-spacing:3px;">ESTABLISHING SECURE CONNECTION...</div>
+</div>
+
+<div class="modal-wrap" id="aiModal" onclick="closeModal(event)">
             <div class="modal-inner" onclick="event.stopPropagation()">
                 <div class="ai-head" style="padding:15px; background:var(--gold-primary); color:#000; font-weight:bold;">
                     MND BRAIN v2.07<i class="fas fa-times" style="float:right; cursor:pointer;" onclick="closeModal(null, true)"></i>
@@ -5300,6 +5306,43 @@
                         </div>
                         <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
                     </a>
+
+                    <!-- ADDED: Live Tracking Button -->
+                    <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/LIVE-TRACKING-HUB/')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
+                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Live Tracking</span>
+                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Track delivery vehicle & setup team</span>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+                    </a>
+
+                    <!-- ADDED: MND Pay Portal Button -->
+                    <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/LIVE-TRACKING-HUB/')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
+                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">MND Pay Portal</span>
+                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Secure advance & balance settlements</span>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+                    </a>
+
+                    <!-- ADDED: Event Logistics & Asset Tracker Button -->
+                    <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/-tent-house./')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
+                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Event Logistics & Asset Tracker</span>
+                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">View chairs, DJ boxes & utensils count</span>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+                    </a>
+
                 </div>
 
                 <div id="adminLoginArea" style="padding:25px; display:none;">
@@ -5350,6 +5393,33 @@
                 </div>
             </div>
         </div>
+
+<script>
+    // Updated function to accept target URL as a parameter
+    function triggerHubRedirect(targetUrl) {
+        // Hide all active modals
+        document.querySelectorAll('.modal-wrap').forEach(el => {
+            el.classList.remove('active');
+            el.style.display = 'none'; // Failsafe hide
+        });
+        
+        // Show the loader animation
+        const loader = document.getElementById('mnd-loader');
+        loader.style.visibility = 'visible';
+        loader.style.opacity = '1';
+
+        // Animate loader text
+        const loaderText = document.getElementById('loader-text');
+        setTimeout(() => { loaderText.innerText = "AUTHENTICATING REQUEST..."; }, 800);
+        setTimeout(() => { loaderText.innerText = "REDIRECTING..."; }, 1600);
+
+        // Redirect to the dynamic target URL
+        setTimeout(() => {
+            window.location.href = targetUrl;
+        }, 2500);
+    }
+</script>
+
 
     <script type="text/javascript">
     // ALL MAJOR INDIAN LANGUAGES
