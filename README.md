@@ -5243,7 +5243,7 @@
             satIcon.style.color = "#00fa9a";
             
             // Opens perfectly in a new background tab
-            window.open('https://maa-nirmala-dj.github.io/Live-tracking/', '_blank');
+            window.open('https://maa-nirmala-dj.github.io/LIVE-TRACKING-HUB/', '_blank');
         }, 1500);
 
         // Phase 4: Clean Fade Out
