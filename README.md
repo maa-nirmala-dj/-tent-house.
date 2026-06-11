@@ -5047,7 +5047,7 @@
                     </div>
                     <div class="f-group"><span class="f-label">Your Name</span><input type="text" id="fb-name" class="f-input" placeholder="Enter your name"></div>
                     <div class="f-group"><span class="f-label">Your Experience & Feedback</span><textarea id="fb-text" class="f-input" rows="3" placeholder="Tell us what you liked..." style="resize:none; font-family:'Outfit';"></textarea></div>
-                    <button class="f-btn" onclick="submitFeedback()" id="submitFbBtn"><i class="fas fa-paper-plane"></i> SEND FEEDBACK TO LALU</button>
+                    <button class="f-btn" onclick="submitFeedback()" id="submitFbBtn"><i class="fas fa-paper-plane"></i> SEND FEEDBACK TO MAA NIRMALA DJ</button>
                 </div>
             </div>
         </div>
@@ -5260,141 +5260,153 @@
 </div>
 
 <div class="modal-wrap" id="aiModal" onclick="closeModal(event)">
-            <div class="modal-inner" onclick="event.stopPropagation()">
-                <div class="ai-head" style="padding:15px; background:var(--gold-primary); color:#000; font-weight:bold;">
-                    MND BRAIN v2.07<i class="fas fa-times" style="float:right; cursor:pointer;" onclick="closeModal(null, true)"></i>
-                </div>
-                <div class="chat-box" id="chatHistory">
-                    <div class="bubble bot">Hello! I am MND Brain, the official AI for Maa Nirmala DJ & Tent House.<br><br>Ask me about our prices, bookings, location, or owner details!</div>
-                </div>
-                <div style="padding:15px; border-top:1px solid #333; display:flex;">
-                    <input type="text" id="userMsg" class="input-box" style="flex:1; margin-bottom:0; padding:10px; background:#111; border:1px solid #333; color:#fff;" placeholder="Ask MND AI..." onkeypress="handleEnter(event)">
-                    <button style="background:var(--gold-primary); border:none; padding:0 15px; border-radius:8px; margin-left:10px;" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-                </div>
+    <div class="modal-inner" onclick="event.stopPropagation()">
+        <div class="ai-head" style="padding:15px; background:var(--gold-primary); color:#000; font-weight:bold;">
+            MND BRAIN v2.07<i class="fas fa-times" style="float:right; cursor:pointer;" onclick="closeModal(null, true)"></i>
+        </div>
+        <div class="chat-box" id="chatHistory">
+            <div class="bubble bot">Hello! I am MND Brain, the official AI for Maa Nirmala DJ & Tent House.<br><br>Ask me about our prices, bookings, location, or owner details!</div>
+        </div>
+        <div style="padding:15px; border-top:1px solid #333; display:flex;">
+            <input type="text" id="userMsg" class="input-box" style="flex:1; margin-bottom:0; padding:10px; background:#111; border:1px solid #333; color:#fff;" placeholder="Ask MND AI..." onkeypress="handleEnter(event)">
+            <button style="background:var(--gold-primary); border:none; padding:0 15px; border-radius:8px; margin-left:10px;" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-wrap" id="authModal" onclick="closeModal(event)">
+    <div class="modal-inner" onclick="event.stopPropagation()">
+        
+        <div style="display:flex; border-bottom:1px solid #333; position:relative;">
+            <div class="auth-tab active" style="flex:1; padding:15px; text-align:center; color:var(--gold-primary); border-bottom:2px solid var(--gold-primary); font-weight:bold; letter-spacing:1px;">
+                PORTAL ACCESS SELECTION
             </div>
+            <!-- ADDED: Close (X) Button -->
+            <i class="fas fa-times" style="position:absolute; right:15px; top:18px; font-size:18px; color:var(--gold-primary); cursor:pointer; transition: color 0.3s;" onmouseover="this.style.color='#ff3333'" onmouseout="this.style.color='var(--gold-primary)'" onclick="closeModal(null, true)"></i>
+        </div>
+        
+        <div id="loginChoiceArea" style="padding:25px;">
+            
+            <a href="javascript:void(0)" class="media-file-btn" onclick="document.getElementById('authModal').classList.remove('active'); openSecureHub();" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-bottom:15px; box-sizing:border-box;">
+                <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                    <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Public / User Login</span>
+                    <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Access Secure Hub (MFA)</span>
+                </div>
+                <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+            </a>
+
+            <a href="javascript:void(0)" class="media-file-btn" onclick="document.getElementById('loginChoiceArea').style.display='none'; document.getElementById('adminLoginArea').style.display='block';" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; box-sizing:border-box;">
+                <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                    <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Admin / Manager</span>
+                    <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Passcode Required</span>
+                </div>
+                <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+            </a>
+
+            <!-- ADDED: Live Tracking Button -->
+            <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/LIVE-TRACKING-HUB/')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
+                <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                    <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Live Tracking</span>
+                    <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Track delivery vehicle & setup team</span>
+                </div>
+                <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+            </a>
+
+            <!-- ADDED: MND Pay Portal Button -->
+            <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/LIVE-TRACKING-HUB/')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
+                <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                    <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">MND Pay Portal</span>
+                    <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Secure advance & balance settlements</span>
+                </div>
+                <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+            </a>
+
+            <!-- ADDED: Event Logistics & Asset Tracker Button -->
+            <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/-tent-house./')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
+                <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
+                    <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Event Logistics & Asset Tracker</span>
+                    <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">View chairs, DJ boxes & utensils count</span>
+                </div>
+                <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
+            </a>
+
         </div>
 
-        <div class="modal-wrap" id="authModal" onclick="closeModal(event)">
-            <div class="modal-inner" onclick="event.stopPropagation()">
+        <div id="adminLoginArea" style="padding:25px; display:none;">
+            <h4 style="color:#D4AF37; margin-top:0; margin-bottom:15px; text-align:center;">MANAGEMENT ONLY</h4>
+            <input type="tel" id="mobileInput" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px;" placeholder="Admin Number (e.g. 9771617808)">
+            <div id="otpArea">
+                <input type="password" id="otpInput" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px;" placeholder="Enter Auth Code">
+                <button class="btn-full" style="width:100%; padding:12px; background:var(--gold-primary); border:none; font-weight:bold; border-radius:8px; color:#000; margin-bottom:10px;" onclick="verifyAdmin()">VERIFY SECURE LOGIN</button>
                 
-                <div style="display:flex; border-bottom:1px solid #333;">
-                    <div class="auth-tab active" style="flex:1; padding:15px; text-align:center; color:var(--gold-primary); border-bottom:2px solid var(--gold-primary); font-weight:bold; letter-spacing:1px;">
-                        PORTAL ACCESS SELECTION
-                    </div>
-                </div>
-                
-                <div id="loginChoiceArea" style="padding:25px;">
-                    
-                    <a href="javascript:void(0)" class="media-file-btn" onclick="document.getElementById('authModal').classList.remove('active'); openSecureHub();" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-bottom:15px; box-sizing:border-box;">
-                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
-                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Public / User Login</span>
-                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Access Secure Hub (MFA)</span>
-                        </div>
-                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
-                    </a>
-
-                    <a href="javascript:void(0)" class="media-file-btn" onclick="document.getElementById('loginChoiceArea').style.display='none'; document.getElementById('adminLoginArea').style.display='block';" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; box-sizing:border-box;">
-                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
-                            <i class="fas fa-user-shield"></i>
-                        </div>
-                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
-                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Admin / Manager</span>
-                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Passcode Required</span>
-                        </div>
-                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
-                    </a>
-
-                    <!-- ADDED: Live Tracking Button -->
-                    <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/LIVE-TRACKING-HUB/')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
-                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
-                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Live Tracking</span>
-                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Track delivery vehicle & setup team</span>
-                        </div>
-                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
-                    </a>
-
-                    <!-- ADDED: MND Pay Portal Button -->
-                    <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/LIVE-TRACKING-HUB/')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
-                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
-                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">MND Pay Portal</span>
-                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">Secure advance & balance settlements</span>
-                        </div>
-                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
-                    </a>
-
-                    <!-- ADDED: Event Logistics & Asset Tracker Button -->
-                    <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/-tent-house./')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
-                        <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
-                            <i class="fas fa-boxes"></i>
-                        </div>
-                        <div style="flex:1; margin-left:15px; display:flex; flex-direction:column;">
-                            <span style="color:#fff; font-family:'Outfit', sans-serif; font-size:15px; font-weight:700;">Event Logistics & Asset Tracker</span>
-                            <span style="color:#888; font-family:'Outfit', sans-serif; font-size:12px;">View chairs, DJ boxes & utensils count</span>
-                        </div>
-                        <i class="fas fa-chevron-right" style="color:#555; font-size:14px;"></i>
-                    </a>
-
-                </div>
-
-                <div id="adminLoginArea" style="padding:25px; display:none;">
-                    <h4 style="color:#D4AF37; margin-top:0; margin-bottom:15px; text-align:center;">MANAGEMENT ONLY</h4>
-                    <input type="tel" id="mobileInput" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px;" placeholder="Admin Number (e.g. 9771617808)">
-                    <div id="otpArea">
-                        <input type="password" id="otpInput" style="width:100%; padding:12px; margin-bottom:15px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px;" placeholder="Enter Auth Code">
-                        <button class="btn-full" style="width:100%; padding:12px; background:var(--gold-primary); border:none; font-weight:bold; border-radius:8px; color:#000; margin-bottom:10px;" onclick="verifyAdmin()">VERIFY SECURE LOGIN</button>
-                        
-                        <button class="btn-full" style="width:100%; padding:12px; background:transparent; border:1px solid #ff3333; font-weight:bold; border-radius:8px; color:#ff3333;" onclick="document.getElementById('adminLoginArea').style.display='none'; document.getElementById('loginChoiceArea').style.display='block';">GO BACK</button>
-                    </div>
-                </div>
-
+                <button class="btn-full" style="width:100%; padding:12px; background:transparent; border:1px solid #ff3333; font-weight:bold; border-radius:8px; color:#ff3333;" onclick="document.getElementById('adminLoginArea').style.display='none'; document.getElementById('loginChoiceArea').style.display='block';">GO BACK</button>
             </div>
         </div>
 
-        <div class="modal-wrap" id="adminPanel" onclick="closeModal(event)">
-            <div class="modal-inner" onclick="event.stopPropagation()">
-                <div class="ai-head" style="padding:15px; background:var(--gold-primary); color:#000; font-weight:bold; font-family:'Cinzel';">
-                    <i class="fas fa-user-shield"></i> LIVE FEED PUBLISHER
-                    <i class="fas fa-times" style="float:right; cursor:pointer;" onclick="closeModal(null, true)"></i>
-                </div>
-                <div class="book-area">
-                    <p style="color:var(--gold-primary); font-size:12px; margin-bottom:15px;">Publish images, videos, audio, or text offers directly to the public live gallery.</p>
-                    
-                    <div class="f-group">
-                        <span class="f-label">Select Post Type</span>
-                        <select id="admin-type" class="f-input" onchange="toggleMediaInput()">
-                            <option value="image">Image Post</option>
-                            <option value="video">Video Post (MP4 URL)</option>
-                            <option value="audio">Audio Track (MP3 URL)</option>
-                            <option value="text">Special Offer / Text Only</option>
-                        </select>
-                    </div>
+    </div>
+</div>
 
-                    <div class="f-group" id="media-input-group">
-                        <span class="f-label">Media URL (Link to Image/Video/Audio)</span>
-                        <input type="text" id="admin-media" class="f-input" placeholder="Paste link here (e.g. Postimg or raw MP4/MP3)">
-                    </div>
-
-                    <div class="f-group">
-                        <span class="f-label">Post Caption / Description</span>
-                        <textarea id="admin-text" class="f-input" rows="3" placeholder="Enter post text or offer details" style="resize:none; font-family:'Outfit';"></textarea>
-                    </div>
-
-                    <button class="f-btn" onclick="postToGallery()"><i class="fas fa-upload"></i> PUBLISH LIVE</button>
-                    <button class="f-btn" style="background:#333; color:#fff; margin-top:10px;" onclick="clearGallery()"><i class="fas fa-trash"></i> CLEAR ENTIRE FEED</button>
-                </div>
-            </div>
+<div class="modal-wrap" id="adminPanel" onclick="closeModal(event)">
+    <div class="modal-inner" onclick="event.stopPropagation()">
+        <div class="ai-head" style="padding:15px; background:var(--gold-primary); color:#000; font-weight:bold; font-family:'Cinzel';">
+            <i class="fas fa-user-shield"></i> LIVE FEED PUBLISHER
+            <i class="fas fa-times" style="float:right; cursor:pointer;" onclick="closeModal(null, true)"></i>
         </div>
+        <div class="book-area">
+            <p style="color:var(--gold-primary); font-size:12px; margin-bottom:15px;">Publish images, videos, audio, or text offers directly to the public live gallery.</p>
+            
+            <div class="f-group">
+                <span class="f-label">Select Post Type</span>
+                <select id="admin-type" class="f-input" onchange="toggleMediaInput()">
+                    <option value="image">Image Post</option>
+                    <option value="video">Video Post (MP4 URL)</option>
+                    <option value="audio">Audio Track (MP3 URL)</option>
+                    <option value="text">Special Offer / Text Only</option>
+                </select>
+            </div>
+
+            <div class="f-group" id="media-input-group">
+                <span class="f-label">Media URL (Link to Image/Video/Audio)</span>
+                <input type="text" id="admin-media" class="f-input" placeholder="Paste link here (e.g. Postimg or raw MP4/MP3)">
+            </div>
+
+            <div class="f-group">
+                <span class="f-label">Post Caption / Description</span>
+                <textarea id="admin-text" class="f-input" rows="3" placeholder="Enter post text or offer details" style="resize:none; font-family:'Outfit';"></textarea>
+            </div>
+
+            <button class="f-btn" onclick="postToGallery()"><i class="fas fa-upload"></i> PUBLISH LIVE</button>
+            <button class="f-btn" style="background:#333; color:#fff; margin-top:10px;" onclick="clearGallery()"><i class="fas fa-trash"></i> CLEAR ENTIRE FEED</button>
+        </div>
+    </div>
+</div>
 
 <script>
+    // Universal function to close any active modal
+    function closeModal(event, force = false) {
+        if (force || (event && event.target.classList.contains('modal-wrap'))) {
+            document.querySelectorAll('.modal-wrap').forEach(el => {
+                el.classList.remove('active');
+                el.style.display = 'none'; // Fallback to ensure it hides
+            });
+        }
+    }
+
     // Updated function to accept target URL as a parameter
     function triggerHubRedirect(targetUrl) {
         // Hide all active modals
@@ -5419,7 +5431,6 @@
         }, 2500);
     }
 </script>
-
 
     <script type="text/javascript">
     // ALL MAJOR INDIAN LANGUAGES
