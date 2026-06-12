@@ -5322,7 +5322,7 @@
             </a>
 
             <!-- ADDED: MND Pay Portal Button -->
-            <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/LIVE-TRACKING-HUB/')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
+            <a href="javascript:void(0)" class="media-file-btn" onclick="triggerHubRedirect('https://maa-nirmala-dj.github.io/MND-Pay/')" style="display:flex; align-items:center; justify-content:space-between; background:rgba(20,20,20,0.6); border:1px solid #D4AF37; border-radius:12px; padding:15px; width:100%; text-decoration:none; margin-top:15px; box-sizing:border-box;">
                 <div style="width:40px; height:40px; border-radius:50%; background:rgba(212,175,55,0.1); display:flex; justify-content:center; align-items:center; color:#D4AF37; font-size:18px;">
                     <i class="fas fa-wallet"></i>
                 </div>
